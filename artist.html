@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist — OMMFA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-artist" data-page="artist">
+
+  <div id="nav-mount"></div>
+
+  <div class="filter-bar">
+    <div class="filter-group">
+      <span class="filter-label">Search</span>
+      <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder="Type a name…"
+        autocomplete="off"
+      >
+    </div>
+  </div>
+
+  <main class="grid" id="artist-grid"></main>
+
+  <div id="footer-mount"></div>
+
+  <div id="envelope-overlay" class="envelope-overlay" aria-hidden="true">
+    <button class="envelope-close" aria-label="Close">✕</button>
+    <div class="envelope">
+      <div class="envelope-inner"></div>
+      
+      <div class="envelope-inspector" aria-hidden="true">
+        <img class="inspected-image" src="" alt="">
+        <p class="inspector-hint">Click anywhere to put it back</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/site.js"></script>
+  <script src="js/artists.js"></script>
+  <script src="js/artist-envelope.js"></script>
+  <script src="js/artist-page.js"></script>
+</body>
+</html>

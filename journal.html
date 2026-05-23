@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal — OMMFA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-journal" data-page="journal">
+
+  <!-- 导航自动注入 -->
+  <div id="nav-mount"></div>
+
+  <!-- 筛选 + 排序栏 -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <span class="filter-label">View</span>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Artist">Artist</button>
+      <button class="filter-btn" data-filter="Art">Art</button>
+      <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Sort</span>
+      <button class="sort-btn active" data-sort="time">By time <span class="sort-arrow">↓</span></button>
+      <button class="sort-btn" data-sort="random">Random</button>
+    </div>
+  </div>
+
+  <!-- 项目网格 -->
+  <main class="grid" id="project-grid"></main>
+
+  <!-- ===== 翻书遮罩层 ===== -->
+  <div id="flipbook-overlay" class="flipbook-overlay" aria-hidden="true">
+    <button class="flipbook-close" aria-label="Close">✕</button>
+    <div class="flipbook-stage">
+      <!-- 翻书库会把书渲染进这个 div -->
+      <div id="flipbook" class="flipbook"></div>
+    </div>
+  </div>
+
+  <!-- 页脚自动注入 -->
+  <div id="footer-mount"></div>
+
+  <!-- 翻书库 StPageFlip(jsdelivr CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/journal-entries.js"></script>
+  <script src="js/journal-flipbook.js"></script>
+  <script src="js/journal.js"></script>
+</body>
+</html>
