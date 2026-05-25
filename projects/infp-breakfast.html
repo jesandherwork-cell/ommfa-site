@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ↓ 改这里：浏览器标签栏显示的标题 -->
+  <title>INFP Breakfast Club — OMMFA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- 注意：项目页在 projects/ 子文件夹里，所以路径要 ../css/ 而不是 css/ -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-project" data-page="project" data-subfolder="true">
+
+  <!-- 导航自动注入 -->
+  <div id="nav-mount"></div>
+
+  <!-- 项目主体：左右两栏 -->
+  <main class="project-layout">
+
+    <!-- ============ 左栏：元信息 + 阐述 ============ -->
+    <aside class="project-aside">
+
+      <!-- 返回链接 -->
+      <a href="../threads.html" class="back-link">← Back to Threads</a>
+
+      <!-- ↓ 改这里：项目标题 -->
+      <h1 class="project-title">INFP Breakfast Club</h1>
+
+      <!-- 元信息（年份、归属、地点、参与者）-->
+      <!-- 不需要的项可以删掉 dt + dd 一对 -->
+      <dl class="project-meta">
+        <dt>Year</dt>
+        <dd>2023</dd>
+
+        <dt>Location</dt>
+        <dd>London (recruitment) · ZEPETO (gathering)</dd>
+
+        <dt>Organiser</dt>
+        <dd>Clementine</dd>
+
+        <dt>Participant</dt>
+        <dd>20, anonymous</dd>
+
+      </dl>
+
+      <!-- ↓ 改这里：项目阐述（可以多段）-->
+      <div class="project-statement">
+        <p>A breakfast club with no breakfast, and no club.</p>
+        <p>In 2023, OMMFA staged INFP Breakfast Club, a project examining how strangers form attachment when identity is both anonymous and externally labelled.</p>
+        <p>This work utilizes ZEPETO—a South Korean social platform where users can exist as customizable 3D avatars in shared virtual spaces designed for entertainment rather than emotional expression. OMMFA's choice of this location for the gathering was deliberate: a space originally intended for performance was transformed into a place of confession.</p>
+        <p>Recruitment was conducted offline. A poster was distributed on the streets of London, targeting only INFP personality types. Aside from an invitation and a QR code, no other information was provided. Ultimately, 20 people responded.</p>
+        <p>They gathered in a place where they couldn't actually meet: a virtual campsite where the campfire offered no warmth and the guitar music came from elsewhere. Twenty strangers, using each other's names, came together in a borrowed world to speak openly and honestly.</p>
+        <p>Almost no documentation remains, which the project views as an inevitable state rather than a loss. The exchanges around the campfire, which could only provide light, were not for archiving purposes. What remains is the fact of the gathering itself: a tag, a borrowed space, were enough to get twenty people moving.</p>
+      </div>
+
+    </aside>
+
+    <!-- ============ 右栏：手机浏览器（一次一张，上下滑动）============ -->
+    <section class="project-content">
+
+      <!-- ↓ 手机浏览器组件。改图：换 .infp-frame 里的 img src。改音频：换 audio src。 -->
+      <div class="infp-phone-wrap">
+        <div class="infp-phone">
+          <div class="infp-notch"></div>
+
+          <div class="infp-screen" id="infpScreen">
+            <div class="infp-track" id="infpTrack">
+              <!-- 一帧一张图，按顺序：海报 → 篝火 → 合影 -->
+              <div class="infp-frame">
+                <img src="../assets/images/threads/infp-breakfast/01.webp" alt="INFP Breakfast Club poster, 2023">
+              </div>
+              <div class="infp-frame">
+                <img src="../assets/images/threads/infp-breakfast/02.webp" alt="ZEPETO gathering, 2023">
+              </div>
+              <div class="infp-frame">
+                <img src="../assets/images/threads/infp-breakfast/03.webp" alt="ZEPETO gathering, 2023">
+              </div>
+            </div>
+
+            <!-- 页码点 -->
+            <div class="infp-dots" id="infpDots" aria-hidden="true">
+              <span class="on"></span><span></span><span></span>
+            </div>
+
+            <!-- 上下翻页按钮 -->
+            <button class="infp-nav infp-up" id="infpUp" aria-label="Previous image">&#8963;</button>
+            <button class="infp-nav infp-down" id="infpDown" aria-label="Next image">&#8964;</button>
+
+            <!-- 右下角篝火声开关（默认描边/静音，点击变实心黑=开声） -->
+            <button class="infp-fire" id="infpFire" aria-label="Toggle campfire ambience" aria-pressed="false">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3c.6 2.2 2.8 3.6 2.8 6.2A2.8 2.8 0 0 1 12 12a2.8 2.8 0 0 1-2.8-2.8C9.2 7.8 10 6.6 12 3z"></path>
+                <path d="M12 21c-3.3 0-6-2.4-6-5.6 0-2 .9-3.6 2.3-5.1.2 1.4 1 2.3 2 2.8-.3-2 .6-3.8 1.7-5.1 0 0 0 0 0 0 .5 3 3.9 4 3.9 7.4 0 3.2-2.6 5.6-5.9 5.6z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- caption：放手机下方，纯元数据 -->
+        <figcaption class="infp-cap" id="infpCap">INFP Breakfast Club, Poster, 2023</figcaption>
+
+        <!-- 篝火音频：循环、默认不播，由按钮触发 -->
+        <audio id="infpAudio" src="../assets/images/threads/infp-breakfast/fire_hardcut.opus" loop preload="none"></audio>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 页脚自动注入 -->
+  <div id="footer-mount"></div>
+
+  <!-- ============ 手机浏览器样式（infp- 前缀，独立作用域，不影响全站）============ -->
+  <style>
+    .infp-phone-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 0 24px;
+      position: sticky;              /* 桌面：跟随滚动停在视口中央 */
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* 手机外壳：深色、克制，不高仿 */
+    .infp-phone {
+      position: relative;
+      width: 300px;
+      max-width: 78vw;
+      aspect-ratio: 300 / 620;
+      background: #141413;
+      border-radius: 40px;
+      padding: 11px;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 18px 50px rgba(20, 20, 20, 0.22);
+    }
+
+    .infp-notch {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 84px;
+      height: 6px;
+      background: #000;
+      border-radius: 99px;
+      z-index: 4;
+    }
+
+    .infp-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    /* 竖向轨道：每帧占满一屏，translateY 翻页 */
+    .infp-track {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .infp-frame {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    .infp-frame:nth-child(1) { top: 0; }
+    .infp-frame:nth-child(2) { top: 100%; }
+    .infp-frame:nth-child(3) { top: 200%; }
+
+    /* contain：整张图完整显示，黑底兜底 */
+    .infp-frame img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* 页码点 */
+    .infp-dots {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      z-index: 5;
+    }
+    .infp-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.3;
+      transition: opacity 0.3s;
+    }
+    .infp-dots span.on { opacity: 0.9; }
+
+    /* 上下翻页按钮 */
+    .infp-nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      width: 40px;
+      height: 28px;
+      border: none;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .infp-nav:hover { background: rgba(255, 255, 255, 0.2); }
+    .infp-up { top: 12px; }
+    .infp-down { bottom: 12px; }
+    .infp-nav:disabled { opacity: 0.25; cursor: default; }
+
+    /* 右下角篝火开关：默认描边低调，开启后实心黑 */
+    .infp-fire {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      z-index: 6;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, transform 0.1s;
+    }
+    .infp-fire:hover { background: rgba(255, 255, 255, 0.24); }
+    .infp-fire:active { transform: scale(0.94); }
+    .infp-fire.on {
+      background: #000;
+      color: #fff;
+    }
+
+    /* caption */
+    .infp-cap {
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* 窄屏（手机端）：取消 sticky 居中，恢复正常文档流；手机略缩；按钮更大好点 */
+    @media (max-width: 900px) {
+      .infp-phone-wrap {
+        position: static;
+        top: auto;
+        transform: none;
+        padding: 8px 0 32px;
+      }
+      .infp-phone { width: 260px; }
+      /* 翻页按钮加大，触摸更好点 */
+      .infp-nav { width: 48px; height: 34px; font-size: 15px; }
+      .infp-up { top: 14px; }
+      .infp-down { bottom: 14px; }
+      .infp-fire { width: 36px; height: 36px; }
+    }
+  </style>
+
+  <!-- ============ 手机浏览器逻辑 ============ -->
+  <script>
+    (function () {
+      var track   = document.getElementById('infpTrack');
+      var dots     = document.getElementById('infpDots').children;
+      var up       = document.getElementById('infpUp');
+      var down     = document.getElementById('infpDown');
+      var cap      = document.getElementById('infpCap');
+      var screen   = document.getElementById('infpScreen');
+      var fireBtn  = document.getElementById('infpFire');
+      var audio    = document.getElementById('infpAudio');
+
+      var captions = [
+        'INFP Breakfast Club, Poster, 2023',
+        'INFP Breakfast Club, ZEPETO, 2023',
+        'INFP Breakfast Club, ZEPETO, 2023'
+      ];
+
+      var i = 0, n = 3;
+
+      function render() {
+        track.style.transform = 'translateY(' + (-i * 100) + '%)';
+        for (var j = 0; j < dots.length; j++) {
+          dots[j].className = (j === i) ? 'on' : '';
+        }
+        cap.textContent = captions[i];
+        up.disabled = (i === 0);
+        down.disabled = (i === n - 1);
+      }
+
+      function go(k) {
+        i = Math.max(0, Math.min(n - 1, k));
+        render();
+      }
+
+      up.addEventListener('click', function () { go(i - 1); });
+      down.addEventListener('click', function () { go(i + 1); });
+
+      // 是否窄屏（手机端）。窄屏下不接管手指滑动，避免与页面滚动打架。
+      var isNarrow = function () { return window.matchMedia('(max-width: 900px)').matches; };
+
+      // 触摸滑动（仅桌面/平板宽屏启用）
+      var sy = null;
+      screen.addEventListener('touchstart', function (e) {
+        if (isNarrow()) { sy = null; return; }   // 窄屏：放行，让页面正常滚动
+        sy = e.touches[0].clientY;
+      }, { passive: true });
+      screen.addEventListener('touchend', function (e) {
+        if (sy === null) return;
+        var dy = e.changedTouches[0].clientY - sy;
+        if (Math.abs(dy) > 40) { go(dy < 0 ? i + 1 : i - 1); }
+        sy = null;
+      }, { passive: true });
+
+      // 滚轮翻页（仅桌面启用）
+      var wheelLock = false;
+      screen.addEventListener('wheel', function (e) {
+        if (isNarrow()) return;                  // 窄屏：不接管滚轮
+        e.preventDefault();
+        if (wheelLock) return;
+        if (Math.abs(e.deltaY) > 10) {
+          go(e.deltaY > 0 ? i + 1 : i - 1);
+          wheelLock = true;
+          setTimeout(function () { wheelLock = false; }, 500);
+        }
+      }, { passive: false });
+
+      // 篝火声开关：点击变黑=播放，再点=暂停
+      fireBtn.addEventListener('click', function () {
+        if (audio.paused) {
+          audio.volume = 0.35;
+          audio.play().then(function () {
+            fireBtn.classList.add('on');
+            fireBtn.setAttribute('aria-pressed', 'true');
+          }).catch(function () {});
+        } else {
+          audio.pause();
+          fireBtn.classList.remove('on');
+          fireBtn.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      render();
+    })();
+  </script>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>

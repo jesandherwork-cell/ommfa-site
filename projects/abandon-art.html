@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abandon Art — OMMFA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    .aa-deck-wrap{ max-width:380px; margin:0 auto; padding-top:18vh; }
+    .aa-deck{ position:relative; height:500px; user-select:none; -webkit-user-select:none; }
+    .aa-card{
+      position:absolute; inset:0; border-radius:14px; overflow:hidden;
+      background:#faf6ec; border:0.5px solid rgba(0,0,0,0.18);
+      box-shadow:0 6px 24px rgba(0,0,0,0.10);
+      transition:transform .35s cubic-bezier(.2,.7,.3,1), opacity .35s;
+    }
+    
+    /* 图片永远占满全卡，自动裁剪对齐 */
+    .aa-card .aa-img{ width:100%; height:100%; object-fit:cover; display:block; background:#e9e4d8; }
+    
+    /* 遮罩层平时透明度为0，悬停变为1 */
+    .aa-card .aa-cap{ 
+      position:absolute; inset:0; background:rgba(0,0,0,0.65);
+      display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+      opacity:0; transition:opacity 0.3s ease; padding:20px; font-family:'Questrial',sans-serif;
+    }
+    .aa-card:hover .aa-cap{ opacity:1; }
+    
+    /* 文字改成白色系以适应黑底 */
+    .aa-card .aa-cap .aa-author{ margin:0; font-size:18px; font-weight:500; color:#ffffff; }
+    .aa-card .aa-cap .aa-details{ margin:6px 0 0; font-size:14px; color:#eaeaea; letter-spacing:0.5px; }
+    
+    .aa-controls{ display:flex; justify-content:center; gap:28px; margin-top:1.5rem; }
+    .aa-btn{
+      width:56px; height:56px; border-radius:50%; cursor:pointer;
+      background:transparent; border:0.5px solid rgba(0,0,0,0.3);
+      font-size:22px; line-height:1; color:#1a1a1a;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .15s, transform .1s;
+    }
+    .aa-btn:hover{ background:rgba(0,0,0,0.05); }
+    .aa-btn:active{ transform:scale(0.95); }
+    .aa-counter{ text-align:center; font-size:13px; color:#9b968b; margin-top:1rem; letter-spacing:.05em; font-family:'Questrial',sans-serif; }
+
+    /* 针对右栏底部投稿文本的微调 */
+    .aa-submission-text { margin-top: 40px; font-size: 15px; line-height: 1.6; color: var(--ink); }
+    .aa-submission-text a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    .aa-submission-text a:hover { opacity: 0.7; }
+  </style>
+</head>
+<body class="page-project" data-page="project" data-subfolder="true">
+
+  <div id="nav-mount"></div>
+
+  <main class="project-layout">
+
+    <aside class="project-aside">
+
+      <a href="../threads.html" class="back-link">← Back to Threads</a>
+
+      <h1 class="project-title">Abandon Art</h1>
+
+      <dl class="project-meta">
+        <dt>Year</dt>
+        <dd>2021 - Present</dd>
+        <dt>Location</dt>
+        <dd>Distributed</dd>
+        <dt>Curator</dt>
+        <dd>Clementine</dd>
+      </dl>
+
+      <div class="project-statement">
+        <p>Abandon Art is a curatorial project initiated by OMMFA in 2021. It examines objects that no one set out to make—the accidental compositions of the street. A broken umbrella, or a sofa left by the kerb, are viewed not as refuse, but as materials holding a fleeting, deliberate form that OMMFA seeks to catalog and elevate.</p>
+        <p>The project gathers documentation of these discarded works from a global network of distributed observers. OMMFA focus on the act of re-making—how an individual intervention, through minimal adjustment or heavy edit, transforms a worthless object into a record worth keeping. We treat this act of noticing not as casual participation, but as a discipline in its own right.</p>
+        <p>From this compiled material, OMMFA selectively exhibits works that exemplify this reversal of value. The project asserts that an object deemed worthless by one hand becomes, under the institutional gaze, a cultural artefact. None would have been recognised as art had it remained where it was found; here, they are presented as part of OMMFA's ongoing investigation into the overlooked.</p>
+      </div>
+
+    </aside>
+
+    <section class="project-content">
+
+      <div class="aa-deck-wrap">
+        <div id="aa-deck" class="aa-deck"></div>
+
+        <div class="aa-controls">
+          <button id="aa-prev" class="aa-btn" aria-label="Previous">←</button>
+          <button id="aa-next" class="aa-btn" aria-label="Next">→</button>
+        </div>
+
+        <p id="aa-counter" class="aa-counter"></p>
+        
+     
+
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../js/site.js"></script>
+
+ <script>
+  (function(){
+    // ↓↓↓ 作品图数据：留空 "" 则悬停时不显示该项
+    var IMG_BASE = "../assets/images/threads/abandon-art/";
+    var works = [
+      { src: "01.webp", author: "Clementine", year: "2021", location: "London" },
+      { src: "02.webp", author: "以袋熊为圆心", year: "2025", location: "Zhejiang" },
+      { src: "03.webp", author: "Dr L", year: "2022", location: "London" },
+      { src: "04.webp", author: "Xinrui", year: "2022", location: "London" },
+      { src: "05.webp", author: "Ariel", year: "2025", location: "London" },
+      { src: "06.webp", author: "Ariel", year: "2025", location: "London" },
+      { src: "07.webp", author: "Jes", year: "2023", location: "London" },
+      { src: "08.webp", author: "David", year: "2022", location: "London" },
+      { src: "09.webp", author: "Ke Lan Yan", year: "2025", location: "Shanghai" },
+      { src: "10.webp", author: "KowLoon", year: "2025", location: "Henan" },
+      { src: "11.webp", author: "Fan Xuan", year: "2025", location: "London" },
+      { src: "12.webp", author: "Lazyfrankcat.", year: "2025", location: "Xinjiang" },
+      { src: "13.webp", author: "Evan", year: "2025", location: "Mexico" },
+      { src: "14.webp", author: "Miss Wu", year: "2024", location: "Mexico" },
+      { src: "15.webp", author: "FlexPrin", year: "2025", location: "Shanghai" },
+      { src: "16.webp", author: "RJQH", year: "2023", location: "New York" },
+      { src: "17.webp", author: "Zenls", year: "2024", location: "New York" },
+      { src: "18.webp", author: "BRIA", year: "2026", location: "Beijing" },
+      { src: "19.webp", author: "YYMXXZ", year: "2025", location: "Tianjin" },
+      { src: "20.webp", author: "YYMXXZ", year: "2025", location: "Tianjin" },
+      { src: "21.webp", author: "Nafd", year: "2025", location: "Hong Kong" },
+      { src: "22.webp", author: "Alex", year: "2025", location: "London" },
+      { src: "23.webp", author: "Chill", year: "2022", location: "Guangzhou" },
+      { src: "24.webp", author: "Be Melon", year: "2024", location: "Hong Kong" },
+      { src: "25.webp", author: "ATT", year: "2025", location: "Sarajevo" },
+    ];
+
+    var deck = document.getElementById("aa-deck");
+    var counter = document.getElementById("aa-counter");
+    var N = works.length;
+    var head = 0;
+
+    // 生成卡片内容（图片+悬停遮罩）
+    function getCardHTML(w) {
+      var capHTML = "";
+      if(w.author || w.year || w.location){
+        var details = [];
+        if(w.year) details.push(w.year);
+        if(w.location) details.push(w.location);
+        var detailsText = details.join(', ');
+
+        capHTML = '<div class="aa-cap">' +
+          (w.author ? '<p class="aa-author">' + w.author + '</p>' : '') +
+          (detailsText ? '<p class="aa-details">' + detailsText + '</p>' : '') +
+          '</div>';
+      }
+      return '<img class="aa-img" style="height:100%" src="' + IMG_BASE + w.src + '" alt="Abandon Art submission">' + capHTML;
+    }
+
+    function render(){
+      deck.innerHTML = "";
+      // 永远只渲染当前的和后面的两张，保持物理堆叠的正确性
+      for(var depth = 2; depth >= 0; depth--){
+        if(depth >= N && N < 3) continue;
+        var w = works[(head + depth) % N];
+        var card = document.createElement("div");
+        card.className = "aa-card";
+        card.dataset.depth = depth;
+        card.style.transform = "translateY(" + (depth*10) + "px) scale(" + (1 - depth*0.04) + ")";
+        card.style.zIndex = 10 - depth;
+        card.style.cursor = depth === 0 ? "grab" : "default";
+        
+        card.innerHTML = getCardHTML(w);
+        deck.appendChild(card);
+      }
+      counter.textContent = ((head % N) + 1) + " / " + N;
+      attachDrag();
+    }
+
+    // 核心动画分发逻辑
+    function advance(dir){
+      var top = deck.querySelector('.aa-card[data-depth="0"]');
+      if(!top) return;
+
+      if (dir === "right") {
+        // ========== 飞走动画 (去下一张) ==========
+        top.style.transition = "transform .5s ease, opacity .5s ease";
+        top.style.transform = "translate(600px, 40px) rotate(22deg)";
+        top.style.opacity = "0";
+
+        // 等卡片飞走后，刷新牌堆
+        setTimeout(function(){
+          head = (head + 1) % N;
+          render();
+        }, 320);
+
+      } else {
+        // ========== 飞回动画 (回上一张) ==========
+        // 1. 让当前的卡片迅速缩回牌堆（变成第二层）
+        top.style.transition = "transform .3s ease, opacity .3s ease";
+        top.style.transform = "translateY(10px) scale(0.96)"; 
+
+        // 2. 稍微延迟一点点，召唤上一张卡片飞入
+        setTimeout(function(){
+          head = (head - 1 + N) % N;
+          render(); // 此时新的上一张已经生成在 top
+
+          var newTop = deck.querySelector('.aa-card[data-depth="0"]');
+          if(newTop) {
+            // 瞬间把新卡片放到屏幕右外侧（从飞出去的废弃堆原路返回）
+            newTop.style.transition = "none";
+            newTop.style.transform = "translate(600px, 40px) rotate(22deg)";
+            newTop.style.opacity = "0";
+
+            void newTop.offsetWidth; // 强制重绘生效
+
+            // 加上过渡效果，让它飞入屏幕正中心
+            newTop.style.transition = "transform .4s cubic-bezier(.2,.7,.3,1), opacity .4s ease";
+            newTop.style.transform = "translateY(0px) scale(1)";
+            newTop.style.opacity = "1";
+          }
+        }, 150);
+      }
+    }
+
+    // 鼠标/手指拖拽逻辑
+    var drag = null;
+    function attachDrag(){
+      var top = deck.querySelector('.aa-card[data-depth="0"]');
+      if(!top) return;
+      function start(x){ drag = { x0:x }; top.style.transition = "none"; top.style.cursor = "grabbing"; }
+      function move(x){
+        if(!drag) return;
+        var dx = x - drag.x0;
+        top.style.transform = "translate(" + dx + "px, " + (Math.abs(dx)*0.06) + "px) rotate(" + (dx*0.05) + "deg)";
+      }
+      function end(x){
+        if(!drag) return;
+        var dx = x - drag.x0;
+        top.style.cursor = "grab";
+        
+        // 拖拽超过90px就触发切换
+        if(Math.abs(dx) > 90){ 
+          advance(dx > 0 ? "right" : "left"); 
+        } else { 
+          // 没滑够距离，弹回原位
+          top.style.transition = "transform .3s"; top.style.transform = ""; 
+        }
+        drag = null;
+      }
+      top.addEventListener("mousedown", function(e){ start(e.clientX); });
+      window.addEventListener("mousemove", function(e){ move(e.clientX); });
+      window.addEventListener("mouseup", function(e){ end(e.clientX); });
+      top.addEventListener("touchstart", function(e){ start(e.touches[0].clientX); }, {passive:true});
+      top.addEventListener("touchmove", function(e){ move(e.touches[0].clientX); if(drag) e.preventDefault(); }, {passive:false});
+      top.addEventListener("touchend", function(e){ end(e.changedTouches[0].clientX); });
+    }
+
+    document.getElementById("aa-next").addEventListener("click", function(){ advance("right"); });
+    document.getElementById("aa-prev").addEventListener("click", function(){ advance("left"); });
+
+    render();
+  })();
+  </script>
+
+</body>
+</html>

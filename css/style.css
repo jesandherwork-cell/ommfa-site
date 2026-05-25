@@ -1,0 +1,1480 @@
+/* ============================================
+   OMMFA — 全局样式
+   ============================================ */
+
+:root {
+  /* 颜色 */
+  --cream: #fdfbf5;          /* 奶白主背景 */
+  --ink: #1a1a1a;            /* 主要文字 */
+  --ink-soft: #5a5a5a;       /* 次要文字 */
+  --line: rgba(26, 26, 26, 0.15);
+
+  /* 各页面渐变色（备用变量） */
+  --blue-soft: #c5dcfa;
+  --blue-mid: #7fa9d8;
+  --purple-soft: #d4c5f9;
+  --purple-mid: #a892d8;
+  --pink-soft: #f4c0d1;
+  --pink-mid: #d895a8;
+
+  /* 字体 */
+  --font-sans: "Rubik", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 重置 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================
+   首页
+   ============================================ */
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 22vh 6vw 6vh;
+}
+
+.home-content {
+  max-width: 1200px;
+}
+
+/* 主标题 */
+.statement {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(32px, 4.8vw, 56px);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   主导航
+   ============================================ */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 28px);
+  letter-spacing: 0.01em;
+}
+
+.site-nav .logo {
+  text-transform: uppercase;                                    /* 只有OMMFA强制大写 */
+  font-family: "Questrial", "Helvetica Neue", Arial, sans-serif; /* OMMFA 专用字体 */
+  font-weight: 400;                                              /* Questrial 只有 400 */
+  letter-spacing: 0.02em;                                        /* 稍微拉开一点，更透气 */
+}
+
+.site-nav a {
+  color: var(--ink);
+  transition: opacity 0.2s;
+}
+
+.site-nav a:hover {
+  opacity: 0.45;
+}
+
+.site-nav .dot {
+  opacity: 0.4;                       /* ← 这条之前被截断丢失了 */
+}
+
+/* 当前页高亮：去掉下划线，改成字号比其他大一点 */
+.site-nav a.active {
+  opacity: 1;
+  font-size: 1.1em;       /* 比其他导航项大 15% */
+}
+
+
+/* 内页顶部导航：贴近顶部，字号比首页小 */
+.page-header {
+  padding: 24px 6vw 0;
+}
+.site-nav-inner {
+  font-size: clamp(14px, 1.4vw, 18px);
+}
+
+/* ============================================
+   页脚（所有页通用）
+   ============================================ */
+
+.site-footer {
+  padding: 20px 6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   渐变漂移动画（Threads / Editions 共用）
+   ============================================ */
+
+@keyframes drift {
+  0%, 100% { background-position: 0% 0%; }
+  50%      { background-position: 100% 100%; }
+}
+
+/* ============================================
+   Threads 页：雾蓝渐变
+   ============================================ */
+
+.page-threads {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 80% 60%, rgba(80, 120, 160, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 55% 15%, rgba(200, 220, 235, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 10% 85%, rgba(110, 150, 190, 0.3) 0%, transparent 60%),
+    linear-gradient(135deg, #aec5d8 0%, #c0d4e3 45%, #a8c2d5 100%);
+  background-size: 220% 220%;
+  animation: drift 40s ease-in-out infinite;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 蓝色页颗粒纹理 */
+.page-threads::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-threads > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Editions 页：紫色雾化渐变
+   ============================================ */
+
+.page-journal {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 80% 60%, rgba(130, 100, 170, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 55% 15%, rgba(220, 210, 235, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 10% 85%, rgba(160, 130, 200, 0.3) 0%, transparent 60%),
+    linear-gradient(135deg, #c8b8d8 0%, #d4c5e0 45%, #b8a8cc 100%);
+  background-size: 220% 220%;
+  animation: drift 40s ease-in-out infinite;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.page-journal::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-journal > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   筛选 + 排序栏（Threads / Editions 共用）
+   ============================================ */
+
+.filter-bar {
+  padding: 32px 6vw 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-label {
+  color: var(--ink-soft);
+  margin-right: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+
+.filter-btn,
+.sort-btn {
+  background: none;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover,
+.sort-btn:hover {
+  color: var(--ink);
+}
+
+.filter-btn.active,
+.sort-btn.active {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ============================================
+   项目网格（Threads / Editions 共用）
+   ============================================ */
+
+.grid {
+  padding: 32px 6vw 80px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 24px;
+}
+
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .grid { grid-template-columns: 1fr; } }
+
+/* 单张卡片 */
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 卡片封面：正方形 + 圆角 + 磨砂 + 颗粒 */
+.card-cover {
+  aspect-ratio: 1 / 1;
+  background-color: rgba(255, 255, 255, 0.25);   /* 没图时显示的磨砂底色 */
+  background-size: cover;                          /* 图片填满卡片，不变形 */
+  background-position: center;                     /* 居中显示 */
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(40, 70, 110, 0.08);
+}
+
+.card-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.card:hover .card-cover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 30px rgba(40, 70, 110, 0.15);
+}
+
+/* 标题 + 年份 */
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 0 2px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  background: linear-gradient(
+    90deg,
+    var(--ink) 0%, var(--ink) 40%,
+    #5a8acc 50%, #2a4a8c 55%,
+    var(--ink) 65%, var(--ink) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.8s ease;
+}
+
+.card:hover .card-title {
+  background-position: 0% 50%;
+}
+
+.card-year {
+  font-size: 11px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* Editions 页的卡片标题用紫色流光 */
+.page-journal .card-title {
+  background: linear-gradient(
+    90deg,
+    var(--ink) 0%, var(--ink) 40%,
+    #8a6abc 50%, #5a3a8c 55%,
+    var(--ink) 65%, var(--ink) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-journal .card-cover {
+  box-shadow: 0 4px 20px rgba(80, 50, 110, 0.1);
+}
+
+.page-journal .card:hover .card-cover {
+  box-shadow: 0 8px 30px rgba(80, 50, 110, 0.18);
+}
+
+/* 空状态提示 */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+
+
+
+
+
+/* ============================================
+   Artist 页：绿色雾化渐变
+   ============================================ */
+
+.page-artist {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 55%),     /* 左上亮区 */
+    radial-gradient(ellipse 60% 70% at 80% 60%, rgba(90, 140, 110, 0.32) 0%, transparent 55%),    /* 右下深绿 */
+    radial-gradient(ellipse 70% 50% at 55% 15%, rgba(210, 225, 215, 0.4) 0%, transparent 55%),    /* 顶部雾 */
+    radial-gradient(ellipse 50% 60% at 10% 85%, rgba(130, 170, 145, 0.3) 0%, transparent 60%),    /* 左下绿 */
+    linear-gradient(135deg, #b8cdb8 0%, #ccddc8 45%, #aac4b0 100%);                                /* 兜底 */
+  background-size: 220% 220%;
+  animation: drift 40s ease-in-out infinite;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 颗粒纹理 */
+.page-artist::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-artist > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 绿色卡片标题流光 */
+.page-artist .card-title {
+  background: linear-gradient(
+    90deg,
+    var(--ink) 0%, var(--ink) 40%,
+    #5a9c70 50%, #2a6c40 55%,
+    var(--ink) 65%, var(--ink) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 绿色阴影 */
+.page-artist .card-cover {
+  box-shadow: 0 4px 20px rgba(50, 90, 60, 0.1);
+}
+
+.page-artist .card:hover .card-cover {
+  box-shadow: 0 8px 30px rgba(50, 90, 60, 0.18);
+}
+
+/* 搜索输入框 */
+.search-input {
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink);
+  width: 220px;
+  outline: none;
+  transition: all 0.2s;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.search-input::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: var(--ink);
+  width: 280px;
+}
+
+
+
+
+/* ============================================
+   About 页：更浅的奶白（比首页再白一些）
+   ============================================ */
+
+.page-about {
+  background: #fcfaf3;             /* 比 --cream (#f9f5ec) 更白一些 */
+  min-height: 100vh;
+}
+
+/* 主体：左右两栏 */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;          /* 左:右 = 1 : 1.4，右边稍宽 */
+  gap: 80px;
+  padding: 8vh 6vw 12vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 窄屏：左右变上下 */
+@media (max-width: 800px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 6vh 6vw 8vh;
+  }
+}
+
+/* 小标题：People / Position / Contact / Colophon */
+.about-section-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* 左栏 — People */
+.about-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 单个人 */
+.person {
+  margin-bottom: 36px;
+}
+
+.person:last-child {
+  margin-bottom: 0;
+}
+
+.person-name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.person-role {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.person-bio {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 38ch;
+}
+
+/* 右栏 — Position / Contact / Colophon */
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.about-block:last-child {
+  margin-bottom: 0;
+}
+
+.about-text {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 16px;
+  max-width: 52ch;
+}
+
+.about-text:last-child {
+  margin-bottom: 0;
+}
+
+.about-text a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink-soft);
+  transition: opacity 0.2s;
+}
+
+.about-text a:hover {
+  opacity: 0.5;
+}
+
+/* Colophon 字号小一点、灰一点 */
+.about-text.colophon {
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+
+/* ============================================
+   OMMFA 品牌字样：所有 OMMFA 字样统一用 Questrial
+   用法：<span class="brand">OMMFA</span>
+   ============================================ */
+
+.brand {
+  font-family: "Questrial", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+
+/* ============================================
+   项目详情页：奶白底 + 左右两栏 + 图文流
+   ============================================ */
+
+.page-project {
+  background: #fcfaf3;       /* 跟 About 同样的淡奶白 */
+  min-height: 100vh;
+}
+
+/* 主体网格：左 280px 固定，右自适应 */
+.project-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 80px;
+  padding: 6vh 6vw 12vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 窄屏：左右变上下 */
+@media (max-width: 900px) {
+  .project-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* ===== 左栏：sticky 跟随滚动 ===== */
+.project-aside {
+  position: sticky;            /* 滚动时固定 */
+  top: 80px;
+  align-self: start;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .project-aside { position: static; }
+}
+
+/* 返回链接 */
+.back-link {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+.back-link:hover { opacity: 0.6; }
+
+/* 项目标题 */
+.project-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.25;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+/* 元信息表 */
+.project-meta {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-meta dt {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+  margin-top: 14px;
+}
+
+.project-meta dt:first-child { margin-top: 0; }
+
+.project-meta dd {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* 项目阐述 */
+.project-statement p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.project-statement p:last-child { margin-bottom: 0; }
+
+/* ===== 右栏：主图 + 正文 + 详情图 ===== */
+.project-content { min-width: 0; }
+
+/* 主图 */
+.project-hero { margin: 0 0 56px; }
+
+.project-hero img,
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);   /* 图片加载失败时显示淡灰底 */
+}
+
+.project-hero figcaption,
+.gallery-item figcaption {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+  font-style: italic;
+}
+
+/* 正文 */
+.project-body {
+  max-width: 60ch;       /* 文本最多 60 字符宽，阅读舒适 */
+  margin-bottom: 64px;
+}
+
+.project-body p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.project-body p:last-child { margin-bottom: 0; }
+
+/* 详情图廊：垂直排列 */
+.project-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.gallery-item { margin: 0; }
+
+
+/* ============================================
+   艺术家详情页：复用项目页布局 + CV 块的样式
+   ============================================ */
+
+.page-artist-detail {
+  background: #fcfaf3;       /* 跟 About / 项目页同样的奶白 */
+  min-height: 100vh;
+}
+
+/* CV 块 */
+.artist-cv {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.cv-heading {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+.cv-list {
+  list-style: none;            /* 不要小圆点 */
+  padding: 0;
+  margin: 0;
+}
+
+.cv-list li {
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 6px 0;
+  display: flex;
+  gap: 14px;
+  border-bottom: 1px dotted rgba(26, 26, 26, 0.08);
+}
+
+.cv-list li:last-child { border-bottom: none; }
+
+/* 年份用等宽对齐感 */
+.cv-year {
+  color: var(--ink-soft);
+  min-width: 40px;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;   /* 数字等宽，对齐好看 */
+}
+
+
+
+/* ============================================
+   艺术家详情页：代表作品图
+   ============================================ */
+
+.featured-work {
+  margin: 0;
+}
+
+.featured-work img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.featured-work figcaption {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+  font-style: italic;
+}
+
+
+
+/* ============================================
+   Journal 详情页:淡黄纸色 + 单栏阅读
+   ============================================ */
+
+.page-journal-entry {
+  background: #faf3df;          /* 淡黄纸色,书页感(比项目页更黄) */
+  min-height: 100vh;
+}
+
+/* 单栏居中,阅读宽度约 680px */
+.journal-entry {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 6vh 6vw 12vh;
+}
+
+/* 返回链接 */
+.journal-back {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 48px;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+.journal-back:hover { opacity: 0.6; }
+
+/* 顶部元信息:日期 · 类型 · 作者(灰色小字横排) */
+.journal-meta {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* 元信息之间用 · 分隔(最后一个不加) */
+.journal-meta span:not(:last-child)::after {
+  content: "·";
+  margin-left: 14px;
+  opacity: 0.5;
+}
+
+/* 主标题 */
+.journal-title {
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+/* 副标题(灰色斜体,可选) */
+.journal-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-bottom: 48px;
+  font-style: italic;
+}
+
+/* 封面图(标题下面那张大图,可选) */
+.journal-cover {
+  margin: 0 -2vw 56px;          /* 负 margin 让图比正文宽一点点 */
+}
+.journal-cover img {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Formal 版式:正经文章阅读体验 ===== */
+
+.journal-body.layout-formal {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.journal-body.layout-formal p {
+  margin-bottom: 18px;
+}
+
+/* 小标题 */
+.journal-body.layout-formal h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: 40px 0 16px;
+}
+
+.journal-body.layout-formal h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+}
+
+/* 引用块(markdown 里 > 开头的段落) */
+.journal-body.layout-formal blockquote {
+  border-left: 2px solid var(--ink);
+  padding-left: 20px;
+  margin: 24px 0;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* 列表 */
+.journal-body.layout-formal ul,
+.journal-body.layout-formal ol {
+  margin: 0 0 18px 24px;
+}
+.journal-body.layout-formal li {
+  margin-bottom: 6px;
+}
+
+/* 正文里的图片 */
+.journal-body.layout-formal img {
+  display: block;
+  width: 100%;
+  margin: 32px 0;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 链接:浅下划线 */
+.journal-body.layout-formal a {
+  border-bottom: 1px solid var(--line);
+  transition: opacity 0.2s;
+}
+.journal-body.layout-formal a:hover {
+  opacity: 0.6;
+}
+
+/* 斜体和粗体 */
+.journal-body.layout-formal em     { font-style: italic; }
+.journal-body.layout-formal strong { font-weight: 700; }
+
+/* 分割线(markdown 里 --- 写出来的) */
+.journal-body.layout-formal hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+
+
+
+
+
+
+
+
+/* ============================================
+   OMMFA Cinematic Envelope System (大倾角飞入 + 无白边版)
+   ============================================ */
+
+* {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+body.envelope-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* 1. 遮罩层：动态无规则迷雾 (Chaotic Fog) */
+.envelope-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 4vw;
+  
+  /* 【核心重构】：用4层不同大小、位置的不规则雾块，叠加真实的 SVG 分形噪点，模拟混沌的浓雾 */
+  background-color: rgba(200, 225, 210, 0.25);
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(235, 247, 240, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 75% 85%, rgba(190, 220, 202, 0.8) 0%, transparent 60%),
+    radial-gradient(circle at 60% 10%, rgba(210, 235, 220, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(200, 228, 215, 0.7) 0%, transparent 55%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.25'/%3E%3C/svg%3E");
+  
+  /* 把雾块放大，让它们在屏幕外也有延伸，方便游动 */
+  background-size: 150% 150%, 180% 180%, 200% 200%, 160% 160%, cover;
+  background-blend-mode: normal, normal, normal, normal, overlay;
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease;
+  perspective: 2000px;
+  perspective-origin: 50% 50%;
+}
+
+/* 当档案袋打开时，不仅显示迷雾，还触发长达无规律缓慢漂移 */
+.envelope-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+  animation: fogFlow 12s ease-in-out infinite alternate;
+}
+
+/* 迷雾流动的灵魂：让 4 层雾气在不同的坐标系里完全无规律地互相穿插游走 */
+@keyframes fogFlow {
+  0%   { background-position: 0% 0%,   100% 100%, 50% 0%,   0% 100%,   0% 0%; }
+  25%  { background-position: 80% 80%, 0% 50%,    100% 20%, 80% 10%,   30% 30%; }
+  50%  { background-position: 100% 20%, 50% 0%,   0% 100%,  100% 80%,  60% 60%; }
+  75%  { background-position: 20% 100%, 100% 0%,  80% 50%,  30% 100%,  30% 30%; }
+}
+
+
+.envelope-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 120;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 16px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.envelope-close:hover { background: rgba(255, 255, 255, 0.9); }
+
+/* 1. 档案袋本体：极大倾角飞入、干掉所有白边 */
+.envelope {
+  position: relative;
+  width: 86vw;
+  height: 76vh;
+  max-width: 1000px;
+  max-height: 660px;
+  
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  border: none; /* 明确干掉不需要的描边 */
+  
+  backdrop-filter: blur(35px) saturate(1.1);
+  -webkit-backdrop-filter: blur(35px) saturate(1.1);
+  
+  /* 取消了内侧发光描边和多余环境阴影，只留纯粹的底部阴影 */
+  box-shadow: 20px 35px 65px rgba(40, 70, 50, 0.15);
+  
+  /* 【核心修改】倾角极大化*/
+  transform: translateZ(-1500px) translateX(-300px) rotateY(-90deg) rotateX(90deg) rotateZ(-20deg);
+  transform-style: preserve-3d;
+  filter: blur(15px);
+  opacity: 0;
+  
+  transition: 
+    transform 2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    filter 2.0s cubic-bezier(0.1, 0.9, 0.2, 1),
+    opacity 1.0s ease;
+}
+
+.envelope-overlay.open .envelope {
+  transform: translateZ(0px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+  filter: blur(0px);
+  opacity: 1;
+}
+
+/* 2. 顶端标签：去掉白边 */
+.envelope-tab {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  height: 38px;
+  min-width: 40%; 
+  padding: 0 32px 0 24px;
+  
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 8px 16px 0 0;
+  border: none; /* 明确干掉不需要的描边 */
+  
+  backdrop-filter: blur(35px) saturate(1.1);
+  -webkit-backdrop-filter: blur(35px) saturate(1.1);
+  
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+/* 3. 内部容器：和袋子一起出现，无延迟！ */
+.envelope-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* 取消了延迟和 opacity 0，让它在档案袋斜立飞来时就在里面 */
+  opacity: 1;
+  transition: filter 0.4s ease;
+}
+.envelope-inner.blur-contents { filter: blur(12px); pointer-events: none; }
+
+/* 4. A4 纸张 */
+.envelope-card {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  width: 40%;
+  height: 80%;
+  background: rgba(253, 251, 245, 0.98);
+  padding: 45px 32px;
+  box-shadow: 0 4px 15px rgba(14, 54, 32, 0.151);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.envelope-card-city { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 28px; }
+.envelope-card-bio { font-size: 14px; line-height: 1.6; color: var(--ink); margin-bottom: 20px; flex: 1 1 auto; min-height: 0; overflow-y: scroll; padding-right: 8px; }
+
+/* 隐藏 bio 的原生滚动条（webkit + firefox），改用自定义把手（见 bio-scroller.js） */
+.bio-native-hidden { scrollbar-width: none; -ms-overflow-style: none; }
+.bio-native-hidden::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+/* 细线轨道 */
+.bio-rail {
+  position: absolute;
+  width: 1px;
+  background: rgba(14, 54, 32, 0.18);
+  display: none;            /* 默认隐藏，JS 在需要滚动时显示 */
+  z-index: 5;
+  cursor: pointer;
+}
+
+/* 圆形把手（暖白，浮起） */
+.bio-handle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff 0%, #ece9e1 100%);
+  border: 1px solid rgba(14, 54, 32, 0.2);
+  box-shadow:
+    0 1px 3px rgba(14, 54, 32, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  display: none;            /* 默认隐藏 */
+  z-index: 6;
+  cursor: grab;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+.bio-handle:hover {
+  box-shadow:
+    0 2px 5px rgba(14, 54, 32, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+.bio-handle.dragging {
+  cursor: grabbing;
+  transform: scale(1.08);
+}
+.envelope-card-link { font-size: 11px; margin-top: auto; border-bottom: 1px solid var(--line); align-self: flex-start; color: var(--ink-soft); }
+
+/* 5. 散落照片：直接显示，无需淡入 */
+.envelope-item {
+  position: absolute;
+  cursor: pointer;
+  z-index: 5;
+  /* 删掉了逐个淡入的 animation，一直保持可见 */
+  opacity: 1;
+}
+.envelope-item img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: none; /* 明确干掉白边 */
+  
+  /* 替换掉原本的 box-shadow，改成智能路径投影 */
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.15)); 
+  
+  transition: transform 0.3s ease, filter 0.3s ease; /* 记得把 transition 也加上 filter */
+}
+
+/* 鼠标悬停时，阴影随之加深、扩大，营造抬起的立体感 */
+.envelope-item:hover img {
+  transform: scale(1.08) rotate(0deg) !important;
+  filter: drop-shadow(0 14px 20px rgba(38, 61, 55, 0.842));
+}
+.envelope-item:hover { z-index: 10; }
+.envelope-item:hover img {
+  transform: scale(1.08) rotate(0deg) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* 6. 高清拾取层 (彻底重构对齐与比例) */
+.envelope-inspector {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.envelope-inspector.active { pointer-events: auto; }
+
+/* 隐形包裹层：自适应图片的真实长宽 */
+.inspector-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start; /* 强制左对齐 */
+  max-width: 86vw;
+}
+
+.inspected-image {
+  display: block;
+  /* 取消强制 100% 宽度，让图片按自身比例自适应 */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 75vh;
+  
+  /* 强行干掉所有白边和圆角 */
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  
+  transform: scale(0.85);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+.envelope-inspector.active .inspected-image { transform: scale(1); opacity: 1; }
+
+/* 底部描述文本 */
+.inspector-hint {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  
+  /* 强行清除所有的胶囊底色和内边距 */
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+/* 如果 artists.js 里没写 desc，强制隐藏，绝不占位 */
+.inspector-hint:empty {
+  display: none !important;
+}
+
+.envelope-inspector.active .inspector-hint { opacity: 1; }
+
+/* 7. 列表页背景随破雾过程渐隐虚化 */
+body.envelope-open .grid,
+body.envelope-open .filter-bar,
+body.envelope-open .page-header,
+body.envelope-open .site-footer {
+  opacity: 0;
+  filter: blur(20px); /* ← 【调整这里】控制网页背景的模糊程度 */
+  transform: scale(0.98);
+  transition: opacity 1.8s ease, filter 1.8s ease, transform 1.8s ease;
+  pointer-events: none;
+}
+
+/* ===== 响应式全屏自适应 ===== */
+@media (max-width: 900px) { .envelope { width: 92vw; height: 82vh; } }
+@media (max-width: 768px) {
+  .envelope-card { left: 5%; top: 5%; width: 90%; height: 60%; padding: 24px 20px; overflow: hidden; display: flex; flex-direction: column; }
+  .envelope-item { top: auto !important; bottom: 6% !important; max-width: 30% !important; }
+  .envelope-item:nth-child(2) { left: 6% !important; bottom: 12% !important; }
+  .envelope-item:nth-child(3) { left: 48% !important; bottom: 6% !important; }
+  .envelope-item:nth-child(4) { left: 26% !important; bottom: 20% !important; }
+}
+
+
+
+/* ============================================
+   临时补丁:People 隐藏期间,About 单栏宽布局
+   恢复 People 时删除这一整段
+   ============================================ */
+
+/* 容器改单栏,宽度放宽,整体居中 */
+.page-about .about-layout {
+  display: block;
+  max-width: 900px;          /* 想更宽就调大这个数,例如 860 */
+  margin: 0; /* ← 改这一行调节左右可以加auto */
+}
+
+/* 右栏内部:撑满容器,不要再挤在右边 */
+.page-about .about-right {
+  width: 100%;
+}
+
+/* 正文行宽放宽一点(原本 52ch 偏窄) */
+.page-about .about-text {
+  max-width: none;           /* 取消行宽限制,跟着容器走 */
+}
+
+
+
+
+
+
+
+
+/* ============================================
+   Journal 翻书器(浮现遮罩 + StPageFlip)
+   ============================================ */
+
+/* ===== 遮罩层 ===== */
+.flipbook-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6vh 4vw;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  /* 半透明深色背景,像水面下的暗,衬托书浮出来 */
+  background: rgba(20, 20, 30, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.flipbook-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== 关闭按钮 ===== */
+.flipbook-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 110;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background 0.2s;
+}
+.flipbook-close:hover { background: rgba(255, 255, 255, 0.85); }
+
+/* ===== 书台:浮现动画作用在这里 ===== */
+.flipbook-stage {
+  width: min(92vw, 1400px);
+
+  /* 浮现起始状态:偏下、模糊、透明、略小(像在水面下) */
+  transform: translateY(80px) scale(0.92);
+  opacity: 0;
+  filter: blur(14px);
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s ease,
+    filter 0.8s ease;
+}
+/* 浮出水面:升起、清晰、放大到正常 */
+.flipbook-overlay.emerged .flipbook-stage {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* StPageFlip 渲染容器 */
+.flipbook {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 给整本书一个落地阴影(.stf__parent 是翻书库自动生成的外层) */
+.flipbook .stf__parent {
+  margin: 0 auto;
+  box-shadow: 0 40px 90px rgba(20, 20, 40, 0.4);
+}
+
+/* ===== 打开时背景淡化 ===== */
+body.flipbook-open #project-grid,
+body.flipbook-open .filter-bar,
+body.flipbook-open .page-header,
+body.flipbook-open .site-footer {
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(0.97);
+  transition:
+    opacity 0.4s ease,
+    filter 0.4s ease,
+    transform 0.4s ease;
+  pointer-events: none;
+}
+
+/* 锁定背景滚动 */
+body.flipbook-open { overflow: hidden; }
+
+/* ===== 手机端:翻书器单页占满 ===== */
+@media (max-width: 700px) {
+  /* 遮罩去掉内边距,让书台能贴边 */
+  .flipbook-overlay {
+    padding: 0;
+  }
+
+  /* 书台占满屏幕宽高 */
+  .flipbook-stage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 关闭按钮挪到安全位置,别被书盖住 */
+  .flipbook-close {
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+}

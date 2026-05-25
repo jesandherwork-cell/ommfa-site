@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ↓ 改这里：浏览器标签栏显示的标题 -->
+  <title>地铁口的100件事 — OMMFA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- 注意：项目页在 projects/ 子文件夹里，所以路径要 ../css/ 而不是 css/ -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-project" data-page="project" data-subfolder="true">
+
+  <!-- 导航自动注入 -->
+  <div id="nav-mount"></div>
+
+  <!-- 项目主体：左右两栏 -->
+  <main class="project-layout">
+
+    <!-- ============ 左栏：元信息 + 阐述 ============ -->
+    <aside class="project-aside">
+
+      <!-- 返回链接 -->
+      <a href="../threads.html" class="back-link">← Back to Threads</a>
+
+      <!-- ↓ 改这里：项目标题 -->
+      <h1 class="project-title">地铁口的100件事</h1>
+
+      <!-- 元信息（年份、归属、地点、参与者）-->
+      <!-- 不需要的项可以删掉 dt + dd 一对 -->
+      <dl class="project-meta">
+        <dt>Year</dt>
+        <dd>2025</dd>
+
+        <dt>Location</dt>
+        <dd>Shanghai</dd>
+
+        <dt>Curator</dt>
+        <dd>策展人姓名</dd>
+
+        <dt>Participants</dt>
+        <dd>Person A, Person B, Person C</dd>
+      </dl>
+
+      <!-- ↓ 改这里：项目阐述（可以多段）-->
+      <div class="project-statement">
+        <p>Placeholder for the project statement. A short paragraph describing what this project was — what it responded to, what shape it took.</p>
+        <p>Use as many paragraphs as you need. Keep it concrete.</p>
+      </div>
+
+    </aside>
+
+    <!-- ============ 右栏：主图 + 正文 + 详情图 ============ -->
+    <section class="project-content">
+
+      <!-- 主图 -->
+      <!-- 文件位置：assets/images/Template/hero.webp -->
+      <figure class="project-hero">
+        <img src="../assets/images/threads/Template/hero.webp" alt="Main image of 地铁口的100件事">
+        <figcaption>Hero image caption (optional, 可以删掉这行)</figcaption>
+      </figure>
+
+      <!-- 正文段落 -->
+      <!-- ↓ 改这里：项目正文，可以写多段 -->
+      <div class="project-body">
+        <p>Placeholder body text. Longer description here — context, process, reflection, anecdotes about how the project actually happened.</p>
+        <p>Another paragraph. Keep paragraphs short and plain.</p>
+      </div>
+
+      <!-- 详情图廊 -->
+      <!-- 想加图就复制一整段 <figure>...</figure>；想减图就删一段 -->
+      <!-- 文件位置：assets/images/Template/01.webp、02.webp、03.webp... -->
+      <div class="project-gallery">
+
+        <figure class="gallery-item">
+          <img src="../assets/images/threads/Template/01.webp" alt="Detail image 1">
+          <figcaption>Caption for image 1 (optional)</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="../assets/images/threads/Template/02.webp" alt="Detail image 2">
+          <figcaption>Caption for image 2</figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="../assets/images/threads/Template/03.webp" alt="Detail image 3">
+          <figcaption>Caption for image 3</figcaption>
+        </figure>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 页脚自动注入 -->
+  <div id="footer-mount"></div>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>

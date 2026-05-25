@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threads — OMMFA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-threads" data-page="threads">
+
+  <!-- 导航自动注入 -->
+  <div id="nav-mount"></div>
+
+  <!-- 筛选 + 排序栏 -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <span class="filter-label">View</span>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="exhibition">Exhibition</button>
+      <button class="filter-btn" data-filter="event">Event</button>
+      <button class="filter-btn" data-filter="opencall">Open Call</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Sort</span>
+      <button class="sort-btn active" data-sort="time">By time <span class="sort-arrow">↓</span></button>
+      <button class="sort-btn" data-sort="random">Random</button>
+    </div>
+  </div>
+
+  <!-- 项目网格 -->
+  <main class="grid" id="project-grid"></main>
+
+  <!-- 页脚自动注入 -->
+  <div id="footer-mount"></div>
+
+  <script src="js/site.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/threads.js"></script>
+</body>
+</html>
