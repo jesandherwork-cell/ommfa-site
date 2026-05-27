@@ -78,11 +78,17 @@
               <div class="infp-frame">
                 <img src="../assets/images/threads/infp-breakfast/03.webp" alt="ZEPETO gathering, 2023">
               </div>
+              <div class="infp-frame">
+                <img src="../assets/images/threads/infp-breakfast/04.webp" alt="ZEPETO gathering, 2023">
+              </div>
+              <div class="infp-frame">
+                <img src="../assets/images/threads/infp-breakfast/05.webp" alt="ZEPETO gathering, 2023">
+              </div>
             </div>
 
             <!-- 页码点 -->
             <div class="infp-dots" id="infpDots" aria-hidden="true">
-              <span class="on"></span><span></span><span></span>
+              <span class="on"></span><span></span><span></span><span></span><span></span>
             </div>
 
             <!-- 上下翻页按钮 -->
@@ -181,6 +187,8 @@
     .infp-frame:nth-child(1) { top: 0; }
     .infp-frame:nth-child(2) { top: 100%; }
     .infp-frame:nth-child(3) { top: 200%; }
+    .infp-frame:nth-child(4) { top: 300%; }
+    .infp-frame:nth-child(5) { top: 400%; }
 
     /* contain：整张图完整显示，黑底兜底 */
     .infp-frame img {
@@ -301,10 +309,13 @@
       var captions = [
         'INFP Breakfast Club, Poster, 2023',
         'INFP Breakfast Club, ZEPETO, 2023',
-        'INFP Breakfast Club, ZEPETO, 2023'
+        'INFP Breakfast Club, ZEPETO, 2023',
+        'INFP Breakfast Club, ZEPETO, 2023',
+        'INFP Breakfast Club, ZEPETO, 2023',
       ];
 
-      var i = 0, n = 3;
+      var frames = track.children; 
+      var i = 0, n = frames.length;
 
       function render() {
         track.style.transform = 'translateY(' + (-i * 100) + '%)';

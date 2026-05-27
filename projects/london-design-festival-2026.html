@@ -3,100 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- ↓ 改这里：浏览器标签栏显示的标题 -->
-  <title>地铁口的100件事 — OMMFA</title>
+  <title>THE WAY — Open Call — OMMFA</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <!-- 注意：项目页在 projects/ 子文件夹里，所以路径要 ../css/ 而不是 css/ -->
   <link rel="stylesheet" href="../css/style.css">
+  
+
+  <!-- 表单样式：全部沿用站点变量与字号（--ink / --ink-soft / --line / Rubik / 4px 圆角） -->
+  <style>
+    .opencall-intro { max-width: 60ch; margin-bottom: 56px; }
+    .opencall-intro p { font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+    .opencall-intro p:last-child { margin-bottom: 0; }
+
+    .opencall-form { max-width: 60ch; }
+    .opencall-form fieldset { border: none; padding: 0; margin: 0 0 48px 0; }
+    .opencall-form legend {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--ink-soft); padding: 0; margin-bottom: 24px;
+      border-bottom: 1px solid var(--line); width: 100%; padding-bottom: 12px;
+    }
+    .opencall-form .field { margin-bottom: 28px; }
+    .opencall-form label.field-label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--ink); }
+    .opencall-form .req { color: var(--ink-soft); }
+    .opencall-form .hint { display: block; color: var(--ink-soft); font-size: 12px; line-height: 1.5; margin-top: 4px; }
+
+    .opencall-form input[type="text"],
+    .opencall-form input[type="email"],
+    .opencall-form input[type="url"],
+    .opencall-form textarea {
+      width: 100%; padding: 8px 0; border: none; border-bottom: 1px solid var(--line);
+      background: transparent; font-family: var(--font-sans); font-size: 14px;
+      color: var(--ink); box-sizing: border-box; border-radius: 0;
+      transition: border-color 0.2s;
+    }
+    .opencall-form input:focus, .opencall-form textarea:focus {
+      outline: none; border-bottom-color: var(--ink);
+    }
+    .opencall-form textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
+    .opencall-form input[type="file"] {
+      font-family: var(--font-sans); font-size: 13px; color: var(--ink-soft); padding: 4px 0;
+    }
+
+    .opencall-form .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+    .opencall-form .radio-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; line-height: 1.5; color: var(--ink); cursor: pointer;
+    }
+    .opencall-form .radio-row input { margin: 3px 0 0 0; flex-shrink: 0; accent-color: var(--ink); }
+    .opencall-form .radio-other { align-items: center; }
+    .opencall-form .radio-other input[type="text"] { flex: 1; }
+
+    .opencall-form button[type="submit"] {
+      background: transparent; border: 1px solid var(--ink); color: var(--ink);
+      font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.02em;
+      padding: 12px 32px; cursor: pointer; border-radius: 0; transition: opacity 0.2s;
+    }
+    .opencall-form button[type="submit"]:hover { opacity: 0.6; }
+    .opencall-form .hidden-honeypot { position: absolute; left: -9999px; }
+    .aside-poster { margin: 0 0 32px 0; }
+    .aside-poster img { width: 100%; height: auto; display: block; border-radius: 4px; background: rgba(0,0,0,0.05); }
+  </style>
 </head>
 <body class="page-project" data-page="project" data-subfolder="true">
 
-  <!-- 导航自动注入 -->
   <div id="nav-mount"></div>
 
-  <!-- 项目主体：左右两栏 -->
   <main class="project-layout">
 
-    <!-- ============ 左栏：元信息 + 阐述 ============ -->
+    <!-- ============ 左栏：展览信息 + 说明 ============ -->
     <aside class="project-aside">
 
-      <!-- 返回链接 -->
       <a href="../threads.html" class="back-link">← Back to Threads</a>
 
-      <!-- ↓ 改这里：项目标题 -->
-      <h1 class="project-title">地铁口的100件事</h1>
+      <h1 class="project-title">THE WAY</h1>
+      
 
-      <!-- 元信息（年份、归属、地点、参与者）-->
-      <!-- 不需要的项可以删掉 dt + dd 一对 -->
       <dl class="project-meta">
-        <dt>Year</dt>
-        <dd>2025</dd>
+        <dt>Open Call</dt>
+        <dd>OMMFA × London Design Festival 2026</dd>
+
+        <dt>Dates</dt>
+        <dd>15–20 September 2026</dd>
 
         <dt>Location</dt>
-        <dd>Shanghai</dd>
+        <dd>London, United Kingdom</dd>
 
-        <dt>Curator</dt>
-        <dd>策展人姓名</dd>
+        <dt>Deadline</dt>
+        <dd>15 July 2026, 23:59 (BST)</dd>
 
-        <dt>Participants</dt>
-        <dd>Person A, Person B, Person C</dd>
+        <dt>Fee</dt>
+        <dd>No application fee</dd>
+
+        <dt>Eligibility</dt>
+        <dd>Open to all, worldwide</dd>
+
+        <dt>Poster</dt>
+
+        <figure class="aside-poster">
+        <img src="../assets/images/threads/london-design-festival-2026/poster.webp" alt="THE WAY exhibition poster">
+        </figure>
+
       </dl>
 
-      <!-- ↓ 改这里：项目阐述（可以多段）-->
+      
+
       <div class="project-statement">
-        <p>Placeholder for the project statement. A short paragraph describing what this project was — what it responded to, what shape it took.</p>
-        <p>Use as many paragraphs as you need. Keep it concrete.</p>
+        <p><strong>Dedicated Artist Feature, Promotion & Press Outreach</strong></p>
+        <p>Each artist will receive: A dedicated feature post on OMMFA social channels, Inclusion on the official exhibition website with a permanent profile page with a short recorded or written conversation about your work. Inclusion in the official press release circulated to design and cultural media networks, alongside festival communications. Featured on both the official LDF programme and OMMFA channels.</p>
+        <p><strong>Curatorial and Technical Exhibition Support</strong> : Professional photo and video documentation of your work</p>
+        <p><strong>An official invitation letter</strong> (and, where merited, a letter of recommendation.)</p>
+        <p><strong>Private View Event & Networking Opportunities</strong> : Invitation to an exclusive preview event, offering direct engagement with collectors, curators, and industry professionals. Connection to the other selected artists.</p>
+        <p><strong>0% Commission on Sales</strong> : Artists retain 100% of any sales during the exhibition.</p>
+        <p><strong>Artwork Sales, Collector Network Access & Market Guidance</strong></p>
+        
+        <p><strong>Ongoing Career Development Support</strong></p>
       </div>
 
     </aside>
 
-    <!-- ============ 右栏：主图 + 正文 + 详情图 ============ -->
+    <!-- ============ 右栏：说明细节 + 投稿表单 ============ -->
     <section class="project-content">
 
-      <!-- 主图 -->
-      <!-- 文件位置：assets/images/Template/hero.webp -->
-      <figure class="project-hero">
-        <img src="../assets/images/threads/Template/hero.webp" alt="Main image of 地铁口的100件事">
-        <figcaption>Hero image caption (optional, 可以删掉这行)</figcaption>
-      </figure>
-
-      <!-- 正文段落 -->
-      <!-- ↓ 改这里：项目正文，可以写多段 -->
-      <div class="project-body">
-        <p>Placeholder body text. Longer description here — context, process, reflection, anecdotes about how the project actually happened.</p>
-        <p>Another paragraph. Keep paragraphs short and plain.</p>
+      <div class="opencall-intro">
+        <div class="project-statement">
+        <p>Some moments don't announce themselves. You take one street instead of another, you stay five minutes longer, you say yes without thinking. Nothing seems to happen — and then, later, you realise something had already changed.</p>
+        <p>THE WAY invites work that rests on one of those moments: a small, unnoticed turn that quietly redirected a life. Not cause and effect made dramatic, not the butterfly that starts a storm — just the ordinary fork you only recognised once you'd already passed it. The way out, the way in, the way to.</p>
+        <p>We're showing these together as a non-linear conversation — many turns, side by side, with no single route through.</p>
+        <p> </p>
+        <p> </p>
+        </div>
+        <p><strong>What we're looking for.</strong> Work that rests on one specific, unnoticed turn. It can be unfinished, unclear, a fragment. Any medium welcome: painting, print, sculpture, installation, performance especially, sound, moving image, interactive and interdisciplinary work.</p>
+        <p><strong>How it works.</strong> Submissions are reviewed on a rolling basis and space is limited, so earlier is better. You'll hear back within 10 working days. If you're not selected, we'll send you a short note explaining why — we want to respect every artist's work.</p>
+        <p><strong>Shipping.</strong> Selected artists are responsible for getting their work to the London venue. For print-based work, we can <strong>arrange printing</strong> in the UK — so you only need to send the file.</p>
+        <p><strong>To apply,</strong> fill in the form below. Images here are for preview only — keep the total under <strong>7&nbsp;MB</strong>. If selected, we'll ask you for high-resolution files and your full image set.</p>
+        </div>
       </div>
 
-      <!-- 详情图廊 -->
-      <!-- 想加图就复制一整段 <figure>...</figure>；想减图就删一段 -->
-      <!-- 文件位置：assets/images/Template/01.webp、02.webp、03.webp... -->
-      <div class="project-gallery">
+      <!-- ====== Netlify 表单 ====== -->
+      <form
+        name="the-way-opencall"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thanks.html"
+        enctype="multipart/form-data"
+        class="opencall-form"
+      >
+        <input type="hidden" name="form-name" value="the-way-opencall" />
+        <p class="hidden-honeypot">
+          <label>Leave this empty: <input name="bot-field" /></label>
+        </p>
 
-        <figure class="gallery-item">
-          <img src="../assets/images/threads/Template/01.webp" alt="Detail image 1">
-          <figcaption>Caption for image 1 (optional)</figcaption>
-        </figure>
+        <!-- —— 关于你 —— -->
+        <fieldset>
+          <legend>About you</legend>
 
-        <figure class="gallery-item">
-          <img src="../assets/images/threads/Template/02.webp" alt="Detail image 2">
-          <figcaption>Caption for image 2</figcaption>
-        </figure>
+          <div class="field">
+            <label class="field-label" for="f-name">Name <span class="req">*</span></label>
+            <input type="text" id="f-name" name="name" required />
+          </div>
 
-        <figure class="gallery-item">
-          <img src="../assets/images/threads/Template/03.webp" alt="Detail image 3">
-          <figcaption>Caption for image 3</figcaption>
-        </figure>
+          <div class="field">
+            <label class="field-label" for="f-email">Email <span class="req">*</span>
+              <span class="hint">So we can reach you about your submission.</span>
+            </label>
+            <input type="email" id="f-email" name="email" required />
+          </div>
 
-      </div>
+          <div class="field">
+            <label class="field-label" for="f-based">Currently based in <span class="req">*</span></label>
+            <input type="text" id="f-based" name="based_in" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-bio">Short bio <span class="req">*</span>
+              <span class="hint">A few sentences about you and your practice.</span>
+            </label>
+            <textarea id="f-bio" name="bio" rows="4" required></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-cv">CV / portfolio link
+              <span class="hint">Optional. Link to a CV, website, or Are.na — paste a URL.</span>
+            </label>
+            <input type="url" id="f-cv" name="cv_link" placeholder="https://" />
+          </div>
+        </fieldset>
+
+        <!-- —— 作品 —— -->
+        <fieldset>
+          <legend>The work</legend>
+
+          <div class="field">
+            <label class="field-label" for="f-title">Artwork title <span class="req">*</span>
+              <span class="hint"> </span>
+            </label>
+            <input type="text" id="f-title" name="artwork_title" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label">Best way to describe your work <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-row"><input type="radio" name="medium" value="Installation / Sculpture / Jewellery" required> Installation / Sculpture / Jewellery</label>
+              <label class="radio-row"><input type="radio" name="medium" value="Painting / Drawing"> Painting / Drawing</label>
+              <label class="radio-row"><input type="radio" name="medium" value="Digital Print"> Digital Print</label>
+              <label class="radio-row"><input type="radio" name="medium" value="Photography"> Photography</label>
+              <label class="radio-row"><input type="radio" name="medium" value="Moving Image / Video / Film"> Moving Image / Video / Film</label>
+              <label class="radio-row"><input type="radio" name="medium" value="Sound / Audio / Music"> Sound / Audio / Music</label>
+              <label class="radio-row"><input type="radio" name="medium" value="New Media Art"> New Media Art (Audiovisual, Interactive, VR, Projection Mapping, etc.)</label>
+              <label class="radio-row"><input type="radio" name="medium" value="Performance"> Performance</label>
+              <label class="radio-row radio-other">
+                <input type="radio" name="medium" value="Other">
+                <span>Other:</span>
+                <input type="text" name="medium_other" aria-label="Other medium" />
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-desc">Artwork description <span class="req">*</span>
+              <span class="hint">What is the work, and which unnoticed turn does it rest on?</span>
+            </label>
+            <textarea id="f-desc" name="artwork_description" rows="5" required></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-size">Size <span class="req">*</span>
+              <span class="hint">Length × Height × Width, in cm. For time-based work, note duration instead.</span>
+            </label>
+            <input type="text" id="f-size" name="size" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label">Installation preference <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-row"><input type="radio" name="install_pref" value="On-site to deliver/install" required> I will be present on-site to deliver and/or install my work</label>
+              <label class="radio-row"><input type="radio" name="install_pref" value="Ship/print + assistance"> I will need to ship/print my work and/or require assistance with installation</label>
+              <label class="radio-row radio-other">
+                <input type="radio" name="install_pref" value="Other">
+                <span>Other:</span>
+                <input type="text" name="install_pref_other" aria-label="Other installation preference" />
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- —— 图片与链接 —— -->
+        <fieldset>
+          <legend>Images &amp; links</legend>
+
+          <div class="field">
+            <label class="field-label" for="f-img1">Preview image 1 <span class="req">*</span>
+              <span class="hint"> Please keep all images together under 7&nbsp;MB total. Please name each file: THE&nbsp;WAY_Artist&nbsp;Name_Artwork&nbsp;Name_01 (02, 03 …).</span></span>
+            </label>
+            <input type="file" id="f-img1" name="image_1" accept="image/*" required />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-img2">Preview image 2</label>
+            <input type="file" id="f-img2" name="image_2" accept="image/*" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-img3">Preview image 3</label>
+            <input type="file" id="f-img3" name="image_3" accept="image/*" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-img4">Preview image 4</label>
+            <input type="file" id="f-img4" name="image_4" accept="image/*" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-img5">Preview image 5</label>
+            <input type="file" id="f-img5" name="image_5" accept="image/*" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-work-link">Work link
+              <span class="hint">Optional. Your site, Are.na, anything relevant.</span>
+            </label>
+            <input type="url" id="f-work-link" name="work_link" placeholder="https://" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-video">Video link
+              <span class="hint">Optional. Vimeo or YouTube — paste the URL.</span>
+            </label>
+            <input type="url" id="f-video" name="video_link" placeholder="https://" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="f-social">Website / Instagram
+              <span class="hint">Optional.</span>
+            </label>
+            <input type="text" id="f-social" name="social" />
+          </div>
+        </fieldset>
+
+        <button type="submit">Submit →</button>
+      </form>
 
     </section>
 
   </main>
 
-  <!-- 页脚自动注入 -->
   <div id="footer-mount"></div>
 
   <script src="../js/site.js"></script>

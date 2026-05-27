@@ -680,8 +680,29 @@ a {
   font-weight: 700;
   font-size: 22px;
   line-height: 1.25;
-  margin-bottom: 24px;
+  margin-bottom: 6px;
   letter-spacing: -0.01em;
+}
+
+/* 项目副标题 */
+.project-subtitle {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+  margin: 0 0 24px;
+}
+
+/* Content note / content warning */
+.content-note {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
 }
 
 /* 元信息表 */
@@ -752,6 +773,22 @@ a {
   margin-bottom: 16px;
 }
 .project-body p:last-child { margin-bottom: 0; }
+
+/* 项目内引用 / 宣言式 block */
+.project-quote {
+  margin: 28px 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--ink);
+}
+
+.project-quote p {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+}
 
 /* 详情图廊：垂直排列 */
 .project-gallery {
