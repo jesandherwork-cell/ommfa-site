@@ -148,14 +148,15 @@
 
         <dt>Application & Participation</dt>
         <dd>
-         No Submission Fee. <span class="brand">OMMFA</span> is proud to offer a limited number of fully supported, fee-free places.
+         No Submission Fee. <span class="brand">OMMFA</span> is proud to offer a limited number of fee-free places.
         </dd>
 
         <dt>Eligibility</dt>
-        <dd>Open to all, worldwide</dd>
+        <dd>Open to all, worldwide.</dd>
+      
 
         <dt>Poster</dt>
-
+        <dd>We choose by the work. We will read everything you send.</dd>
         <figure class="aside-poster">
         <img src="../assets/images/threads/london-design-festival-2026/poster.webp" alt="THE WAY exhibition poster">
         </figure>
@@ -192,7 +193,7 @@
         <p><strong>What we're looking for.</strong> Work that rests on one specific, unnoticed turn. It can be unfinished, unclear, a fragment. Any medium welcome: painting, print, sculpture, installation, performance especially, sound, moving image, interactive and interdisciplinary work.</p>
         <p><strong>How it works.</strong> Submissions are reviewed on a rolling basis and space is limited, so earlier is better. Please note that we will send a formal update regarding your submission status once the review process is complete, regardless of the final outcome.</p>
         <p><strong>Shipping.</strong> Selected artists are responsible for getting their work to the London venue. For print-based work, we can <strong>arrange printing</strong> in the UK — so you only need to send the file.</p>
-        <p><strong>To apply,</strong> fill in the form below. Images here are for preview only — keep the total under <strong>7&nbsp;MB</strong>. If selected, we'll ask you for high-resolution files and your full image set.</p>
+        <p><strong>To apply,</strong> fill in the form below. Images here are for preview only — keep the total under <strong>6&nbsp;MB</strong>. If selected, we'll ask you for high-resolution files and your full image set.</p>
         </div>
       </div>
 
@@ -311,7 +312,7 @@
 
           <div class="field">
             <label class="field-label" for="f-img1">Preview image 1 <span class="req">*</span>
-              <span class="hint"> Please keep all images together under 7&nbsp;MB total. Please name each file: THE&nbsp;WAY_Artist&nbsp;Name_Artwork&nbsp;Name_01 (02, 03 …).</span></span>
+              <span class="hint"> Please keep all images together under 6&nbsp;MB total. Please name each file: THE&nbsp;WAY_Artist&nbsp;Name_Artwork&nbsp;Name_01 (02, 03 …).</span></span>
             </label>
             <input type="file" id="f-img1" name="image_1" accept="image/*" required />
           </div>
@@ -368,5 +369,64 @@
   <div id="footer-mount"></div>
 
   <script src="../js/site.js"></script>
+  <script>
+  (function () {
+    var MAX_TOTAL_MB = 6;                          /* total upload limit in MB */
+    var MAX_TOTAL_BYTES = MAX_TOTAL_MB * 1024 * 1024;
+    var form = document.querySelector('form[name="the-way-opencall"]');
+    if (!form) return;
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    function getErrorEl() {
+      var el = document.getElementById('file-size-error');
+      if (!el) {
+        el = document.createElement('p');
+        el.id = 'file-size-error';
+        el.setAttribute('role', 'alert');
+        el.style.cssText =
+          'color:#b00020;font-size:13px;line-height:1.6;margin:0 0 16px 0;' +
+          'padding:12px 14px;border:1px solid #b00020;background:rgba(176,0,32,0.05);';
+        if (submitBtn && submitBtn.parentNode) {
+          submitBtn.parentNode.insertBefore(el, submitBtn);
+        } else {
+          form.appendChild(el);
+        }
+      }
+      return el;
+    }
+
+    function clearError() {
+      var el = document.getElementById('file-size-error');
+      if (el && el.parentNode) el.parentNode.removeChild(el);
+    }
+
+    form.addEventListener('submit', function (e) {
+      var fileInputs = form.querySelectorAll('input[type="file"]');
+      var total = 0;
+      fileInputs.forEach(function (input) {
+        if (input.files) {
+          for (var i = 0; i < input.files.length; i++) {
+            total += input.files[i].size;
+          }
+        }
+      });
+
+      if (total > MAX_TOTAL_BYTES) {
+        e.preventDefault();
+        var totalMB = (total / 1024 / 1024).toFixed(1);
+        var el = getErrorEl();
+        el.textContent =
+          'Your images add up to ' + totalMB + ' MB, which is over the ' +
+          MAX_TOTAL_MB + ' MB limit. Please go back and reduce the file sizes ' +
+          '(compress your images, or upload fewer / smaller files) before submitting. ' +
+          'Free tools like tinypng.com can shrink images quickly.';
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        clearError();
+      }
+    });
+  })();
+  </script>
 </body>
 </html>

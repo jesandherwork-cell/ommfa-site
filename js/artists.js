@@ -162,13 +162,14 @@ const ARTISTS = [
     name: "Paavo Lyle Smythe",
     city: "London",
     website: "https://plsdotexe.com/",
-    bio: "Dear attention reading this, there seems to be a lot of empowering energy out there. Humanity seems to be in the revolutionary midst of life as we know it - see how the world has transformed in the last 100 years. This universe is old. Very old. And you are here now.If everything is energy and all energy is magnetic what are you attracting? I hope that you are well. Kind regards best wishes yours sincerely with love. i .I set myself a challenge, if I am alive, of producing 100 videos a year until 2030. This would enable a total of 1000 videos.",
+    bio: "Dear attention reading this, there seems to be a lot of empowering energy out there. Humanity seems to be in the revolutionary midst of life as we know it - see how the world has transformed in the last 100 years. This universe is old. Very old. And you are here now. If everything is energy, and energy is neither created or destroyed - it only transforms - then what are you changing into? I hope that you are well. Kind regards best wishes yours sincerely with love. i .",
     items: [
   { src: "photo-01.webp", w: 32, rotate: 4, desc: "2026" },
   { src: "photo-02.webp", w: 26, rotate: -8,  desc: "2026" },
   { src: "photo-03.webp", w: 32, rotate: -2, desc: "2016" },
   { src: "photo-04.webp", w: 26, rotate: 5, desc: "2016" },
   { src: "photo-05.webp", w: 30, rotate: 2, desc: "2009" },
+  { src: "photo-06.webp", w: 30, rotate: 2, desc: "2026" },
 ]
   },
 
