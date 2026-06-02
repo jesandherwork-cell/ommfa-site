@@ -10,14 +10,16 @@ const SITE = {
   // 想加新链接就在数组里加一个对象；想删就删那一行
   // mailto: 开头 = 邮件链接；https:// 开头 = 普通网址
   footerLinks: [
-    { label: "OMMFA",  href: "https://www.ommfa.org" },
-    { label: "CONTACT",  href: "mailto:info@ommfa.org"  }
+    { label: "OMMFA CIC · Company No. 17252384",  href: "https://find-and-update.company-information.service.gov.uk/company/17252384"  },
+    { label: "CONTACT",  href: "mailto:info@ommfa.org"  },
+    
+    
   ],
-  
+
   copyright: '© <span class="brand">OMMFA</span> 2020 — 2026',
 
   // 主导航菜单
- nav: [
+  nav: [
     { label: '<span class="brand">OMMFA</span>',    file: "index.html",    active: "home" },
     { label: "Threads",  file: "threads.html",  active: "threads"  },
     { label: "Journal", file: "journal.html", active: "journal" },
@@ -44,13 +46,13 @@ function renderNav() {
       isLogo ? "logo" : "",
       isActive ? "active" : ""
     ].filter(Boolean).join(" ");
-    
+
     return `<a href="${prefix}${item.file}" class="${cls}">${item.label}</a>`;
   }).join('<span class="dot">·</span>');
 
   const isHome = currentPage === "home";
   const navClass = isHome ? "site-nav" : "site-nav site-nav-inner";
-  
+
   if (isHome) {
     mount.innerHTML = `<nav class="${navClass}">${links}</nav>`;
   } else {
@@ -67,8 +69,6 @@ function renderFooter() {
   const mount = document.getElementById("footer-mount");
   if (!mount) return;
 
-  // 自动遍历 footerLinks 数组生成链接，中间用 · 分隔
-  // mailto: 开头的不在新标签页打开；其他链接 target=_blank
   const links = SITE.footerLinks.map(link => {
     const isMail = link.href.startsWith("mailto:");
     const target = isMail ? "" : ' target="_blank" rel="noopener"';
@@ -78,7 +78,7 @@ function renderFooter() {
   mount.innerHTML = `
     <footer class="site-footer">
       <span>${SITE.copyright}</span>
-      <span>${links}</span>
+      <span class="footer-legal">${links}</span>
     </footer>
   `;
 }
