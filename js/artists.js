@@ -93,7 +93,7 @@ const ARTISTS = [
     name: "Sarah-Lou Sasha Marrek",
     city: "Paris",
     website: "https://sarah-lou.fr/home",
-    bio: "Sarah-Lou maarek is a french multi disciplinary artist based in London, She firstly graduated her master in Architecture in 2019, paris, followed by FineArt master in 2022, London, pursuing both architecture visualisation and artistic practice. dedicated to story telling thought SHARED memory, myth and symbols. balancing between digital worlds, architecture, and tangible manifestations, she reach to several medium like a collection of clues to answer fascinations, ontological mirrors and universal sacred.",
+    bio: "Sarah-Lou Maarek is a french multi disciplinary artist based in London, She firstly graduated her master in Architecture in 2019, paris, followed by FineArt master in 2022, London, pursuing both architecture visualisation and artistic practice. dedicated to story telling thought SHARED memory, myth and symbols. balancing between digital worlds, architecture, and tangible manifestations, she reach to several medium like a collection of clues to answer fascinations, ontological mirrors and universal sacred.",
     items: [
 
   { src: "photo-01.webp", w: 25, rotate: 4,  desc: "MadLab3, 2022" },
