@@ -80,9 +80,14 @@
     </div>
   </main>
 
+  <form name="newsletter" netlify netlify-honeypot="bot-field" hidden>
+    <input type="email" name="email">
+  </form>
+
   <!-- 页脚自动注入 -->
   <div id="footer-mount"></div>
 
   <script src="js/site.js"></script>
+  <script src="js/newsletter.js"></script>
 </body>
 </html>

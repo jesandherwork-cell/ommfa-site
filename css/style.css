@@ -1515,3 +1515,203 @@ body.flipbook-open { overflow: hidden; }
     background: rgba(255, 255, 255, 0.8);
   }
 }
+
+
+/* ============================================================
+   档案袋媒体扩展（最终版，匹配当前 artist-envelope.js）
+   image / video(就地播放+可放大) / model(信封静态 poster+放大旋转)
+   inspector 不加纯色底，保留原半透明。
+   ============================================================ */
+
+/* ---- 就地视频（信封里）---- */
+.envelope-item.is-video {
+  cursor: pointer;
+}
+.ev-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.envelope-item.is-video:hover .ev-video {
+  transform: scale(1.06);
+  filter: drop-shadow(0 12px 20px rgba(38, 61, 55, 0.6));
+}
+.envelope-item.is-video:hover { z-index: 10; }
+.ev-video iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  pointer-events: none;   /* hover/点击落在外层，不被 iframe 吃掉 */
+}
+/* 透明命中层：盖在 iframe 上，接收 hover 出声 + 点击放大 */
+.ev-video-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* ---- 3D 模型 — 信封里：静态 poster（原图原样，无背景，不裁切）---- */
+.envelope-item.is-model {
+  cursor: pointer;
+}
+.ev-model-poster {
+  position: relative;
+  width: 100%;
+  /* 用 <img> 撑高度更忠实；这里改成包一张图 */
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.ev-model-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.envelope-item.is-model:hover .ev-model-poster {
+  transform: scale(1.06);
+  filter: drop-shadow(0 12px 20px rgba(38, 61, 55, 0.5));
+}
+
+/* ---- 3D 模型 — inspector 里：放大旋转的 canvas ---- */
+.inspected-model {
+  display: none;
+  width: 90vh;
+  max-width: 92vw;
+  aspect-ratio: 1 / 1;
+  cursor: grab;
+  transform: scale(0.85);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+.inspected-model:active { cursor: grabbing; }
+.inspected-model.active { display: block; }
+.envelope-inspector.active .inspected-model.active {
+  transform: scale(1);
+  opacity: 1;
+}
+.inspected-model canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.ev-model-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ---- 放大视频 — inspector 里 ---- */
+.inspected-video {
+  display: none;
+  width: 70vh;
+  max-width: 86vw;
+  aspect-ratio: 16 / 9;   /* JS 会按真实比例覆盖 */
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  transform: scale(0.85);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+.inspected-video.active { display: block; }
+.envelope-inspector.active .inspected-video.active {
+  transform: scale(1);
+  opacity: 1;
+}
+.inspected-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+
+
+/* ============================================
+   音量提示：桌面端首次出声时右侧浮现
+   ============================================ */
+.vol-hint {
+  position: fixed;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%) translateX(16px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 5px;
+  background: rgba(253, 251, 245, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+  color: var(--ink);
+  pointer-events: auto;        /* 允许点关闭叉 */
+  opacity: 0;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* 关闭叉 */
+.vol-hint-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink-soft);
+  padding: 2px;
+}
+.vol-hint-close:hover { color: var(--ink); }
+
+.vol-hint.show {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.vol-hint-icon {
+  width: 30px; height: 39px;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+/* 上下箭头轻微脉动，暗示"滚动" */
+.vol-hint-arrow {
+  animation: vol-hint-pulse 0.8s ease-in-out infinite;
+}
+.vol-hint-arrow:nth-of-type(2) {
+  animation-delay: 1s;
+}
+
+@keyframes vol-hint-pulse {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+
+.vol-hint-text {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* 手机端永不显示（JS 已拦，这里双保险） */
+@media (max-width: 768px) {
+  .vol-hint { display: none; }
+}

@@ -77,12 +77,12 @@ const ARTISTS = [
     website: "https://ra.co/dj/chadzingkung/biography",
     bio: "Immersed in the undercurrents of the underground music scene, he captures marginalized emotions and the shimmering edges of morality. Crossing experimental electronics and club rhythms, he dedicates himself to crafting pervist music. London-based producer, musician, sound designer, and DJ. Immersed in the undercurrents of the underground music scene, he captures marginalized emotions and the shimmering edges of morality. Crossing experimental electronics and club rhythms, he dedicates himself to crafting pervist music.",
     items: [
-  
+  { type: "video", vimeo: "1205299242", sound: true, w: 25, rotate: -3, desc: "快乐崇拜 Adoration to Happiness (Remix by Chadzing Kung), 2026" },
   { src: "photo-02.webp", w: 25, rotate: 4,  desc: " " },
   { src: "photo-04.webp", w: 20, rotate: -5, desc: " " },
   { src: "photo-05.webp", w: 26, rotate: 2, desc: " " },
   { src: "photo-03.webp", w: 30, rotate: 2, desc: " " },
-  { src: "photo-01.avif", w: 32, rotate: 5, desc: " " },
+  { src: "photo-01.avif", w: 20, rotate: 5, desc: " " },
 ]
   },
 
@@ -217,8 +217,8 @@ const ARTISTS = [
   { src: "photo-01.webp", w: 40, rotate: 4,  desc: "Exist Protocol, 2025" },
   { src: "photo-02.webp", w: 25, rotate: -3,  desc: "Exist Protocol, 2025" },
   { src: "photo-03.webp", w: 30, rotate: 5,  desc: "Performance, 2025" }, 
-  { src: "photo-05.webp", w: 30, rotate: -2,  desc: "Vanish: Absence of Presence, The Wrong Biennale, 2025/26" },
-  { src: "photo-04.webp", w: 40, rotate: 9,  desc: "Collected Topographies, 2024 - ongoing" },
+  { src: "photo-05.webp", w: 25, rotate: -2,  desc: "Vanish: Absence of Presence, The Wrong Biennale, 2025/26" },
+  { type: "model", src: "lilith-glb.glb", poster: "photo-04.webp", w: 40, rotate: 2, desc: "Collected Topographies, 2024  - ongoing" },
 ]
   },
 
