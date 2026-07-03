@@ -82,7 +82,7 @@
     setTimeout(() => overlay.classList.add("emerged"), 50);
 
     // 自动翻开封面的代码已删除，书会安静地停在第一页等你来翻
-    document.title = `${entry.title} — OMMFA`;
+    document.title = `${entry.title} | OMMFA`;
   };
 
   function closeFlipbook() {
@@ -94,7 +94,7 @@
     overlay.classList.remove("open", "emerged");
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("flipbook-open");
-    document.title = "Journal — OMMFA";
+    document.title = "Journal | OMMFA";
 
     // 等关闭过渡动画结束后，彻底销毁并清理 DOM
     setTimeout(destroyFlip, 400);

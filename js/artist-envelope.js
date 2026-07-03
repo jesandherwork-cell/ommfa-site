@@ -101,7 +101,7 @@
     if (!skipHistory) {
       history.pushState({ artistId: id }, "", `?id=${id}`);
     }
-    document.title = `${artist.name} — OMMFA`;
+    document.title = `${artist.name} | OMMFA`;
   };
 
   function closeEnvelope(skipHistory) {
@@ -120,7 +120,7 @@
     if (!skipHistory) {
       history.pushState(null, "", window.location.pathname);
     }
-    document.title = "Artist — OMMFA";
+    document.title = "Artist | OMMFA";
 
     if (document.activeElement) {
       document.activeElement.blur();
