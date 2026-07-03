@@ -63,10 +63,10 @@ const PROJECTS = [
 
   {
     id: "london-design-festival-2026",
-    title: "London Design Festival",
+    title: "London Design Festival 2026 - THE WAY",
     year: 2026,
     category: "thread",
-    thread: "opencall",
+    thread: "exhibition",
   },
 
 

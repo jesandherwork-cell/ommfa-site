@@ -22,7 +22,7 @@ const JOURNAL = [
     title: "Exit Programme-V0101",
     year: 2021,
     type: "Art",
-    pages: 13,          // 你 pages 文件夹里有 01–08 共 8 张
-    ratio: 1.414       // A4 竖版
+    pages: 13,       
+    ratio: 1.414   
   }
 ];

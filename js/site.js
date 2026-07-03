@@ -12,11 +12,13 @@ const SITE = {
   footerLinks: [
     { label: "OMMFA CIC · Company No. 17252384",  href: "https://find-and-update.company-information.service.gov.uk/company/17252384"  },
     { label: "CONTACT",  href: "mailto:info@ommfa.org"  },
+    { label: "INSTAGRAM", href: "https://www.instagram.com/ommfa.art/" },
+    { label: "LINKEDIN", href: "https://www.linkedin.com/company/ommfa/" },
     
     
   ],
 
-  copyright: '© <span class="brand">OMMFA</span> 2020 — 2026',
+  copyright: '© <span class="brand">OMMFA</span> 2020–2026',
 
   // 主导航菜单
   nav: [
