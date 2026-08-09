@@ -4,7 +4,7 @@
 
 :root {
   /* 颜色 */
-  --cream: #fdfbf5;          /* 奶白主背景 */
+  --cream: #ffffff;          /* 奶白主背景 */
   --ink: #1a1a1a;            /* 主要文字 */
   --ink-soft: #5a5a5a;       /* 次要文字 */
   --line: rgba(26, 26, 26, 0.15);
@@ -272,13 +272,14 @@ a {
 .grid {
   padding: 32px 6vw 80px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 40px 24px;
 }
 
+@media (max-width: 1280px) { .grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 720px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px)  { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* 单张卡片 */
 .card {
@@ -319,7 +320,7 @@ a {
 
 .card:hover .card-cover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4);   /* 原来是 background:，简写会冲掉 background-size/position */
   box-shadow: 0 8px 30px rgba(40, 70, 110, 0.15);
 }
 
@@ -492,7 +493,7 @@ a {
    ============================================ */
 
 .page-about {
-  background: #fcfaf3;             /* 比 --cream (#f9f5ec) 更白一些 */
+  background: #ffffff;;             /* 比 --cream (#f9f5ec) 更白一些 */
   min-height: 100vh;
 }
 
@@ -629,7 +630,7 @@ a {
    ============================================ */
 
 .page-project {
-  background: #fcfaf3;       /* 跟 About 同样的淡奶白 */
+  background: #ffffff;
   min-height: 100vh;
 }
 
@@ -708,8 +709,6 @@ a {
 /* 元信息表 */
 .project-meta {
   margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
 }
 
 .project-meta dt {
@@ -805,7 +804,7 @@ a {
    ============================================ */
 
 .page-artist-detail {
-  background: #fcfaf3;       /* 跟 About / 项目页同样的奶白 */
+  background: #ffffff;;       /* 跟 About / 项目页同样的奶白 */
   min-height: 100vh;
 }
 
@@ -1618,7 +1617,7 @@ body.flipbook-open { overflow: hidden; }
 /* ---- 放大视频 — inspector 里 ---- */
 .inspected-video {
   display: none;
-  width: 70vh;
+  width: min(1100px, 86vw, 133vh);
   max-width: 86vw;
   aspect-ratio: 16 / 9;   /* JS 会按真实比例覆盖 */
   background: #000;
@@ -1714,4 +1713,500 @@ body.flipbook-open { overflow: hidden; }
 /* 手机端永不显示（JS 已拦，这里双保险） */
 @media (max-width: 768px) {
   .vol-hint { display: none; }
+}
+
+
+/* ============================================================
+   以下为本次改版新增（档案袋标签 / 内容层 / 展签卡 /
+   inspector 翻页 / 项目页宣发版式 / 项目页艺术家格子间）
+   注：艺术家网格的 5 列改动不在这里，
+       已就地改在本文件第 275 行和下面的断点里
+   ============================================================ */
+
+/* ============================================
+   2. 档案袋右侧标签（info / LDF / …）
+   贴在信封右外沿，竖排堆叠
+   ============================================ */
+
+.envelope-tabs {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  transform: translateX(100%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 3;
+}
+
+/* 只有 info 一个标签时整条藏掉（这个艺术家没参加过任何展） */
+.envelope-tabs.is-single { display: none; }
+
+.envelope-tab-btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+
+  min-width: 78px;
+  padding: 8px 16px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(35px) saturate(1.1);
+  -webkit-backdrop-filter: blur(35px) saturate(1.1);
+  border-radius: 0 8px 8px 0;
+  box-shadow: 6px 6px 18px rgba(40, 70, 50, 0.10);
+
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.envelope-tab-btn:hover {
+  color: var(--ink);
+  transform: translateX(3px);
+}
+
+.envelope-tab-btn.active {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* 窄屏：标签移到信封内部右上角，否则会被挤出屏幕 */
+@media (max-width: 900px) {
+  .envelope-tabs {
+    top: 12px;
+    right: 12px;
+    transform: none;
+    flex-direction: row;
+  }
+  .envelope-tab-btn {
+    min-width: 0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 10px;
+  }
+}
+
+
+/* ============================================
+   3. 内容层：两层同时在 DOM 里，切换只是显隐
+   不重跑飞入动画
+   ============================================ */
+
+.envelope-layer {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+.envelope-layer.active { display: block; }
+
+
+/* ============================================
+   4. 展签卡（LDF 标签下的那张 A4）
+   复用 .envelope-card 的定位和纸张质感，只加作品信息的排版
+   ============================================ */
+
+.envelope-work-title {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.envelope-work-meta {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ============================================
+   5. inspector 翻页（gallery）
+   一张散落图背后挂一串图时才出现
+   ============================================ */
+
+.insp-nav,
+.insp-counter { display: none; }
+
+.envelope-inspector.has-gallery.active .insp-nav,
+.envelope-inspector.has-gallery.active .insp-counter { display: flex; }
+
+.insp-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink);
+  padding-bottom: 3px;
+
+  transition: background 0.2s ease;
+}
+.insp-nav:hover { background: rgba(255, 255, 255, 0.9); }
+
+.insp-prev { left: -64px; }
+.insp-next { right: -64px; }
+
+.insp-counter {
+  position: absolute;
+  bottom: -34px;
+  right: 0;
+  z-index: 5;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .insp-prev { left: 4px; }
+  .insp-next { right: 4px; }
+  .insp-nav  { width: 38px; height: 38px; font-size: 19px; }
+}
+
+
+/* ============================================
+   6. 项目页：宣发版式
+   ============================================ */
+
+/* 左栏加宽，海报撑得住。原来 280px 对 2160×2880 的海报太小了 */
+.project-layout.is-promo { grid-template-columns: minmax(300px, 360px) 1fr; }
+
+@media (max-width: 900px) {
+  .project-layout.is-promo { grid-template-columns: 1fr; }
+}
+
+/* 主海报：3:4，放在标题下面，sticky 时始终可见 */
+.aside-poster {
+  margin: 0 0 28px 0;
+}
+.aside-poster img {
+  width: 100%;
+  height: auto;              /* 高度跟着图片真实比例走，不裁切 */
+  display: block;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 24px rgba(40, 70, 50, 0.12);
+}
+
+/* 地址链接（整块地址可点，跳 Google Maps） */
+.address-link {
+  color: var(--ink-soft);
+  transition: color 0.2s;
+}
+.address-link:hover { color: var(--ink); }
+
+/* Partner 处的外链（LDF 官网） */
+.partner-link {
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s, opacity 0.2s;
+}
+.partner-link:hover { border-color: var(--ink); }
+
+/* 状态条：ON VIEW / CLOSED */
+.project-status {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 4px 10px;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.project-status.is-closed { border-color: var(--line); color: var(--ink-soft); }
+
+
+/* ---- 右栏：critical review ---- */
+
+.project-review { max-width: 68ch; }
+
+.review-kicker {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 12px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-review h2 {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 48px 0 16px;
+}
+.project-review h2:first-of-type { margin-top: 0; }
+
+.project-review p {
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.project-review .lede {
+  font-size: 17px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.review-byline {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+/* 展后配图槽位。现在留空，图交了把 hidden 去掉就出现 */
+.review-figure { margin: 40px 0; }
+.review-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.review-figure figcaption {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.review-figure[hidden] { display: none; }
+
+
+/* ============================================
+   7. 项目页底部：艺术家格子间
+   在 .project-layout 外面，所以是通栏
+   ============================================ */
+
+.project-artists {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6vw 12vh;
+}
+
+.project-artists-head {
+  padding-top: 56px;
+  border-top: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.project-artists-head h2 {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.project-artists-head p {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+/* 格子间沿用 .grid，但这里左右 padding 由父级给，避免双重缩进 */
+.project-artists .grid { padding-left: 0; padding-right: 0; padding-bottom: 0; }
+
+.empty-state {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding: 40px 0;
+}
+
+
+/* 档案袋打开时，项目页这些区块也要一起淡出 */
+body.envelope-open .project-layout,
+body.envelope-open .project-artists {
+  filter: blur(4px);
+  opacity: 0.4;
+  pointer-events: none;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+
+
+/* ============================================
+   Threads 卡片状态：进行中/未开幕的是彩色，
+   已结束的是灰度，鼠标碰上去恢复颜色
+   状态来自 projects.js 的 status 字段
+   ============================================ */
+
+.card.is-past .card-cover {
+  transform: true;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  filter: grayscale(1);
+  /* 原来是 transition: all，这里只让灰度和位移动，别的不动 */
+  transition: filter 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card.is-past:hover .card-cover {
+  filter: grayscale(0);
+}
+
+/* 触屏没有 hover，全灰会让人以为图挂了，降成半灰 */
+@media (hover: none) {
+  .card.is-past .card-cover { filter: grayscale(0.7); }
+}
+
+.filter-note {
+  padding: 14px 6vw 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.filter-note[hidden] { display: none; }
+
+
+
+/* inspector 底部说明变成链接时 */
+.inspector-link {
+  border-bottom: 1px solid currentColor;
+  pointer-events: auto;
+}
+.inspector-link:hover { opacity: 0.6; }
+
+
+
+/* ============ 项目页：演出时间表 ============ */
+.project-performances {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+.perf-list {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+}
+
+.perf-item {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  gap: 24px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 0px solid var(--line);
+}
+.perf-item:last-child { border-bottom: none; }
+
+.perf-when { display: flex; flex-direction: column; gap: 2px; }
+.perf-date { font-size: 13px; font-weight: 700; }
+.perf-time { font-size: 12px; color: var(--ink-soft); }
+
+.perf-what  { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+.perf-artist { font-size: 14px; font-weight: 700; }
+.perf-work   { font-size: 13px; font-style: italic; color: var(--ink-soft); }
+.perf-note   { font-size: 12px; color: var(--ink-soft); }
+
+/* 艺术家名字可点时：下划线 + hover 变深。
+   align-items: flex-start 在上面，防止 <a> 撑满整行把下划线拖很长 */
+.perf-artist.is-link {
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.perf-artist.is-link:hover { border-color: var(--ink); }
+
+.perf-duration { font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .perf-item { grid-template-columns: 1fr; gap: 6px; }
+  .perf-when { flex-direction: row; gap: 10px; }
+  .perf-duration { order: 3; }
+}
+
+
+/* ============ 档案袋：展览海报 ============ */
+.envelope-posters {
+  position: absolute;
+  left: 52%;              /* A4 卡是 left:5% width:40%，右半边从 52% 起 */
+  top: 10%;
+  width: 43%;
+  height: 80%;
+  animation: epIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+@keyframes epIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.ep-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.ep-under { z-index: 1; }                    /* 被露出来的那张 */
+.ep-top   { z-index: 2; filter: drop-shadow(0 6px 24px rgba(40, 70, 50, 0.18)); }
+
+/* 粒子画布接管上面那张。取样成功才隐藏原 <img>，
+   失败时（跨域/file://）原图正常显示，不会变空白 */
+.ep-canvas {
+  position: absolute;
+  display: block;
+  z-index: 3;
+  filter: drop-shadow(0 6px 24px rgba(40, 70, 50, 0.18));
+}
+.envelope-posters.has-particles .ep-top { visibility: hidden; }
+
+/* ---- 手机：两张并排，点击放大 ---- */
+@media (max-width: 900px) {
+  .envelope-posters {
+    left: 5%;
+    top: 68%;
+    width: 90%;
+    height: 27%;
+    display: flex;
+    gap: 10px;
+  }
+  .envelope-posters .ep-slide {
+    position: static;
+    inset: auto;
+    flex: 1 1 0;
+    width: auto;
+    height: 100%;
+    z-index: auto;
+    cursor: zoom-in;
+    filter: drop-shadow(0 4px 14px rgba(40, 70, 50, 0.18));
+  }
+  .ep-canvas { display: none !important; }
 }

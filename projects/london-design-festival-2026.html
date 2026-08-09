@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 
-
+  <!-- ============================================================
+       结构化数据
+       【改】日期统一成 15–19 September，跟页面正文一致
+             之前 schema 写 15–19、正文写 15–20，两边打架
+       ============================================================ -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -17,12 +21,13 @@
     "name": "The Old Waiting Room, Peckham Rye Station",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Peckham Rye Station, Blenheim Grove",
       "addressLocality": "London",
       "postalCode": "SE15 4RX",
       "addressCountry": "GB"
     }
   },
-  "image": "https://ommfa.org/assets/images/threads/london-design-festival-2026/cover.webp",
+  "image": "https://ommfa.org/assets/images/threads/london-design-festival-2026/poster.webp",
   "description": "A group exhibition of around thirty international artists, each work resting on a single small, unnoticed turn that quietly redirected a life. Part of London Design Festival 2026. Free entry, no booking required.",
   "isAccessibleForFree": true,
   "offers": {
@@ -42,402 +47,169 @@
     "name": "London Design Festival 2026"
   }
 }
-</script>
-
-
-
+  </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE WAY - London Design Festival 2026 | OMMFA</title>
-
+  <title>THE WAY — London Design Festival 2026 | OMMFA</title>
 
   <link rel="icon" type="image/png" href="https://ommfa.org/assets/images/favicon.png">
   <link rel="apple-touch-icon" href="https://ommfa.org/assets/images/favicon.png">
+  <meta name="description" content="THE WAY: a group exhibition by OMMFA at The Old Waiting Room, Peckham Rye Station, 15 to 19 September 2026. Part of London Design Festival 2026. Free entry, no booking required.">
+  <link rel="canonical" href="https://ommfa.org/projects/london-design-festival-2026" />
 
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="THE WAY — OMMFA at London Design Festival 2026">
+  <meta property="og:description" content="Around thirty international artists at The Old Waiting Room, Peckham Rye Station. 15 to 19 September 2026. Free entry.">
+  <meta property="og:url" content="https://ommfa.org/projects/london-design-festival-2026">
+
+  <meta property="og:image" content="https://ommfa.org/assets/images/threads/london-design-festival-2026/poster.webp">
+  <meta property="og:image:width" content="2160">
+  <meta property="og:image:height" content="2880">
+  <meta property="og:image:alt" content="THE WAY exhibition poster">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://ommfa.org/assets/images/og-default.webp">
+  <meta name="twitter:image" content="https://ommfa.org/assets/images/threads/london-design-festival-2026/poster.webp">
 
-  <meta name="description" content="Apply for THE WAY, an exhibition by OMMFA during the London Design Festival (LDF) 2026. Open call for contemporary artists, sculptors, and spatial designers.">
-  <link rel="canonical" href="https://ommfa.org/projects/london-design-festival-2026" />
-  <meta property="og:title" content="Open Call: THE WAY | London Design Festival">
-  <meta property="og:description" content="OMMFA is seeking artists for our upcoming exhibition at LDF 2026. Free to apply.">
-  <meta property="og:url" content="https://ommfa.org/projects/london-design-festival-2026">
-  <meta property="og:image" content="https://ommfa.org/assets/images/threads/london-design-festival-2026/poster.webp">
-
-
-  <meta property="og:image" content="https://ommfa.org/assets/images/og-default.webp">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="OMMFA">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
-  
 
-  <!-- 表单样式：全部沿用站点变量与字号（--ink / --ink-soft / --line / Rubik / 4px 圆角） -->
-  <style>
-    .opencall-intro { max-width: 60ch; margin-bottom: 56px; }
-    .opencall-intro p { font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
-    .opencall-intro p:last-child { margin-bottom: 0; }
-
-    .opencall-form { max-width: 60ch; }
-    .opencall-form fieldset { border: none; padding: 0; margin: 0 0 48px 0; }
-    .opencall-form legend {
-      font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--ink-soft); padding: 0; margin-bottom: 24px;
-      border-bottom: 1px solid var(--line); width: 100%; padding-bottom: 12px;
-    }
-    .opencall-form .field { margin-bottom: 28px; }
-    .opencall-form label.field-label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--ink); }
-    .opencall-form .req { color: var(--ink-soft); }
-    .opencall-form .hint { display: block; color: var(--ink-soft); font-size: 12px; line-height: 1.5; margin-top: 4px; }
-
-    .opencall-form input[type="text"],
-    .opencall-form input[type="email"],
-    .opencall-form input[type="url"],
-    .opencall-form textarea {
-      width: 100%; padding: 8px 0; border: none; border-bottom: 1px solid var(--line);
-      background: transparent; font-family: var(--font-sans); font-size: 14px;
-      color: var(--ink); box-sizing: border-box; border-radius: 0;
-      transition: border-color 0.2s;
-    }
-    .opencall-form input:focus, .opencall-form textarea:focus {
-      outline: none; border-bottom-color: var(--ink);
-    }
-    .opencall-form textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
-    .opencall-form input[type="file"] {
-      font-family: var(--font-sans); font-size: 13px; color: var(--ink-soft); padding: 4px 0;
-    }
-
-    .opencall-form .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
-    .opencall-form .radio-row {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 14px; line-height: 1.5; color: var(--ink); cursor: pointer;
-    }
-    .opencall-form .radio-row input { margin: 3px 0 0 0; flex-shrink: 0; accent-color: var(--ink); }
-    .opencall-form .radio-other { align-items: center; }
-    .opencall-form .radio-other input[type="text"] { flex: 1; }
-
-    .opencall-form button[type="submit"] {
-      background: transparent; border: 1px solid var(--ink); color: var(--ink);
-      font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.02em;
-      padding: 12px 32px; cursor: pointer; border-radius: 0; transition: opacity 0.2s;
-    }
-    .opencall-form button[type="submit"]:hover { opacity: 0.6; }
-    .opencall-form .hidden-honeypot { position: absolute; left: -9999px; }
-    .aside-poster { margin: 0 0 32px 0; }
-    .aside-poster img { width: 100%; height: auto; display: block; border-radius: 4px; background: rgba(0,0,0,0.05); }
-  </style>
 </head>
-<body class="page-project" data-page="project" data-subfolder="true">
+
+<body class="page-project"
+      data-page="threads"
+      data-subfolder="true"
+      data-default-tab="london-design-festival-2026">
 
   <div id="nav-mount"></div>
 
-  <main class="project-layout">
+  <main class="project-layout is-promo">
 
-    <!-- ============ 左栏：展览信息 + 说明 ============ -->
+    <!-- ============ 左栏：展览信息 + 海报 ============ -->
     <aside class="project-aside">
 
       <a href="../threads.html" class="back-link">← Back to Threads</a>
 
       <h1 class="project-title">THE WAY</h1>
-      
+      <p class="project-subtitle"><span class="brand">OMMFA</span> × London Design Festival 2026</p>
+
+      <figure class="aside-poster">
+        <img src="../assets/images/threads/london-design-festival-2026/poster.webp"
+     alt="THE WAY exhibition poster">
+      </figure>
 
       <dl class="project-meta">
-        <dt>Open Call</dt>
-        <dd> <span class="brand">OMMFA</span> × <strong>London Design Festival 2026</strong></dd>
 
         <dt>Dates</dt>
-        <dd>15–20 September 2026</dd>
+        <dd>15 – 19 September 2026</dd>
+
+        <dt>Private View</dt>
+        <dd>18 September 2026, 18:00 – 21:00</dd>
+
+        <dt>Opening Hours</dt>
+        <dd>11:00 – 18:00</dd>
 
         <dt>Location</dt>
-        <dd>London, United Kingdom</dd>
+<dd>
+  <a class="address-link"
+     href="https://www.google.com/maps/search/?api=1&query=The+Old+Waiting+Room%2C+Peckham+Rye+Station%2C+London+SE15+4RX"
+     target="_blank" rel="noopener">The Old Waiting Room<br>
+  Peckham Rye Station<br>
+  London SE15 4RX&nbsp;↗</a>
+</dd>
 
-        <dt>Deadline</dt>
-        <dd>15 July 2026, 23:59 (BST)</dd>
+        <dt>Admission</dt>
+        <dd>Free. No booking required.</dd>
 
-        <dt>Application & Participation</dt>
+        <dt>Access</dt>
+        <dd> The Old Waiting Room is reached by a flight of stairs. There is no lift and no accessible toilet on site. If you have access requirements, please write to <a href="mailto:info@ommfa.org">info@ommfa.org</a> before your visit and we will do what we can to assist.</dd>
+
+        <dt>Partner</dt>
         <dd>
-         No Submission Fee.
-        </dd>
-
-        <dt>Eligibility</dt>
-        <dd>Open to all, worldwide.</dd>
-      
-
-        <dt>Poster</dt>
-        <figure class="aside-poster">
-        <img src="../assets/images/threads/london-design-festival-2026/poster.webp" alt="THE WAY exhibition poster">
-        </figure>
+        <a class="partner-link"
+      href="https://londondesignfestival.com/"
+      target="_blank" rel="noopener">London Design Festival 2026&nbsp;↗</a>
+      </dd>
 
       </dl>
 
-      
-
       <div class="project-statement">
-        <p><strong>Documentation & Press</strong></p>
-        <p>Professional photo and video documentation of each selected work, a profile on the exhibition website, and inclusion in the press release circulated to design and cultural media, alongside the official LDF programme.</p>
-        <p><strong>Curatorial and Technical Exhibition Support</strong> Curatorial and technical support for installation on-site. An official invitation letter for selected artists.</p>
-        <p><strong>Private View</strong> An opening event with the other exhibiting artists, curators, and visitors.</p>
-        <p><strong>Sales</strong> Artists retain 100% of any sales. No commission.</p>
-
+        <p> </p>
       </div>
 
     </aside>
 
-    <!-- ============ 右栏：说明细节 + 投稿表单 ============ -->
+    <!-- ============ 右栏：critical review ============ -->
     <section class="project-content">
 
-      <div class="opencall-intro">
-        <div class="project-statement">
-        <p>Some moments don't announce themselves. You take one street instead of another, you stay five minutes longer, you say yes without thinking. Nothing seems to happen — and then, later, you realise something had already changed.</p>
-        <p>THE WAY invites work that rests on one of those moments: a small, unnoticed turn that quietly redirected a life. Not cause and effect made dramatic, not the butterfly that starts a storm — just the ordinary fork you only recognised once you'd already passed it. The way out, the way in, the way to.</p>
-        <p>We're showing these together as a non-linear conversation — many turns, side by side, with no single route through.</p>
-        <p> </p>
-        <p> </p>
-        </div>
-        <p><strong>What we're looking for.</strong> Work that rests on one specific, unnoticed turn. It can be unfinished, unclear, a fragment. Any medium welcome: painting, print, sculpture, installation, performance, sound, moving image, interactive and interdisciplinary work.</p>
-        <p><strong>How it works.</strong> Submissions are reviewed on a rolling basis and space is limited, so earlier is better. Please note that we will send a formal update regarding your submission status once the review process is complete, regardless of the final outcome.</p>
-        <p><strong>Shipping.</strong> Selected artists are responsible for getting their work to the London venue. For print-based work, we can <strong>arrange printing</strong> in the UK — so you only need to send the file.</p>
-        <p><strong>To apply,</strong> fill in the form below. Images here are for preview only — keep the total under <strong>6&nbsp;MB</strong>. If selected, we'll ask you for high-resolution files and your full image set. </p>
-        <p><strong>Alternatively,</strong> send us your work by email with the subject line: THE WAY Open Call 2026 — Your Name, with (1) Artwork documentation: Images or video links, including title, dimensions, materials, year of creation, and artwork statement in a single PDF and (2) Artist Bio/CV in a single PDF to opencall@ommfa.org  </p>
-        </div>
-      </div>
+      <!-- 展后配图槽位：图交了以后把 hidden 删掉就出现 -->
+        <figure class="review-figure" hidden>
+          <img src="../assets/images/threads/london-design-festival-2026/install-01.webp" alt="">
+          <figcaption>[图注：作品名, 艺术家, 摄影署名]</figcaption>
+        </figure>
 
-      <!-- ====== Netlify 表单 ====== -->
-      <form
-        name="the-way-opencall"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action="/thanks.html"
-        enctype="multipart/form-data"
-        class="opencall-form"
-      >
-        <input type="hidden" name="form-name" value="the-way-opencall" />
-        <p class="hidden-honeypot">
-          <label>Leave this empty: <input name="bot-field" /></label>
-        </p>
+      <article class="project-review">
 
-        <!-- —— 关于你 —— -->
-        <fieldset>
-          <legend>About you</legend>
+<p class="lede">In 2014 an artist took a short contract in Vancouver. The contract ended, a visa expired, and the next seven years were spent in four countries. Nothing about the original decision suggested any of this. THE WAY gathers work by thirty-eight artists, three of them presenting live work, each proceeding from a moment of that size: small, unremarkable at the time, and identifiable as a turning point only long afterwards.</p>
 
-          <div class="field">
-            <label class="field-label" for="f-name">Name <span class="req">*</span></label>
-            <input type="text" id="f-name" name="name" required />
-          </div>
+<h2>A Room That Has Lived Several Lives</h2>
+<p>Located above the ticket hall of Peckham Rye Station, the Old Waiting Room was designed by Charles Henry Driver and completed in 1865. It has been a waiting area for around a hundred commuters at a time, a billiard room for station staff, and a venue for illicit raves, while also remaining closed and disused for decades, even as trains continued to run beneath it. Since its restoration it has re-emerged as a space that opens intermittently for art: in 2023 it housed <em>Metronome</em> by Sarah Sze, commissioned by Artangel, and it has since hosted exhibitions, film programmes and performance. The way the room has accumulated uses mirrors the accumulation of turns in the exhibition itself: unplanned, spontaneous, and legible as a trajectory only in retrospect. Structurally, it remains a room defined by the interval between events. That is a difficult premise to compete with, and THE WAY does not try to.</p>
 
-          <div class="field">
-            <label class="field-label" for="f-email">Email <span class="req">*</span>
-              <span class="hint">So we can reach you about your submission.</span>
-            </label>
-            <input type="email" id="f-email" name="email" required />
-          </div>
+<h2>What Does Not Reach the Headline</h2>
+<p>The exhibition is arranged without a fixed route. There is no chronology, no thematic grouping, and no argument that resolves at the far wall. Visitors arrive at the works in whatever order the room permits, which is closer to how these moments are encountered in a life than any sequence a curator might impose. Three of the thirty-eight artists work in live form, placing part of the exhibition on a schedule rather than on a wall.</p>
+<p>THE WAY does not ask what a life amounts to, nor does it treat the individual as a case study for a larger condition. It asks what a life pivoted on, and accepts that the answer is usually too small to be defended in public: a contract that ended, a language never shared, a body that changed without asking.</p>
+<p>The turns on display are, for the most part, not decisions. R James Healy's <em>Made in Strathcona: CRAB Park</em> watches shipping containers rearrange themselves at the Vancouver port and finds in that industrial shuffling an unwanted mirror for his own displacement. Elina Browerman's eyesight began to fail. She answered it by fitting her grandfather's 1950s Soviet lens, an object that witnessed her Leningrad childhood, to a digital sensor, choosing the blur over the resolution otherwise available to her. <em>Pinned to Bloom</em> is the result: a tulip bulb pierced with dressmaker's pins, resting on weathered books under cold blue light.</p>
+<p>Two further works push the turn away from the self. Millieon Hu could not speak her grandmother's dialect, and her grandmother could not speak Mandarin. <em>My Way</em> recovers the last question the older woman asked her through a cloned voice, repeated in dialect, Mandarin and English; AI-generated footage of a mountain road resolves slowly into the actual recording. Joy Wang removes human intention altogether. <em>Moisture</em> films mould spreading through a damp interior, redrawing the boundaries of a room while meaning nothing by it, on the grounds that a space is not a fixed backdrop but something continuously remade by movements nobody authorised.</p>
+<p>None of these turns would survive a biography. They are the wrong size: too specific to generalise from, too ordinary to dramatise, and in several cases only identifiable years after the fact. That is the condition this exhibition is built to hold.</p>
+     
 
-          <div class="field">
-            <label class="field-label" for="f-based">Currently based in <span class="req">*</span></label>
-            <input type="text" id="f-based" name="based_in" required />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-bio">Short bio <span class="req">*</span>
-              <span class="hint">A few sentences about you and your practice.</span>
-            </label>
-            <textarea id="f-bio" name="bio" rows="4" required></textarea>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-cv">CV / portfolio link
-              <span class="hint">Optional. Link to a CV, website, or Are.na — paste a URL.</span>
-            </label>
-            <input type="url" id="f-cv" name="cv_link" placeholder="https://" />
-          </div>
-        </fieldset>
-
-        <!-- —— 作品 —— -->
-        <fieldset>
-          <legend>The work</legend>
-
-          <div class="field">
-            <label class="field-label" for="f-title">Artwork title <span class="req">*</span>
-              <span class="hint"> </span>
-            </label>
-            <input type="text" id="f-title" name="artwork_title" required />
-          </div>
-
-          <div class="field">
-            <label class="field-label">Best way to describe your work <span class="req">*</span></label>
-            <div class="radio-group">
-              <label class="radio-row"><input type="radio" name="medium" value="Installation / Sculpture / Jewellery" required> Installation / Sculpture / Jewellery</label>
-              <label class="radio-row"><input type="radio" name="medium" value="Painting / Drawing"> Painting / Drawing</label>
-              <label class="radio-row"><input type="radio" name="medium" value="Digital Print"> Digital Print</label>
-              <label class="radio-row"><input type="radio" name="medium" value="Photography"> Photography</label>
-              <label class="radio-row"><input type="radio" name="medium" value="Moving Image / Video / Film"> Moving Image / Video / Film</label>
-              <label class="radio-row"><input type="radio" name="medium" value="Sound / Audio / Music"> Sound / Audio / Music</label>
-              <label class="radio-row"><input type="radio" name="medium" value="New Media Art"> New Media Art (Audiovisual, Interactive, VR, Projection Mapping, etc.)</label>
-              <label class="radio-row"><input type="radio" name="medium" value="Performance"> Performance</label>
-              <label class="radio-row radio-other">
-                <input type="radio" name="medium" value="Other">
-                <span>Other:</span>
-                <input type="text" name="medium_other" aria-label="Other medium" />
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-desc">Artwork description <span class="req">*</span>
-              <span class="hint">What is the work, and which unnoticed turn does it rest on?</span>
-            </label>
-            <textarea id="f-desc" name="artwork_description" rows="5" required></textarea>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-size">Size <span class="req">*</span>
-              <span class="hint">Length × Height × Width, in cm. For time-based work, note duration instead.</span>
-            </label>
-            <input type="text" id="f-size" name="size" required />
-          </div>
-
-          <div class="field">
-            <label class="field-label">Installation preference <span class="req">*</span></label>
-            <div class="radio-group">
-              <label class="radio-row"><input type="radio" name="install_pref" value="On-site to deliver/install" required> I will be present on-site to deliver and/or install my work</label>
-              <label class="radio-row"><input type="radio" name="install_pref" value="Ship/print + assistance"> I will need to ship/print my work and/or require assistance with installation</label>
-              <label class="radio-row radio-other">
-                <input type="radio" name="install_pref" value="Other">
-                <span>Other:</span>
-                <input type="text" name="install_pref_other" aria-label="Other installation preference" />
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
-        <!-- —— 图片与链接 —— -->
-        <fieldset>
-          <legend>Images &amp; links</legend>
-
-          <div class="field">
-            <label class="field-label" for="f-img1">Preview image 1 <span class="req">*</span>
-              <span class="hint"> Please keep all images together under 6&nbsp;MB total. Please name each file: THE&nbsp;WAY_Artist&nbsp;Name_Artwork&nbsp;Name_01 (02, 03 …).</span></span>
-            </label>
-            <input type="file" id="f-img1" name="image_1" accept="image/*" required />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-img2">Preview image 2</label>
-            <input type="file" id="f-img2" name="image_2" accept="image/*" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-img3">Preview image 3</label>
-            <input type="file" id="f-img3" name="image_3" accept="image/*" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-img4">Preview image 4</label>
-            <input type="file" id="f-img4" name="image_4" accept="image/*" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-img5">Preview image 5</label>
-            <input type="file" id="f-img5" name="image_5" accept="image/*" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-work-link">Work link
-              <span class="hint">Optional. Your site, Are.na, anything relevant.</span>
-            </label>
-            <input type="url" id="f-work-link" name="work_link" placeholder="https://" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-video">Video link
-              <span class="hint">Optional. Vimeo or YouTube — paste the URL.</span>
-            </label>
-            <input type="url" id="f-video" name="video_link" placeholder="https://" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="f-social">Website / Instagram
-              <span class="hint">Optional.</span>
-            </label>
-            <input type="text" id="f-social" name="social" />
-          </div>
-        </fieldset>
-
-        <button type="submit">Submit →</button>
-      </form>
+</article>
 
     </section>
 
   </main>
 
+  <section class="project-performances">
+    <div id="project-performances" data-exhibition="london-design-festival-2026"></div>
+  </section>
+
+  <section class="project-artists">
+    <div class="project-artists-head">
+      <h2>Exhibiting Artists</h2>
+      <p>Select a name to open their file.</p>
+    </div>
+    <div class="grid" id="project-artist-grid" data-exhibition="london-design-festival-2026"></div>
+  </section>
+
   <div id="footer-mount"></div>
 
+  <!-- ============ 档案袋遮罩（结构和 artist.html 完全一致）============ -->
+  <div id="envelope-overlay" class="envelope-overlay" aria-hidden="true">
+    <button class="envelope-close" aria-label="Close">✕</button>
+    <div class="envelope">
+      <div class="envelope-inner"></div>
+      <div class="envelope-inspector" aria-hidden="true">
+        <img class="inspected-image" src="" alt="">
+        <p class="inspector-hint">Click anywhere to put it back</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/environments/RoomEnvironment.js"></script>
+
   <script src="../js/site.js"></script>
-  <script>
-  (function () {
-    var MAX_TOTAL_MB = 6;                          /* total upload limit in MB */
-    var MAX_TOTAL_BYTES = MAX_TOTAL_MB * 1024 * 1024;
-    var form = document.querySelector('form[name="the-way-opencall"]');
-    if (!form) return;
+  <script src="../js/artists.js"></script>
+  <script src="../js/exhibitions.js"></script>
+  <script src="../js/poster-particles.js"></script> 
+  <script src="../js/artist-envelope.js"></script>
+  <script src="../js/bio-scroller.js"></script>
+  <script src="../js/project-artists.js"></script>
 
-    var submitBtn = form.querySelector('button[type="submit"]');
-
-    function getErrorEl() {
-      var el = document.getElementById('file-size-error');
-      if (!el) {
-        el = document.createElement('p');
-        el.id = 'file-size-error';
-        el.setAttribute('role', 'alert');
-        el.style.cssText =
-          'color:#b00020;font-size:13px;line-height:1.6;margin:0 0 16px 0;' +
-          'padding:12px 14px;border:1px solid #b00020;background:rgba(176,0,32,0.05);';
-        if (submitBtn && submitBtn.parentNode) {
-          submitBtn.parentNode.insertBefore(el, submitBtn);
-        } else {
-          form.appendChild(el);
-        }
-      }
-      return el;
-    }
-
-    function clearError() {
-      var el = document.getElementById('file-size-error');
-      if (el && el.parentNode) el.parentNode.removeChild(el);
-    }
-
-    form.addEventListener('submit', function (e) {
-      var fileInputs = form.querySelectorAll('input[type="file"]');
-      var total = 0;
-      fileInputs.forEach(function (input) {
-        if (input.files) {
-          for (var i = 0; i < input.files.length; i++) {
-            total += input.files[i].size;
-          }
-        }
-      });
-
-      if (total > MAX_TOTAL_BYTES) {
-        e.preventDefault();
-        var totalMB = (total / 1024 / 1024).toFixed(1);
-        var el = getErrorEl();
-        el.textContent =
-          'Your images add up to ' + totalMB + ' MB, which is over the ' +
-          MAX_TOTAL_MB + ' MB limit. Please go back and reduce the file sizes ' +
-          '(compress your images, or upload fewer / smaller files) before submitting. ' +
-          'Free tools like tinypng.com can shrink images quickly.';
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        clearError();
-      }
-    });
-  })();
-  </script>
 </body>
 </html>

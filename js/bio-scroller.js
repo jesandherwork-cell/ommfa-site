@@ -19,7 +19,7 @@
   const RAIL_RIGHT  = 14;   // 细线距卡片右边缘的距离（px），落在 padding 区里
 
   // 当前激活的实例（同一时间只有一个档案袋打开）
-  let active = null;
+  let actives = [];
 
   // 把指定 bio 元素接管为自定义滚动条
   function attach(bio) {
@@ -157,25 +157,25 @@
   // ============================================
   // 对外接口：每次档案袋渲染后调用
   // ============================================
-  window.initBioScroller = function () {
-    // 销毁上一个
-    if (active && active.destroy) active.destroy();
-    active = null;
+ window.initBioScroller = function () {
+    // 销毁上一批
+    actives.forEach(a => { if (a && a.destroy) a.destroy(); });
+    actives = [];
 
-    const bio = document.querySelector(".envelope-card .envelope-card-bio");
-    if (!bio) return;
-
-    active = attach(bio);
-
-    // bio 里如果有图片/字体晚加载导致高度变化，延迟再同步两次兜底
-    if (active) {
-      setTimeout(active.sync, 150);
-      setTimeout(active.sync, 500);
-    }
+    // 信封里现在有多层（info / 各展览），每层都有自己的 A4 卡，
+    // 所以要 querySelectorAll 全部接管，不能只取第一个
+    document.querySelectorAll(".envelope-card .envelope-card-bio").forEach(bio => {
+      const inst = attach(bio);
+      if (!inst) return;
+      actives.push(inst);
+      // bio 里如果有图片/字体晚加载导致高度变化，延迟再同步两次兜底
+      setTimeout(inst.sync, 150);
+      setTimeout(inst.sync, 500);
+    });
   };
 
   // 窗口尺寸变化（横竖屏切换、缩放）时重新测量
   window.addEventListener("resize", () => {
-    if (active && active.sync) active.sync();
+    actives.forEach(a => { if (a && a.sync) a.sync(); });
   });
 })();

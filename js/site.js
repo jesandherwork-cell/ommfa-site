@@ -3,6 +3,12 @@
 // 改这里 = 改全站
 // ============================================
 
+// ----- 【新增】资源路径前缀 -----
+// 项目页放在 projects/ 子目录里，图片路径要多一层 ../
+// 所有 JS 里拼图片路径的地方统一用 window.ASSET_BASE 开头
+// 根目录页面 = ""，子目录页面 = "../"
+window.ASSET_BASE = document.body.dataset.subfolder === "true" ? "../" : "";
+
 // ----- 配置 -----
 // 想改名字/链接/邮箱，只动 SITE 这个对象，下面的代码不用动
 const SITE = {
@@ -14,8 +20,6 @@ const SITE = {
     { label: "CONTACT",  href: "mailto:info@ommfa.org"  },
     { label: "INSTAGRAM", href: "https://www.instagram.com/ommfa.art/" },
     { label: "LINKEDIN", href: "https://www.linkedin.com/company/ommfa/" },
-    
-    
   ],
 
   copyright: '© <span class="brand">OMMFA</span> 2020–2026',
@@ -36,10 +40,7 @@ function renderNav() {
   if (!mount) return;
 
   const currentPage = document.body.dataset.page;
-  // 检测当前页是否在子文件夹（项目页放在 projects/ 里）
-  // body 标签上有 data-subfolder="true" 就在子文件夹
-  const isInSubfolder = document.body.dataset.subfolder === "true";
-  const prefix = isInSubfolder ? "../" : "";       // 子文件夹的链接前面加 ../
+  const prefix = window.ASSET_BASE;       // 子文件夹的链接前面加 ../
 
   const links = SITE.nav.map((item, i) => {
     const isLogo = i === 0;

@@ -9,6 +9,8 @@
 // - category: 项目属于哪个主导航 — "thread" / "edition" / "artist"
 // - thread: 子分类（只有category=thread时有意义）— "everyday" / "distributed" / "critical"
 // - cover: 封面图路径（之后填，现在留 null）
+// - status: 可选。"upcoming" = 未开幕，"current" = 进行中，
+//           不写这个字段 = 已结束。只影响 Threads 页卡片是彩色还是灰度
 // ============================================
 
 const PROJECTS = [
@@ -65,6 +67,7 @@ const PROJECTS = [
     id: "london-design-festival-2026",
     title: "London Design Festival 2026 - THE WAY",
     year: 2026,
+    status: "current",        // upcoming 未开幕 / current 进行中 / 删掉这行 = 已结束
     category: "thread",
     thread: "exhibition",
   },

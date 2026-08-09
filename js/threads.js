@@ -26,16 +26,20 @@ function render() {
     items.sort(() => Math.random() - 0.5);          // 洗牌
   }
   
-  // 4. 生成卡片 HTML
-grid.innerHTML = items.map(p => `
-  <a class="card" href="projects/${p.id}.html">
+ // 4. 生成卡片 HTML
+grid.innerHTML = items.map(p => {
+  // status 来自 projects.js："upcoming" / "current" = 彩色，不写 = 已结束，灰度
+  const state = (p.status === "upcoming" || p.status === "current") ? "is-live" : "is-past";
+  return `
+  <a class="card ${state}" href="projects/${p.id}.html">
     <div class="card-cover" style="background-image: url('assets/images/threads/${p.id}/cover.webp')"></div>
     <div class="card-meta">
       <span class="card-title">${p.title}</span>
       <span class="card-year">${p.year}</span>
     </div>
   </a>
-`).join("");
+`;
+}).join("");
 }
 
 // 筛选按钮：点击切换
