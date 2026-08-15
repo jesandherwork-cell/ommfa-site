@@ -29,7 +29,7 @@ const SITE = {
     { label: '<span class="brand">OMMFA</span>',    file: "index.html",    active: "home" },
     { label: "Threads",  file: "threads.html",  active: "threads"  },
     { label: "Journal", file: "journal.html", active: "journal" },
-    { label: "Artist",   file: "artist.html",   active: "artist"   },
+    { label: "Human",    file: "human.html",    active: "human"    },
     { label: "About",    file: "about.html",    active: "about"    }
   ]
 };

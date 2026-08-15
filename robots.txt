@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://ommfa.org/sitemap.xml
+
+Disallow: /projects/ZTemplate.html
+Disallow: /journal/ZTemplate.html

@@ -31,7 +31,7 @@ function render() {
 
   // href 写成 #id 只是为了卡片可点击/可右键;真正行为由下面 JS 拦截
   grid.innerHTML = items.map(j => `
-    <a class="card" href="#${j.id}" data-journal-id="${j.id}">
+    <a class="card" href="${j.render === "page" ? `journal/${j.id}.html` : `#${j.id}`}" data-journal-id="${j.id}">
       <div class="card-cover" style="background-image: url('assets/images/journal/${j.id}/cover.webp')"></div>
       <div class="card-meta">
         <span class="card-title">${j.title}</span>
@@ -41,12 +41,13 @@ function render() {
   `).join("");
 }
 
-// 拦截卡片点击 → 打开翻书器
 grid.addEventListener("click", (e) => {
   const card = e.target.closest(".card");
   if (!card) return;
-  e.preventDefault();
   const id = card.dataset.journalId;
+  const entry = JOURNAL.find(j => j.id === id);
+  if (entry && entry.render === "page") return;
+  e.preventDefault();
   if (window.openFlipbook) window.openFlipbook(id);
 });
 

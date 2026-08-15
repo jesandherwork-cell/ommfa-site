@@ -1,9 +1,36 @@
 [build]
   publish = "."
 
-[[plugins]]
-  package = "@netlify/plugin-sitemap"
+# ============================================
+# 已移除 @netlify/plugin-sitemap。
+# 那个插件每次构建会扫目录自动生成 sitemap.xml，并覆盖手写的那份。
+# 它分不清哪些页面不该收录，会把 404.html、thanks.html、
+# 两个 ZTemplate.html 一起塞进去。
+# 改为手写 sitemap.xml，放在根目录，每加一个页面手动加一段 <url>。
+# ============================================
 
-  [plugins.inputs]
-    buildDir = "."
-    baseUrl = "https://ommfa.org"
+# ============================================
+# artist.html 改名成 human.html 后的跳转。
+# 301 = 永久跳转，Google 会把 /artist 已经攒下的收录权重转到 /human。
+# 用 302 会被当成临时跳转，权重不转移。
+# 三条都要：Netlify 的 pretty URL 会同时存在带和不带 .html 的两种地址，
+# 加上带查询串（?id=xxx 打开档案袋）的旧链接也要能用。
+# ============================================
+
+[[redirects]]
+  from = "/artist"
+  to = "/human"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/artist.html"
+  to = "/human"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/artist/*"
+  to = "/human"
+  status = 301
+  force = true

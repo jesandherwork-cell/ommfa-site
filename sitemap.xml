@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================
+  OMMFA sitemap.xml — 放在网站根目录
+
+  这是手写的。netlify.toml 里的 @netlify/plugin-sitemap 已移除，
+  不会再有东西覆盖这个文件。
+
+  【每次加页面都要回来加一段】
+  静态站没有自动机制。新增一个 journal 文章页或项目页，
+  就在对应区块复制一段 <url> 改掉 loc。
+
+  网址不带 .html —— 这是照着现有页面的 canonical 写的
+  （journal.html 里写的是 https://ommfa.org/journal，
+    human.html 里写的是 https://ommfa.org/human）。
+  sitemap 和 canonical 必须一致，否则 Google 会认为
+  同一内容有两个地址，收录权重被稀释。
+
+  lastmod 要如实反映内容最后一次实质修改。
+  每次部署都改成今天，Google 会学会忽略它。
+  下面的日期是估的，请按实际改。
+  ============================================================
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ===== 主要页面 ===== -->
+
+  <url>
+    <loc>https://ommfa.org/</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/about</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/threads</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/journal</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+  <!-- 原 /artist，已改名。旧地址由 netlify.toml 的 301 跳到这里，
+       sitemap 里只收新地址，不要把 /artist 也列进来 -->
+  <url>
+    <loc>https://ommfa.org/human</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+
+  <!-- ===== 项目页 ===== -->
+
+  <url>
+    <loc>https://ommfa.org/projects/london-design-festival-2026</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/projects/the-wrong-biennale</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/projects/edinburgh-fringe</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/projects/infp-breakfast</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/projects/subway-100</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/projects/abandon-art</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+
+  <!-- 【待你确认】maskpark-16-august 是否已上线？
+       不是正式项目页就把下面这一整段删掉 -->
+  <url>
+    <loc>https://ommfa.org/projects/maskpark-16-august</loc>
+    <lastmod>2026-07-27</lastmod>
+  </url>
+
+
+  <!-- ===== Journal 文章页 ===== -->
+
+  <url>
+    <loc>https://ommfa.org/journal/sisyphus-timesheets</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+  <url>
+    <loc>https://ommfa.org/journal/exit-programme-v0101</loc>
+    <lastmod>2026-08-14</lastmod>
+  </url>
+
+
+  <!-- ============================================================
+       故意没有收进来的页面（插件时代它们会被自动塞进去，
+       现在手写就能挡掉）：
+
+       404.html                  错误页，永远不收
+       thanks.html               表单提交后的感谢页，无独立内容
+       artist.html               已删除，由 301 跳转到 /human
+       projects/ZTemplate.html   模板，不是内容
+       journal/ZTemplate.html    模板，不是内容
+
+       Welcome_ldf2026theway.html
+         【待你确认】看起来是展览现场 QR 码的落地页。
+         只给到场观众扫码用的话，不要收进来，
+         并在该页 head 里加：
+         <meta name="robots" content="noindex">
+         如果希望被搜到，先把文件名改成 kebab-case
+         （例如 welcome-the-way.html），再加进来。
+       ============================================================ -->
+
+</urlset>

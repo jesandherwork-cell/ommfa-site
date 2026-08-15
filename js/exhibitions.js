@@ -69,7 +69,7 @@ const EXHIBITIONS = {
         medium: "Wood, metal, images. Handcrafted rulers, chairs, weights and interactive objects",
         dimensions: "Chairs 50–60 × 70–80 × 50–60 cm each; other objects variable",
         year: "2026",
-        note: "Agak-Agak, a Malay word meaning roughly or approximately, explores the subtle shift from trusting our bodily intuition to relying on standardised systems of measurement. Through a series of handcrafted rulers, weights, hourglasses, and interactive installations, the project reimagines what it means to be accurate by embracing intuition over external standards. Together, these intuitive measuring tools form an alternative system of measurement, which is then used to create everyday objects, from chairs built with intuitively made rulers to traditional kuih crafted using weights determined entirely by feel.<br><br>Rather than centring on a single historical moment, the project reflects on a gradual cultural shift that has unfolded almost unnoticed: estimation is no longer regarded as a valid form of knowledge, but as an inaccuracy to be corrected. We instinctively reach for a scale instead of trusting our hands, or a ruler instead of our own sense of proportion. The embodied ways of knowing that once shaped everyday life have quietly given way to the certainty of numbers.<br><br>At its core, Agak-Agak asks a simple question: why not? Why not trust our own intuition and lived experience? What if the outcomes shaped by bodily instinct are just as meaningful as those produced through precise measurement? Rather than rejecting standardised systems altogether, Agak-Agak invites viewers to reconsider the value of human intuition, reminding us that not every way of understanding the world needs to be exact to be meaningful.",
+        note: "Agak-Agak, a Malay term meaning “roughly” or “approximately,” explores the shift from bodily intuition to standardised measurement. Through handcrafted rulers, weights, hourglasses, and interactive objects, the project proposes an alternative system based on touch and instinct. Rather than rejecting accuracy, it asks whether intuitive, embodied knowledge can be equally meaningful, challenging our reliance on numbers and external standards.",
         posters: [
           { src: "ldf2026-theway/Agak-Agak Unit_IG_1.webp", desc: " " },
           { src: "ldf2026-theway/Agak-Agak Unit_IG_2.webp", desc: " " },
@@ -82,7 +82,7 @@ const EXHIBITIONS = {
         medium: "Twigs, plaster bandage, paper, with artist's book",
         dimensions: "Approx. 160 × 200 × 200 cm, variable and site-responsive",
         year: "2025",
-        note: "In Tree! Tree! Tree!, Ai Deng explores stability through the physical act of balancing fallen branches. The project parallels the unstable conditions faced by young adults entering society and navigating uncertain futures. Preserving the natural weight and tension of each gathered twig, Deng combines them with plaster to form temporary structures reliant on leaning, pressure, and mutual dependence. Rather than overcoming instability, the sculptures exist actively within it. These gestures of rebalancing also translate into drawings within an accompanying artist's book. Through these mediums, Deng redefines balance not as standing independently upright, but as a method of continuing while leaning.",
+        note: "In Tree! Tree! Tree!, Ai Deng explores stability through balancing fallen branches, paralleling the uncertainty faced by young adults entering society. Combining twigs with plaster, Deng creates temporary structures sustained by leaning, pressure, and mutual dependence. Rather than overcoming instability, the work embraces it, redefining balance not as standing independently, but as a way of continuing while leaning.",
         items: []
       },
 
@@ -91,7 +91,7 @@ const EXHIBITIONS = {
         medium: "Acrylic and charcoal on canvas",
         dimensions: "22 × 30 cm each",
         year: "2024",
-        note: "This series of works emerged during a period of intense research, self-reflection, and confrontation with the often invisible systems that structure contemporary life. For Aida Pouryeganeh, the Panopticon is not merely a theoretical concept, nor one confined to a particular geography; it describes a condition she recognises as global.<br><br>Drawing from the idea of the Panopticon, Pouryeganeh considers how systems of observation and control extend beyond visible structures of authority and gradually become internalised. Surveillance no longer depends upon the certainty of being watched; the possibility of observation is enough to alter behaviour, perception, and the relationship one has with oneself.<br><br>Within the paintings, this condition appears through repetition, fragmentation, obscured forms, and shifting states of visibility. Figures and gestures emerge and recede without settling into a fixed narrative. The works hold the tension between watching and being watched, suggesting a system in which the observer is increasingly difficult to locate, while its presence continues to be felt.",
+        note: "This series explores the Panopticon as a global condition of observation, control, and internalised surveillance. Through repetition, fragmentation, obscured forms, and shifting visibility, Aida Pouryeganeh examines how the possibility of being watched can alter behaviour and self-perception. Her paintings hold the tension between watching and being watched, where the observer remains unseen but continuously present.",
         items: []
       },
 
@@ -104,7 +104,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/ben poster-2-ins.webp", desc: " " },
           { src: "ldf2026-theway/ben poster-1-ins.webp", desc: " " },
         ],
-        note: "Toil and Beauty interrogates how work and labour are shifting in the United Kingdom, particularly in the context of developments in AI, an unemployment crisis, and the continually evolving relationship between work and life. It examines how men experience purpose through work, and how labour, creativity, and masculinity intersect in contemporary society. Audiences are invited to reflect on what work means today, how it shapes identity, and the social implications of its absence with the unemployment crisis hitting an all time high.<br><br>Comprising small plaster sculptures, clay chains, and a bed of chalk, representing three generations of men in Adamson's family. Metallic objects reference his great-grandfather who worked as a chainmaker, which then flow into plaster pastries and breads symbolising his grandfather who was a baker. These forms rest upon chalk, representing flour, which gradually thins into an area marked only by footprints and traces of movement, evoking his own father's work as a choreographer and lecturer.",
+        note: "Toil and Beauty explores shifting ideas of work and labour in the UK amid AI and rising unemployment. Through three generations of men, it examines how labour shapes identity, purpose, creativity, and masculinity. Chain-like forms reference a great-grandfather’s work as a chainmaker, breads a grandfather’s bakery, while chalk and footprints evoke a father’s work as choreographer and lecturer.",
         items: []
       },
 
@@ -126,7 +126,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/chiemi poster-2-ins.webp", desc: " " },
           { src: "ldf2026-theway/chiemi poster-1-ins.webp", desc: " " },
         ],
-        note: "Berlin-based Japanese-Indonesian artist Chiemi Haraguchi approaches her multidisciplinary practice as a vessel for transferring internal rhythms onto diverse surfaces, ranging from conventional canvases to found objects and human skin. Her ongoing project, Doodle Scroll, originated as a tangible alternative to the digital habit of doom-scrolling. Utilising a fifty-metre roll of tracing paper, Haraguchi redirects her attention toward intuitive mark-making. Driven by the simple intention to scroll less and doodle more, the continuous scroll functions as an unfolding, wordless visual journal. This deliberately unfinished piece maps lines and shapes to intuitively record her daily emotions, transforming transient internal noise into a physical, lasting record.",
+        note: "Berlin-based Japanese-Indonesian artist Chiemi Haraguchi’s Doodle Scroll transforms the digital habit of doom-scrolling into intuitive mark-making. Using a fifty-metre roll of tracing paper, she creates an unfolding, wordless visual journal that records daily emotions through lines and shapes. Deliberately unfinished, the work translates fleeting internal noise into a tangible, lasting physical record.",
         items: []
       },
 
@@ -152,15 +152,15 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/Fatima Ezzahra Rezqi_ig.webp", desc: " " },
           { src: "ldf2026-theway/Fatima Ezzahra Rezqi_ig_2.webp", desc: " " },
         ],
-        note: "Fatima Ezzahra Rezqi is a Moroccan-born, Cambridge-based self-taught abstract painter whose intuitive use of colour and texture serves as a non-verbal outlet to process memory, natural landscapes, and the lived experience of bipolar disorder.<br><br>Her work, Edinburgh, When The Sun Finds Her, is an abstract reflection on the artist's former residence, exploring the emotional and environmental resonance of past geographies.",
+        note: "Moroccan-born, Cambridge-based artist Fatima Ezzahra Rezqi uses colour and texture as a non-verbal language to process memory, landscapes, and lived experience. Edinburgh, When The Sun Finds Her reflects on the artist’s former home, exploring the emotional and environmental resonance of a place once inhabited.",
         items: []
       },
 
       "Feng Zhao": {
-        work: "The Life",
+        work: "When we talk about the home",
         medium: "Digital print",
-        dimensions: "30 × 30 cm",
-        year: "2026",
+        dimensions: "Size Various",
+        year: "2025",
         posters: [
           { src: "ldf2026-theway/ZhaoFeng_ig_1.webp", desc: " " },
           { src: "ldf2026-theway/ZhaoFeng_ig_2.webp", desc: " " },
@@ -178,7 +178,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/gianluca-ins-2.webp", desc: " " },
           { src: "ldf2026-theway/gianluca-ins-1.webp", desc: " " },
         ],
-        note: "From, maybe To: Prelude is a 3D animated audiovisual short film that introduces the broader project From, maybe To, exploring memory as a transformative force through the fictional reimagining of a single object, the piano.<br><br>Initially presented as a photogrammetric model, the piano explodes into a constellation of fragments, reassembled by an unknown intelligence into a speculative, hybrid entity. No longer a musical instrument, the piano becomes a metaphorical machine for storing human memories. The work navigates the collapse of binaries such as inside and outside, perception and reality, unfolding in a multidimensional space where the present is both presence and memory.<br><br>Echoing Plato's allegory of the cave, Prelude invites the viewer to see beyond shadows, embracing fracture as a site of potential. The film concludes with the implosion of the piano into a single line, a moment that suggests not closure, but infinite possibility, where pressure generates transformation and presence becomes resistance.<br><br>The sound undergoes a parallel transformation: imagined as lost memory, the piano's sound is reconstructed using convolution to blend harmonic tones and mechanical noise into a hybrid timbre that never fully reveals the original. These fragments are looped and processed, generating evolving harmonies. At the implosion, the audio shifts abruptly, time-stretched and pitched down, reflecting the visual collapse.<br><br>Collezione Andrea Boghi, Brescia.",
+        note: "From, maybe To: Prelude is a 3D audiovisual short film exploring memory as a transformative force through the fictional reimagining of a piano. The instrument fragments and reforms as a speculative entity and metaphorical memory machine. Blending visual and sonic transformations, the work explores perception, reality, fracture, and infinite possibility, where memory becomes both presence and resistance.",
         items: []
       },
 
@@ -191,7 +191,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/Huilin Li_IG_1.webp", desc: " " },
           { src: "ldf2026-theway/Huilin Li_IG_2.webp", desc: " " },
         ],
-        note: "In London, where most of her friends had already moved on and life suddenly seemed to lose its clear direction after graduation, Huilin Li often turned to crochet to navigate periods of anxiety and disorientation. Row by row, Silent Time gradually came to life. During those long stretches of time that quietly compelled her to seek stillness, Li crocheted this work.<br><br>The road ahead remains uncertain, but Li has come to realise that she will always need moments like these, moments of quiet, when her hands are busy, and her mind is finally at rest.",
+        note: "Huilin Li turned to crochet to navigate anxiety and uncertainty as life seemed to lose its clear direction. Created row by row during periods of stillness, Silent Time reflects the quiet relationship between repetitive handwork and inner calm. Though the future remains uncertain, the work embraces moments of stillness as necessary spaces for rest and reflection.",
         items: []
       },
 
@@ -204,7 +204,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/xia -1-ins.webp", desc: " " },
           { src: "ldf2026-theway/xia -2-ins.webp", desc: " " },
         ],
-        note: "Ceramic boundary structures suspended between solidity and void, where folds and fractures let emptiness itself be perceived. Form asked whether it can still make space once function is removed.",
+        note: "Ceramic boundary structures suspended between solidity and void, where folds and fractures let emptiness itself be perceived - form asked whether it can still make space once function is removed.",
         items: []
       },
 
@@ -217,7 +217,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/Jie Dong_IG_1.webp", desc: " " },
           { src: "ldf2026-theway/Jie Dong_IG_2.webp", desc: " " },
         ],
-        note: "Oil on semi-transparent fabric sewn with pearls, tracing how feeling moves, disperses and settles along a way that is never a straight line.",
+        note: "Jie Dong’s work maps the dispersing traces of emotion through semi-transparent fabric and water-like ripples. Sewn plastic and hand-painted pearls create tension between physical objects and illusion, with each bead suggesting a pause or repair. Through stitching, repetition, and shifting light, the work explores how the body retains memories the mind cannot yet process.",
         items: []
       },
 
@@ -230,7 +230,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/Joy wang_IG_1.webp", desc: " " },
           { src: "ldf2026-theway/Joy wang_IG_2.webp", desc: " " },
         ],
-        note: "Moisture documents the slow spread of mould within humid built environments through close-up moving image and sound. The work attends to subtle material shifts that unfold through seepage, delay, return, and quiet accumulation. Surfaces are gradually altered, edges soften, and familiar spaces begin to take on other rhythms of life.<br><br>In this work, mould moves without intention or destination, yet it continuously redraws the boundaries of space through its own pathways of growth. By focusing on these small but persistent transformations, Moisture reflects on how environments are shaped not only by human order, but also by non-human movement, deviation, and lingering traces that quietly change how a space is lived and perceived.",
+        note: "Moisture documents the slow spread of mold through humid built environments using close-up moving image and sound. Focusing on seepage, accumulation, and subtle material change, the work explores how mold gradually redraws spatial boundaries. It reflects on how environments are shaped not only by human order, but also by non-human growth, movement, and persistent traces.",
         items: []
       },
 
@@ -239,7 +239,7 @@ const EXHIBITIONS = {
         medium: "Mild steel and glass, displayed with a fresh flower",
         dimensions: "50 × 50 × 50 cm",
         year: "2024",
-        note: "Kengo Horikoshi examines the parallels between the way flowers are commonly presented and the way individuals are perceived within society. He observes that, just as the distinct qualities of individual flowers can be overlooked when they are seen in clusters or arranged in bouquets, people are often understood through broad social categories such as nationality, age, workplace or school, rather than through their personal values, dreams, feelings and ways of thinking. Horikoshi reflects on how such group-based perceptions can make it difficult for individuality to be fully recognised and expressed. In response to this tendency, he created a distinctive single-flower vase. By allowing one bloom to stand alone and be fully seen, the artwork encourages viewers to closely observe and appreciate its unique beauty and character, serving as a metaphor for recognising and celebrating human individuality.",
+        note: "Kengo Horikoshi explores how individuals, like flowers, can be overlooked when perceived through groups and social categories. His single-flower vase allows one bloom to stand alone, encouraging close observation of its unique character. The work serves as a metaphor for individuality, questioning how nationality, age, education, and social roles can obscure personal values, feelings, dreams, and identity.",
         items: []
       },
 
@@ -252,7 +252,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/Laia Sarukhan_IG_1.webp", desc: " " },
           { src: "ldf2026-theway/Laia Sarukhan_IG_2.webp", desc: " " },
         ],
-        note: "Taken on the hiking trails of Sedona, Arizona, this photograph focuses on the geometry of lines, both seen and felt, like a path drawing the viewer forward towards the curving horizon of the mountains. Framed by the camera lens hood at either corner, the photo opens like an eyelid. The viewer can not only follow the designated path but veer off course and wander around it.",
+        note: "Taken on the hiking trails of Sedona, Arizona, this photograph explores the geometry of lines and the sensation of movement toward the curving mountain horizon. Framed by the camera lens hood like an opening eyelid, the image invites viewers to follow the path or depart from it, encouraging wandering, exploration, and alternative ways of seeing.",
         items: []
       },
 
@@ -262,10 +262,10 @@ const EXHIBITIONS = {
         dimensions: "62 × 52 × 1.2 cm",
         year: "2026",
         posters: [
-          { src: "ldf2026-theway/Margaret Bruton_IG_1.webp", desc: " " },
+          { src: "ldf2026-theway/Margaret Bruton_IG.webp", desc: " " },
           { src: "ldf2026-theway/Margaret Bruton_IG_2.webp", desc: " " },
         ],
-        note: "South African-born, UK-based abstract artist Margaret Bruton works from a floating studio on the River Thames in London. Operating within the restricted dimensions of a former HMS Belfast ticket office, her practice is informed by the surrounding tides, utilising spatial limitations to prompt spontaneity and immediacy in her work. Bruton's broader practice frequently examines themes of transition, resilience, and connection.<br><br>In Fractured Arrow, a framed print of an original acrylic painting, Bruton explores concepts of direction and disruption. The central motif of a broken arrow signifies interrupted movement and lost guidance, capturing the tension between forward progress and disorientation. The composition reflects a state of instability existing within a framework of intent, visually mapping pathways of entry, exit, and destination.",
+        note: "South African-born, UK-based artist Margaret Bruton works from a floating studio on London’s River Thames. Her practice explores transition, resilience, and connection, shaped by the studio’s spatial constraints and surrounding tides. Fractured Arrow explores direction and disruption through a broken arrow, symbolising interrupted movement and lost guidance, and the tension between progress, instability, and disorientation.",
         items: []
       },
 
@@ -295,7 +295,7 @@ const EXHIBITIONS = {
         work: "Shore of the Labyrinth, the Sky at Dawn",
         medium: "Found objects and moving image",
         dimensions: "Dimensions variable",
-        year: "[待填 年份]",
+        year: "2025-2026",
         note: "Muchuan is an artist working between found object, arrangement and landscape image. The practice centres on cheap household commodities coloured in bright fluorescent neon, and on the people who handle them, who first-hand research finds to be close to invisible. Busy pattern and strong colour that ought to be conspicuous instead hold a liminal position, and it is this trick of disappearance that the work follows, connecting the invisible figures in the landscape to the Zomia highlands of Southeast Asia and their history of retreat into mountain and forest. Working from contour surveys made around the Ban Gioc-Detian Falls, Muchuan recategorises small objects into the elements of a hill landscape and arranges them into new terrain.",
         items: []
       },
@@ -317,7 +317,11 @@ const EXHIBITIONS = {
         work: "Ashley I–II",
         medium: "LED screens, sensors, moving image on silicone",
         dimensions: "73 × 43 × 2.5 cm each, in loop",
-        year: "[待填 年份]",
+        year: "2026",
+        posters: [
+          { src: "ldf2026-theway/polinafilippova-1.webp", desc: " " },
+          { src: "ldf2026-theway/polinafilippova-2.webp", desc: " " },
+        ],
         note: "Moving image projected onto silicone, tracing the reorientation from enduring pain in silence to questioning why it was ever endured.",
         items: []
       },

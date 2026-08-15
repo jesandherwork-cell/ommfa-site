@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ↓ 改这里：结构化数据 -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "文章标题",
+  "inLanguage": "en",
+  "datePublished": "2026-01-01",
+  "author": { "@type": "Person", "name": "作者姓名" },
+  "publisher": { "@type": "Organization", "name": "OMMFA", "url": "https://ommfa.org" },
+  "mainEntityOfPage": "https://ommfa.org/journal/SLUG"
+}
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ↓ 改这里：标签栏标题 -->
+  <title>文章标题 | OMMFA</title>
+
+  <link rel="icon" type="image/png" href="https://ommfa.org/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://ommfa.org/assets/images/favicon.png">
+
+  <!-- ↓ 改这里：SLUG 换成文件名（不带 .html）-->
+  <meta name="description" content="一句话摘要，150 字符以内。">
+  <link rel="canonical" href="https://ommfa.org/journal/SLUG" />
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="文章标题">
+  <meta property="og:description" content="一句话摘要。">
+  <meta property="og:url" content="https://ommfa.org/journal/SLUG">
+
+  <meta property="og:image" content="https://ommfa.org/assets/images/og-default.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OMMFA">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ommfa.org/assets/images/og-default.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<!-- data-page="journal" 让导航高亮 Journal
+     data-subfolder="true" 让 site.js 把链接前缀改成 ../  两个都不能删 -->
+<body class="page-project"
+      data-page="journal"
+      data-subfolder="true">
+
+  <div id="nav-mount"></div>
+
+  <main class="project-layout">
+
+    <!-- ============ 左栏：文章元信息 ============ -->
+    <aside class="project-aside">
+
+      <a href="../journal.html" class="back-link">← Back to Journal</a>
+
+      <!-- ↓ 改这里：分类标签 + 标题 -->
+      <p class="journal-kicker">Exhibition review</p>
+      <h1 class="project-title">文章标题</h1>
+
+      <!-- 不需要的项删掉 dt + dd 一对 -->
+      <dl class="project-meta">
+        <dt>Text</dt>
+        <dd>作者</dd>
+
+        <dt>Date</dt>
+        <dd>Month 2026</dd>
+      </dl>
+
+      <!-- 没有行内 ref 就删掉这段 -->
+      <p class="journal-aside-note">
+        Underlined terms in the text open a reference. Full list at the foot of the article.
+      </p>
+
+    </aside>
+
+    <!-- ============ 右栏：正文 ============ -->
+    <section class="project-content">
+
+      <!-- 配图槽位。图到位后删掉 hidden -->
+      <figure class="journal-figure" hidden>
+        <img src="../assets/images/journal/SLUG/01.webp" alt="">
+        <figcaption>作品名, 艺术家, 年份。摄影署名。</figcaption>
+      </figure>
+
+      <article class="project-review">
+
+        <!-- 第一段用 lede，字号更大 -->
+        <p class="lede">导语段落。</p>
+
+        <!-- 小标题（可选）：<h2>小标题</h2> -->
+
+        <!-- 行内参考文献写法：
+             <span class="ref" data-ref="1">被引用的词</span>
+             编号要跟下面 JOURNAL_REFS 和文末列表对上 -->
+        <p>正文段落。</p>
+
+        <p class="review-byline">
+          署名行。
+        </p>
+
+      </article>
+
+      <!-- 没有 ref 就删掉整个 section -->
+      <section class="journal-refs">
+        <h2>References</h2>
+        <ol>
+          <li><strong>条目标题。</strong>补充信息。<a href="https://example.com" target="_blank" rel="noopener">example.com ↗</a></li>
+        </ol>
+      </section>
+
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <!-- ============ 本篇特有交互 ============ -->
+  <!-- ↓ 改这里：ref 数据。编号要跟正文 data-ref 对上。没有 ref 就连同下面那行 script 一起删 -->
+  <script>
+    window.JOURNAL_REFS = {
+      1: {
+        label: "条目标题",
+        meta: "补充信息（可省略）",
+        url: "https://example.com",
+        linkText: "example.com"
+      }
+    };
+  </script>
+
+  <script src="../js/site.js"></script>
+  <script src="../js/journal-refs.js"></script>
+
+</body>
+</html>

@@ -1038,8 +1038,13 @@ a {
    OMMFA Cinematic Envelope System (大倾角飞入 + 无白边版)
    ============================================ */
 
-* {
+/* 【改】原为 * { outline: none !important }，会连键盘 Tab 的焦点框一起压掉，
+   键盘用户看不见焦点在哪。改为只压鼠标点击产生的轮廓，:focus-visible 保留。
+   数值未变。 */
+*:focus:not(:focus-visible) {
   outline: none !important;
+}
+* {
   -webkit-tap-highlight-color: transparent !important;
 }
 
@@ -1270,10 +1275,6 @@ body.envelope-open {
   filter: drop-shadow(0 14px 20px rgba(38, 61, 55, 0.842));
 }
 .envelope-item:hover { z-index: 10; }
-.envelope-item:hover img {
-  transform: scale(1.08) rotate(0deg) !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-}
 
 /* 6. 高清拾取层 (彻底重构对齐与比例) */
 .envelope-inspector {
@@ -2041,7 +2042,9 @@ body.flipbook-open { overflow: hidden; }
 /* 格子间沿用 .grid，但这里左右 padding 由父级给，避免双重缩进 */
 .project-artists .grid { padding-left: 0; padding-right: 0; padding-bottom: 0; }
 
-.empty-state {
+/* 【改】原为全局 .empty-state，会覆盖 journal / threads 列表页的空状态。
+   加上 .project-artists 作用域。数值未变。 */
+.project-artists .empty-state {
   grid-column: 1 / -1;
   font-size: 13px;
   color: var(--ink-soft);
@@ -2209,4 +2212,783 @@ body.envelope-open .project-artists {
     filter: drop-shadow(0 4px 14px rgba(40, 70, 50, 0.18));
   }
   .ep-canvas { display: none !important; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================
+   8. Journal 文章页（独立 HTML）
+   追加在 style.css 末尾（现有文件 2211 行之后）
+   ============================================ */
+
+/* 文章页复用 .project-layout / .project-review 的排版，
+   这里只补 journal 特有的部分 */
+
+.journal-kicker {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+/* 左栏里的文章元信息，比 project-meta 更紧 */
+.journal-aside-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---- 正文里的图注块 ---- */
+.journal-figure { margin: 40px 0; }
+.journal-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.journal-figure figcaption {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.journal-figure[hidden] { display: none; }
+
+/* ---- 文末完整 References 列表 ---- */
+.journal-refs {
+  max-width: 68ch;
+  margin-top: 56px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.journal-refs h2 {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.journal-refs ol {
+  list-style: none;
+  counter-reset: refnum;
+}
+
+.journal-refs li {
+  counter-increment: refnum;
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.journal-refs li::before {
+  content: counter(refnum);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.journal-refs li strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.journal-refs a {
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.journal-refs a:hover { border-color: var(--ink); }
+
+
+/* ============================================
+   9. 行内参考文献气泡（journal-refs.js）
+   ============================================ */
+
+/* 正文里的可点词 */
+.ref {
+  cursor: pointer;
+  border-bottom: 1px dotted var(--ink-soft);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.ref:hover { border-bottom-color: var(--ink); }
+.ref:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.ref.is-open {
+  border-bottom-style: solid;
+  border-bottom-color: var(--ink);
+  background: rgba(26, 26, 26, 0.05);
+}
+
+/* 上标编号 */
+.ref::after {
+  content: attr(data-ref);
+  font-size: 0.62em;
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 1px;
+  color: var(--ink-soft);
+}
+.ref.is-open::after { color: var(--ink); }
+
+/* ---- 气泡本体（桌面）---- */
+.ref-bubble {
+  position: absolute;
+  z-index: 900;
+  width: 280px;
+  padding: 16px 18px 14px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 8px 28px rgba(26, 26, 26, 0.14);
+
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.ref-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.ref-bubble-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink-soft);
+  transition: color 0.2s;
+}
+.ref-bubble-close:hover { color: var(--ink); }
+
+.ref-bubble-index {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.ref-bubble-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 6px;
+  padding-right: 16px;
+}
+
+.ref-bubble-meta {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.ref-bubble-meta[hidden] { display: none; }
+
+.ref-bubble-link {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.ref-bubble-link:hover { border-color: var(--ink); }
+.ref-bubble-link[hidden] { display: none; }
+
+/* ---- 移动端：底部抽屉 ---- */
+.ref-bubble.is-sheet {
+  position: fixed;
+  left: 0 !important;
+  right: 0;
+  bottom: 0;
+  top: auto !important;
+  width: auto;
+  border-radius: 10px 10px 0 0;
+  border-bottom: none;
+  padding: 20px 20px 28px;
+  transform: translateY(100%);
+  box-shadow: 0 -8px 28px rgba(26, 26, 26, 0.18);
+}
+
+.ref-bubble.is-sheet.is-visible {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ref-bubble { transition: opacity 0.01s; transform: none; }
+  .ref-bubble.is-sheet { transform: none; }
+}
+
+
+/* ============================================
+   10. Journal 文章页：中英文切换 + 段间图
+   ============================================ */
+
+/* ---- 语言切换（左栏，Curated by 下面）---- */
+.lang-toggle {
+  display: inline-flex;
+  margin-top: 4px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.lang-toggle button {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-toggle button + button {
+  border-left: 1px solid var(--line);
+}
+
+.lang-toggle button:hover { color: var(--ink); }
+
+.lang-toggle button.is-active {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* 中文按钮不做大写变形，"中文"两个字不需要 letter-spacing */
+.lang-toggle button[data-set-lang="zh"] {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* 隐藏的语言块 */
+[data-lang][hidden] { display: none; }
+
+
+/* ---- 段间图：正文放开宽度，改由段落自己控制行长 ---- */
+/* 只作用于 .journal-article，projects 页的 .project-review 不受影响 */
+
+.project-review.journal-article { max-width: none; }
+
+.journal-article p,
+.journal-article h2,
+.journal-article .review-byline {
+  max-width: 68ch;
+}
+
+/* 默认图：跟正文同宽，读起来不跳 */
+.journal-article .journal-figure { max-width: 68ch; }
+
+/* 加 is-wide：图撑满右栏，用于跨页大图 */
+.journal-article .journal-figure.is-wide { max-width: none; }
+
+/* 并排两图：<div class="journal-figure-pair"> 里放两个 <figure> */
+.journal-figure-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 40px 0;
+}
+.journal-figure-pair .journal-figure { margin: 0; max-width: none; }
+
+@media (max-width: 700px) {
+  .journal-figure-pair { grid-template-columns: 1fr; gap: 24px; }
+}
+
+
+/* ============================================
+   11. Journal 出版物页（翻书器嵌在页面里，非遮罩）
+   ============================================ */
+
+.publication-stage {
+  margin: 0 0 40px;
+}
+
+/* 页面内的书：不需要遮罩那套浮出水面动画，阴影收敛一些 */
+.publication-stage .flipbook .stf__parent {
+  margin: 0 auto;
+  box-shadow: 0 20px 50px rgba(20, 20, 40, 0.22);
+}
+
+.publication-hint {
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 14px;
+  letter-spacing: 0.02em;
+}
+
+/* 翻书库没加载出来时的兜底 */
+.publication-fallback {
+  padding: 40px 20px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================
+   12. 深色主题（目前只用在 sisyphus-timesheets 这一篇）
+   作用域：body.theme-dark
+   要给别的文章页也上黑底，就在那个页面的 <body> 加 theme-dark 类
+   ============================================ */
+
+body.theme-dark {
+  /* 变量翻转：全站文字、描边都走这几个变量，所以改这里就够 */
+  --cream: #0d0d0d;
+  --ink: #f2f0eb;
+  --ink-soft: #8c8a84;
+  --line: rgba(242, 240, 235, 0.16);
+
+  /* 新增：比页面稍亮一层，给需要"浮起来"的元素用（气泡等） */
+  --surface: #1a1a1a;
+
+  /* .page-project 的背景是硬编码的 #ffffff，不是变量，必须显式覆盖 */
+  background: #0d0d0d;
+  color: var(--ink);
+}
+
+/* 选中文字的配色 */
+body.theme-dark ::selection {
+  background: rgba(242, 240, 235, 0.22);
+  color: #ffffff;
+}
+
+/* 气泡：深色下靠"抬一层 + 描边"分离，阴影在黑底上不起作用 */
+body.theme-dark .ref-bubble {
+  background: var(--surface);
+  border-color: rgba(242, 240, 235, 0.22);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+}
+body.theme-dark .ref-bubble.is-sheet {
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.6);
+}
+
+/* 引用词按住时的底色：深色下原来的黑色底会消失 */
+body.theme-dark .ref.is-open {
+  background: rgba(242, 240, 235, 0.10);
+}
+
+/* 图片占位底色 */
+body.theme-dark .journal-figure img {
+  background: rgba(242, 240, 235, 0.06);
+}
+
+/* 语言切换：选中态是 ink 底 + cream 字，翻转后自动变成亮底深字，符合预期 */
+
+
+/* ============================================
+   13. 西西弗斯阅读进度（journal-sisyphus.js）
+   ============================================ */
+
+.sisyphus {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.sisyphus svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* 整条坡：底色，很淡 */
+.sis-slope {
+  stroke: var(--ink-soft);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+/* 已经走过的那段：加亮，起进度条的作用 */
+.sis-trail {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.sis-boulder {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+/* 石头上的两道刻痕，用来看出它在转 */
+.sis-boulder-mark {
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.sis-figure {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sis-caption {
+  margin-top: 10px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* 窄屏：左栏会被推到正文上方，长条斜坡放在那里很奇怪，直接不显示 */
+@media (max-width: 900px) {
+  .sisyphus { display: none; }
+}
+
+
+
+/* ============================================
+   14. 修正：底部白边 / 左栏多余分隔线
+   追加在 style.css 最末尾。
+   这一节全是覆盖，不用改动前面任何一行。
+   ============================================ */
+
+/* ---- 底部白边 ----
+   两个成因，一起堵掉：
+
+   (a) 气泡 .ref-bubble 是 position:absolute 但初始没给 top/left，
+       于是它停在自己的静态位置 —— 页脚后面 —— 把文档整整撑高一截。
+       给它 top:0/left:0，脚本一开就会重新定位，不影响功能。 */
+.ref-bubble {
+  top: 0;
+  left: 0;
+}
+
+/* (b) 深色底色只写在 body 上。body 的背景通常会传播到画布，
+       但一旦 html 元素被别的样式或浏览器默认值占住，超出 body 的
+       区域就会露出白。直接把 html 也染黑，最稳。 */
+html:has(> body.theme-dark) {
+  background: #0d0d0d;
+}
+
+
+/* ---- 左栏：署名上下那两条线 ----
+   上面那条来自 .review-byline 的 border-top（这个类本来是给正文末尾用的），
+   下面那条来自 .sisyphus 的 border-top。
+   左栏里两条挨在一起，把署名夹成了一个框。两条都去掉，只留间距。 */
+
+.project-aside .review-byline {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 28px;
+}
+
+.project-aside .sisyphus {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 36px;
+}
+
+
+
+
+
+
+
+
+
+
+/* ============================================
+   15. Human 页筛选栏：View + Search 并到左侧，同一层级
+   追加在 style.css 最末尾
+   ============================================ */
+
+/* .filter-bar 是 justify-content: space-between。
+   原本两组（Search / Sort）分居两端，加了 View 之后变三组，
+   Search 会被挤到正中间，看着像漂着的。
+   把 View 和 Search 包进一层，左边一块、右边一块，还是两端对齐。 */
+.filter-side {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  /* 和 .filter-group 内部的 gap 一致，整行一个节奏 */
+  gap: 4px;
+}
+
+/* ---- 让 SEARCH 和 Artist / Writer 平级 ----
+   问题不在间距，在字体规格：
+     .filter-label（VIEW / SEARCH）= 11px + 全大写 + 字距 0.08em
+     .filter-btn  （Artist/Writer）= 13px + 正常大小写
+   两种排在一行，SEARCH 天然矮一级，间距怎么调都白搭。
+   这里把它按 .filter-btn 的规格重写，连 padding 都对齐，
+   于是它和按钮共用同一套横向节奏，不用再补 margin。
+   注意：只作用于 .filter-side 里第二组往后的标签，
+   左边的 VIEW 仍是组标题，保持原样。 */
+.filter-side .filter-group + .filter-group .filter-label {
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  margin-right: 0;
+}
+
+/* 按钮还没生成时（脚本执行前）留一个空 div 会占掉一个 gap，
+   先隐藏，renderRoleButtons() 填好内容后再显示。 */
+#role-filter:empty { display: none; }
+
+@media (max-width: 700px) {
+  .filter-side { gap: 6px; }
+  .filter-side .filter-group + .filter-group .filter-label { padding: 6px 8px; }
+}
+
+
+
+
+
+
+/* ============================================
+   16. 深色页里的档案袋
+   给 body.theme-dark 的页面用（目前是 sisyphus-timesheets）
+   追加在 style.css 最末尾
+   ============================================ */
+
+/* ---- 触发链接：左栏里可点开档案袋的人名 ---- */
+.envelope-trigger {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border-bottom: 1px dotted var(--ink-soft);
+  transition: border-color 0.2s;
+}
+.envelope-trigger:hover { border-bottom-color: var(--ink); }
+.envelope-trigger:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+
+/* ---- 遮罩：绿雾换成暗雾 ----
+   原本那套是 Artist 页的绿色调，压在黑底文章上会很突兀。
+   保留同样的四层雾块 + 噪点结构和 fogFlow 动画，只把颜色换掉，
+   所以浮现的质感和 Human 页是一致的，只是冷了下来。 */
+body.theme-dark .envelope-overlay {
+  background-color: rgba(10, 10, 10, 0.55);
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(70, 70, 74, 0.55) 0%, transparent 50%),
+    radial-gradient(circle at 75% 85%, rgba(28, 28, 30, 0.85) 0%, transparent 60%),
+    radial-gradient(circle at 60% 10%, rgba(58, 58, 62, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(38, 38, 42, 0.7) 0%, transparent 55%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.25'/%3E%3C/svg%3E");
+}
+
+/* 信封本体：白色磨砂压到很低，靠描边和阴影立住 */
+body.theme-dark .envelope {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 20px 35px 65px rgba(0, 0, 0, 0.55);
+}
+
+
+/* ---- 关键：纸卡上的字要重新变黑 ----
+   theme-dark 把 --ink 翻成了浅色，但 .envelope-card 是一张
+   rgba(253,251,245,0.98) 的奶白纸。浅色字印在奶白纸上等于看不见。
+   在纸卡这一层把三个变量重新钉回深色，子元素自动继承，
+   不用逐条改 .envelope-card-bio / -city / -link。
+   顶部姓名标签和关闭按钮同理，它们也是浅色底。 */
+body.theme-dark .envelope-card,
+body.theme-dark .envelope-tab,
+body.theme-dark .envelope-tab-btn,
+body.theme-dark .envelope-close {
+  --ink: #1a1a1a;
+  --ink-soft: #5a5a5a;
+  --line: rgba(26, 26, 26, 0.15);
+  color: var(--ink);
+}
+
+/* 顶部姓名标签和右侧标签条在暗背景上要更实一点才看得清 */
+body.theme-dark .envelope-tab,
+body.theme-dark .envelope-tab-btn {
+  background: rgba(255, 255, 255, 0.82);
+}
+body.theme-dark .envelope-tab-btn.active {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* 放大图下面那行说明是直接压在暗遮罩上的，保持浅色 */
+body.theme-dark .inspector-hint {
+  color: #f2f0eb;
+}
+
+
+
+
+
+
+
+/* ============================================
+   18. 出版物页：全屏书版式
+   作用域 body.page-publication
+   追加在 style.css 最末尾
+
+   注意：这一节会覆盖第 11 节里 .publication-stage 的部分设定，
+   第 11 节请保留，它还管着阴影和兜底提示。
+   ============================================ */
+
+/* 第一屏：导航之下全部给书 */
+.page-publication .publication-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 4vw 24px;
+  min-height: calc(100vh - 60px);   /* 60px 约等于注入的导航高度 */
+}
+
+/* 标题行：一行放下，不占高度 */
+.page-publication .publication-topbar {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 8px 0 18px;
+}
+
+.page-publication .publication-topbar .back-link {
+  margin-bottom: 0;
+}
+
+.page-publication .publication-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.page-publication .publication-year {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-left: auto;
+}
+
+/* 书台。宽度由 journal-publication.js 按可用高度算出后写进 inline style，
+   这里只负责居中和上下留白。第 11 节的 margin-bottom 在这里清掉。 */
+.page-publication .publication-stage {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* 提示行 + 「往下看」的锚点 */
+.page-publication .publication-hint {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.publication-more {
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.publication-more:hover { border-color: var(--ink); }
+
+/* 平滑滚到说明区 */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ---- 第二屏：说明。首屏之外，但在 DOM 里，搜索引擎照读 ---- */
+.publication-about {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 10vh 6vw 12vh;
+  scroll-margin-top: 40px;
+}
+
+.publication-about .project-meta {
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.publication-about .project-statement p {
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* ---- 窄屏 ---- */
+@media (max-width: 700px) {
+  .page-publication .publication-full {
+    padding: 0 4vw 20px;
+    min-height: calc(100vh - 50px);
+  }
+  .page-publication .publication-year { margin-left: 0; }
+  .page-publication .publication-hint {
+    font-size: 10px;
+    gap: 12px;
+  }
 }

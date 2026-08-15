@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ============================================================
+       结构化数据：这是一篇评论文章，不是展览
+       ============================================================ -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Can Art Still Act as an Escape When Sisyphus Starts Filing Timesheets?",
+  "inLanguage": "en",
+  "datePublished": "2026-08-10",
+  "author": {
+    "@type": "Organization",
+    "name": "FlexPrin"
+  },
+  "translator": {
+    "@type": "Organization",
+    "name": "OMMFA",
+    "url": "https://ommfa.org"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "OMMFA",
+    "url": "https://ommfa.org"
+  },
+  "mainEntityOfPage": "https://ommfa.org/journal/sisyphus-timesheets",
+  "about": {
+    "@type": "ExhibitionEvent",
+    "name": "ESC 2035 (II): We kept going.",
+    "startDate": "2026-04-10",
+    "endDate": "2026-04-25",
+    "location": {
+      "@type": "Place",
+      "name": "at SUNSET",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Scheveningen, The Hague",
+        "addressCountry": "NL"
+      }
+    }
+  }
+}
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Can Art Still Act as an Escape When Sisyphus Starts Filing Timesheets? | OMMFA</title>
+
+  <link rel="icon" type="image/png" href="https://ommfa.org/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://ommfa.org/assets/images/favicon.png">
+
+  <meta name="description" content="A review of ESC 2035 (II): We kept going., curated by 0—1 at at SUNSET, Scheveningen. Original Chinese text by FlexPrin, translated by OMMFA.">
+  <link rel="canonical" href="https://ommfa.org/journal/sisyphus-timesheets" />
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Can Art Still Act as an Escape When Sisyphus Starts Filing Timesheets?">
+  <meta property="og:description" content="On ESC 2035 (II): We kept going., curated by 0—1 at at SUNSET, Scheveningen.">
+  <meta property="og:url" content="https://ommfa.org/journal/sisyphus-timesheets">
+
+  <meta property="og:image" content="https://ommfa.org/assets/images/og-default.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OMMFA">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ommfa.org/assets/images/og-default.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body class="page-project theme-dark"
+      data-page="journal"
+      data-subfolder="true">
+
+  <div id="nav-mount"></div>
+
+  <main class="project-layout">
+
+    <!-- ============ 左栏：文章元信息 ============ -->
+    <aside class="project-aside">
+
+      <a href="../journal.html" class="back-link">← Back to Journal</a>
+
+      <p class="journal-kicker">Exhibition review</p>
+      <h1 class="project-title">Can Art Still Act as an Escape When Sisyphus Starts Filing Timesheets?</h1>
+
+      <dl class="project-meta">
+
+        <dt>Text</dt>
+        <dd><button type="button" class="envelope-trigger" data-artist="FlexPrin">FlexPrin 浮动原则</button></dd>
+
+        <dt>Translation</dt>
+        <dd><span class="brand">OMMFA</span></dd>
+
+        <dt>Subject</dt>
+        <dd>ESC 2035 (II): We kept going.</dd>
+
+        <dt>Venue</dt>
+        <dd>at SUNSET, Scheveningen<br>The Hague, NL</dd>
+
+        <dt>Dates</dt>
+        <dd>10 – 25 April 2026</dd>
+
+        <dt>Curated by</dt>
+        <dd>0—1</dd>
+
+      </dl>
+
+      <!-- 语言切换：默认哪个语言，就把 is-active 放在哪个按钮上 -->
+      <p class="journal-kicker" style="margin-top:18px;">Language</p>
+      <div class="lang-toggle" id="lang-toggle">
+        <button type="button" data-set-lang="en" class="is-active" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="zh" aria-pressed="false">中文</button>
+      </div>
+
+      <p class="review-byline">
+          Original Chinese text by FlexPrin. English translation by <span class="brand">OMMFA</span>.<br>
+      </p>
+
+
+      <!-- ============ 西西弗斯阅读进度 ============
+           小人的位置 = 正文读了多少。读到末尾石头会滚回坡底。
+           斜坡两端坐标写在 js/journal-sisyphus.js 顶部的 A / B，
+           改这里的 #sis-slope 时那两组数字要一起改。
+           ============================================ -->
+      <div class="sisyphus" aria-hidden="true">
+        <svg id="sisyphus" viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- 整条坡 -->
+          <line id="sis-slope" class="sis-slope" x1="20" y1="110" x2="232" y2="28"/>
+
+          <!-- 已走过的那段 -->
+          <line id="sis-trail" class="sis-trail" x1="20" y1="110" x2="20" y2="110"/>
+
+          <!-- 小人：原点在脚底，身体朝右前倾 -->
+          <g id="sis-figure" class="sis-figure">
+            <circle cx="3.2" cy="-15.5" r="2.6"/>
+            <path d="M 2.6 -13 L 1.2 -6.5"/>
+            <path d="M 1.6 -11.5 L 6 -9.5"/>
+            <path d="M 1.2 -6.5 L 4.6 0"/>
+            <path d="M 1.2 -6.5 L -2.6 0"/>
+          </g>
+
+          <!-- 石头：原点在圆心 -->
+          <g id="sis-boulder">
+            <circle class="sis-boulder" cx="0" cy="0" r="9"/>
+            <path class="sis-boulder-mark" d="M -4.5 -2.5 L 1 -5"/>
+            <path class="sis-boulder-mark" d="M -1.5 4.5 L 4 2"/>
+          </g>
+
+        </svg>
+        <p class="sis-caption">Reading progress</p>
+      </div>
+
+    </aside>
+
+    <!-- ============ 右栏：正文 ============ -->
+    <section class="project-content">
+      <article class="project-review journal-article">
+
+      <!-- ============ 英文版 ============ -->
+      <div data-lang="en">
+
+        <p class="lede">🪨Sisyphus pushing the boulder up a hill is a Greek myth; Sisyphus logging hours on timesheets and drafting grant evaluations is contemporary reality. The latter isn't a hypothetical dystopia. It is what is already happening inside the art world.</p>
+
+        <p>I recently viewed the online documentation of <span class="ref" data-ref="1">ESC 2035 (II): We kept going.</span>, an exhibition at <span class="ref" data-ref="3">at SUNSET</span> in Scheveningen, The Hague, on view from 10 to 25 April 2026. The venue is a former girls' school, now run as a project space. The building is already complicit in the show's theme: the rooms still hold their old sequence, a corridor that runs one way, doors at fixed intervals, a timetable you can feel without being told what it was.</p>
+
+        <figure class="journal-figure is-wide">
+          <img src="../assets/images/journal/sisyphus-timesheets/zerbst-follow-me-blindly-01.webp" alt="Lukas Zerbst, Follow Me Blindly, installation view" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/tag/lukas-zerbst/" target="_blank" rel="noopener">Lukas Zerbst</a>, <em>Follow Me Blindly</em>, 2025.
+          </figcaption>
+        </figure>
+
+        <p>Curated by the nomadic art platform <span class="ref" data-ref="2">0—1</span>, this exhibition is the second chapter of the ESC 2035 trilogy. The first was '… the world paused.' at Quartair; the third, <span class="ref" data-ref="5">'… we never changed.'</span>, ran at …ISM Project Space from 29 May to 9 June 2026. In this second chapter, repetition is the condition: actions loop, structures calcify, and movement continues without arriving anywhere new.</p>
+
+        <p>Yet perhaps this second chapter is where most people in the art world actually live.</p>
+
+        <p>Among the seven artists, <span class="ref" data-ref="4">Andrei Nacu</span>'s video <em>Except in the context of time…</em> (2017, 4 min) captures the symptom most clearly. Armed with a single bucket, Nacu scoops water from the Prut, the river that forms part of the border between Romania and Moldova, and carries it from upstream to downstream, attempting to accelerate the river's flow by hand.</p>
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/nacu-except-in-the-context-of-time-01.webp"
+               alt="Andrei Nacu, Except in the context of time, installation view"
+               loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/tag/andrei-nacu/" target="_blank" rel="noopener">Andrei Nacu</a>, <em>Except in the context of time…</em>, 2017, video, 4 min.
+          </figcaption>
+        </figure>
+
+        <p>The curatorial text calls this a Sisyphean attempt: a solitary figure engaged in an unwinnable chore. The imagery is apt enough that it could be adapted as an intern recruitment poster for almost any major art institution without further copy editing.</p>
+
+        <p>The same text describes the wider condition as a system that has lost its exit and settled into repetition, a script that no longer needs anyone to issue commands, a routine that reads as inherited rather than chosen.</p>
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/colombo-migliorero-untitled-brick-01.webp" alt="Santiago Colombo Migliorero, Untitled (Brick), detail" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/tag/santiago-colombo-migliorero/" target="_blank" rel="noopener">Santiago Colombo Migliorero</a>, <em>Untitled (Brick)</em>, 2021.
+          </figcaption>
+        </figure>
+
+        <p>Reading these diagnoses is uncomfortable because they don't describe a fictional scenario. They describe the reality art practitioners wake up to each day: unlocking phones, opening shared Google Docs, filling out spreadsheets.</p>
+
+        <p>And that is what haunts me.</p>
+
+        <p>Many large-scale group exhibitions in recent years attempt to counter the collective impasse with redemption narratives or technological optimism. The honesty of ESC 2035 (II) lies in its refusal to offer an illusory exit. It does not pretend there is a way out, nor does it promise change. Even the open call itself, a shortlist drawn from nearly six hundred proposals and then divided across the trilogy's three chapters, reads as a search for an involutionary frequency in a sea of noise.</p>
+
+        <p>In an era where escape itself has been commodified through digital detoxes, mindfulness workshops, and hashtags about leaving the big cities, true artistic escape may no longer mean a physical departure. It is the refusal of illusory progress. Admitting that the system has reached a deadlock can itself become a form of liberation.</p>
+
+        
+
+      </div>
+      <!-- ============ 英文版结束 ============ -->
+
+
+      <!-- ============ 中文版 ============
+           下面每个 <p> 对应英文版同位置的一段。
+           把 FlexPrin 的中文原稿逐段贴进来，删掉 [ ] 里的提示。
+           行内 ref 写法和英文版一样：
+             <span class="ref" data-ref="1">被引用的词</span>
+           编号必须和英文版、和文末列表对得上。
+           ============================================ -->
+      <div data-lang="zh" hidden>
+
+        <p class="lede">🪨西西弗斯推石头是希腊神话，西西弗斯写周报是当代日常。后者不是没有发生，它已经在艺术行业里发生了。</p>
+
+        <p>最近云看了海牙 <span class="ref" data-ref="3">at SUNSET</span> 今年的新展 <span class="ref" data-ref="1">ESC 2035 (II)</span>：《我们继续前行》，这座由废弃女校改建的空间本身就是一个关于重复的隐喻：教室、走廊、残留的制度秩序，像刻进墙壁里的肌肉记忆，和展览要讲的东西构成了某种奇妙的关联。该展览由游牧艺术小组 <span class="ref" data-ref="2">0—1</span> 策划，是其 ESC 2035 展览三部曲的第二章。三部曲的第一章是《一个世界悬停的时刻》；第三章则叫 <span class="ref" data-ref="5">《我们从未改变》</span>。目前的第二章，重复成为了主导性的状况，行动循环，结构固化，运动继续推进却不导向任何新的地方。</p>
+
+        <figure class="journal-figure is-wide">
+          <img src="../assets/images/journal/sisyphus-timesheets/zerbst-follow-me-blindly-01.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/tag/lukas-zerbst/" target="_blank" rel="noopener">Lukas Zerbst</a>，<em>Follow Me Blindly</em>，2025。
+          </figcaption>
+        </figure>
+
+        <figure class="journal-figure is-wide">
+          <img src="../assets/images/journal/sisyphus-timesheets/zerbst-follow-me-blindly-02.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/tag/lukas-zerbst/" target="_blank" rel="noopener">Lukas Zerbst</a>，<em>Follow Me Blindly</em>，2025。
+          </figcaption>
+        </figure>
+
+        <p>但或许这第二章，才是处于艺术行业的大多数人真正活着的地方。</p>
+
+        <p>七位艺术家中，<span class="ref" data-ref="4">Andrei Nacu</span> 的影像作品《Except in the context of time…》（除非置于时间之中）是我觉得最能表现出这种症候的。他提着一只水桶，在罗马尼亚与摩尔多瓦交界的普鲁特河打水，从上游搬运到下游，试图用人力加速河水的自然流速。策展词称之为「西西弗斯式的企图」。一个孤独身影，进行着毫无胜算的苦役。感觉这画面几乎可以拿去给任何一家美术馆做招募实习生的海报，文案都不用改。</p>
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/nacu-except-in-the-context-of-time-01.webp"
+               alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/?s=Andrei+Nacu" target="_blank" rel="noopener">Andrei Nacu</a>，<em>Except in the context of time…</em>，2017，影像，4 分钟。
+          </figcaption>
+        </figure>
+        
+
+        <p>策展声明将这种状态描述为「一种永久的频率」。一个丢失了出口、选择重复的系统，一套「不再需要人类指令即可自行延续的脚本」，一种「继承来的肌肉记忆」。这些说法精准得让我有些不舒服，因为它们描述的不是某个虚构的反乌托邦，而是艺术从业者们每天醒来滑开手机、打开工作文档、填表时感受到的麻木现实。</p>
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/colombo-migliorero-untitled-brick-01.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/?s=Santiago+Colombo+Migliorero" target="_blank" rel="noopener">Santiago Colombo Migliorero</a>，<em>Untitled (Brick)</em>，2021。
+          </figcaption>
+        </figure>
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/colombo-migliorero-untitled-brick-02.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/?s=Santiago+Colombo+Migliorero" target="_blank" rel="noopener">Santiago Colombo Migliorero</a>，<em>Untitled (Brick)</em>，2021。
+          </figcaption>
+        </figure>
+
+        <p>而这正是最让我在意的地方。</p>
+
+        <p>近几年的诸多大型群展，习惯于用某种救赎叙事或技术乐观主义来回应困局。而这场展览的诚实在于，它拒绝提供虚假出口。不假装有出路，不承诺改变会到来。在六百多份投稿中筛出七位艺术家的 open call 的过程本身，也像在无数噪音里校准一个「内卷的频率」。</p>
+
+        <p>在一个连逃逸都变成商品的时代，数字排毒、正念工作坊、「逃离北上广」的话题标签。我认为真正的艺术逃逸或许不再是物理上的离开，而是对「虚假前进」的拒绝。承认系统已陷入死锁，本身就可以是一种解放。</p>
+
+      <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/Bea Targosz_AFAIK_2024.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/?s=Bea+Targosz" target="_blank" rel="noopener">Bea Targosz</a>，<em>AFAIK</em>，2024。
+          </figcaption>
+        </figure>
+
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/Matteo Vettorello_Bilancia per vortici_2017b.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/?s=Matteo+Vettorello" target="_blank" rel="noopener">Matteo Vettorello</a>，<em>Bilancia per vortici</em>，2017。
+          </figcaption>
+        </figure>
+
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/Matteo Vettorello_Bilancia per vortici_2017.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/?s=Matteo+Vettorello" target="_blank" rel="noopener">Matteo Vettorello</a>，<em>Somehow, Elsewhere No.1</em>，2017。
+          </figcaption>
+        </figure>
+
+
+        <figure class="journal-figure">
+          <img src="../assets/images/journal/sisyphus-timesheets/Joan Horrach_Somehow_Elsewhere No.1_2024.webp" alt="" loading="lazy">
+          <figcaption>
+            <a href="https://artviewer.org/?s=Joan+Horrach" target="_blank" rel="noopener">Joan Horrach</a>，<em>Somehow, Elsewhere No.1</em>，2024。
+          </figcaption>
+        </figure>
+
+
+
+        </p>
+
+      </div>
+      <!-- ============ 中文版结束 ============ -->
+
+      </article>
+
+      <!-- ============ 文末完整参考列表 ============ -->
+      <section class="journal-refs">
+        <h2>References</h2>
+        <ol>
+          <li><strong>ESC 2035 (II): We kept going.</strong> at SUNSET, Scheveningen, 10–25 April 2026. Curated by 0—1.</li>
+          <li><strong>0—1</strong> (est. 2017), nomadic contemporary art platform. <a href="https://0-1.gallery/" target="_blank" rel="noopener">0-1.gallery ↗</a></li>
+          <li><strong>at SUNSET</strong>, project space in a former girls' school, Scheveningen, run by Marius Lut and Rob Knijn. <a href="https://atsunset.org/" target="_blank" rel="noopener">atsunset.org ↗</a></li>
+          <li><strong>Artists in chapter two:</strong> Andrei Nacu, Bas van Wieringen, Bea Targosz, Joan Horrach, Lukas Zerbst, Matteo Vettorello, Santiago Colombo Migliorero.</li>
+          <li><strong>ESC 2035 (III): '… we never changed.'</strong> …ISM Project Space, Westeinde 31a, The Hague, 29 May – 9 June 2026.</li>
+        </ol>
+
+        <p class="journal-credit">
+          All images: installation views, ESC 2035 (II): We kept going., at SUNSET, Scheveningen.<br>Photos: &copy; 0-1.gallery, all images copyright and courtesy of the artist and at SUNSET.
+        </p>
+      </section>
+
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <!-- ============ 档案袋遮罩 ============
+       结构和 human.html / 项目页完全一致，artist-envelope.js 认这套 DOM。
+       深色配色在 style.css 第 16 节，作用域是 body.theme-dark。
+       ============================================ -->
+  <div id="envelope-overlay" class="envelope-overlay" aria-hidden="true">
+    <button class="envelope-close" aria-label="Close">✕</button>
+    <div class="envelope">
+      <div class="envelope-inner"></div>
+      <div class="envelope-inspector" aria-hidden="true">
+        <img class="inspected-image" src="" alt="">
+        <p class="inspector-hint">Click anywhere to put it back</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 本篇特有交互：参考文献气泡 ============ -->
+  <script>
+    window.JOURNAL_REFS = {
+      1: {
+        label: "ESC 2035 (II): We kept going.",
+        meta: "at SUNSET, Scheveningen · 10–25 April 2026 · Curated by 0—1",
+        url: "https://0-1.gallery/",
+        linkText: "0-1.gallery"
+      },
+      2: {
+        label: "0—1",
+        label_zh: "0—1",
+        meta: "Nomadic contemporary art platform, founded 2017. Works across changing locations rather than from a fixed base.",
+        meta_zh: "游牧型当代艺术平台，成立于 2017 年。没有固定场地，展览随地点和条件变化。",
+        url: "https://0-1.gallery/",
+        linkText: "0-1.gallery"
+      },
+      3: {
+        label: "at SUNSET",
+        meta: "Project space in a former girls' school, Scheveningen. Run by Marius Lut and Rob Knijn.",
+        meta_zh: "位于斯海弗宁恩一所前女子学校内的项目空间，由 Marius Lut 与 Rob Knijn 运营。",
+        url: "https://atsunset.org/",
+        linkText: "atsunset.org"
+      },
+      4: {
+        label: "Andrei Nacu",
+        meta: "Romanian artist working with documentary photography, the family album and the photographic archive.",
+        meta_zh: "罗马尼亚艺术家，工作围绕纪实摄影、家庭相册与摄影档案展开。",
+        url: "https://www.andreinacu.ro/",
+        linkText: "andreinacu.ro"
+      },
+      5: {
+        label: "ESC 2035 (III): '… we never changed.'",
+        meta: "…ISM Project Space, Westeinde 31a, The Hague · 29 May – 9 June 2026",
+        url: "https://0-1.gallery/",
+        linkText: "0-1.gallery"
+      }
+    };
+  </script>
+
+  <script src="../js/site.js"></script>
+  <script src="../js/journal-sisyphus.js"></script>
+
+  <!-- ============ 档案袋 ============
+       只需要这三个。artist-envelope.js 里所有可选依赖都有守卫：
+         exhibitions.js    没有就只显示 info 标签
+         poster-particles  没有海报就不调用
+         Vimeo / three.js  没有 video / model 物件就不需要
+       FlexPrin 目前只有一段 bio，所以上面几个都不用引。
+       以后如果给他加了 items 或参展记录，再按 human.html 补齐。
+
+       顺序不能改：artists.js 要在 artist-envelope.js 之前，
+       site.js 要在最前面（图片路径靠它设的 window.ASSET_BASE）。
+       ============================================ -->
+  <script src="../js/artists.js"></script>
+  <script src="../js/artist-envelope.js"></script>
+  <script src="../js/bio-scroller.js"></script>
+
+  <script>
+    // 任何带 class="envelope-trigger" data-artist="<id>" 的元素都能打开档案袋。
+    // id 要和 artists.js 里的 id 完全一致（大小写敏感）。
+    document.querySelectorAll(".envelope-trigger[data-artist]").forEach(el => {
+      el.addEventListener("click", () => {
+        if (window.openEnvelope) window.openEnvelope(el.dataset.artist);
+      });
+    });
+  </script>
+  <script src="../js/journal-lang.js"></script>
+  <script src="../js/journal-refs.js"></script>
+
+</body>
+</html>

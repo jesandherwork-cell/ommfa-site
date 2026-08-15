@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artists & Collaborators | OMMFA</title>
+  <title>Human | OMMFA</title>
 
   <link rel="icon" type="image/png" href="https://ommfa.org/assets/images/favicon.png">
   <link rel="apple-touch-icon" href="https://ommfa.org/assets/images/favicon.png">
@@ -16,33 +16,43 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://ommfa.org/assets/images/og-default.webp">
 
-  <meta name="description" content="Artists and collaborators working with OMMFA across exhibitions, publications and projects.">
-  <link rel="canonical" href="https://ommfa.org/artist" />
-  <meta property="og:title" content="Artists & Collaborators | OMMFA">
-  <meta property="og:description" content="Meet the artists and collaborators working with OMMFA.">
-  <meta property="og:url" content="https://ommfa.org/artist">
+  <meta name="description" content="Artists, writers and collaborators working with OMMFA across exhibitions, publications and projects.">
+  <link rel="canonical" href="https://ommfa.org/human" />
+  <meta property="og:title" content="Human | OMMFA">
+  <meta property="og:description" content="The artists, writers and collaborators working with OMMFA.">
+  <meta property="og:url" content="https://ommfa.org/human">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="page-artist" data-page="artist">
+<!-- class 仍是 page-artist：style.css 里有 7 条规则挂在这个类上（背景、卡片、标题色），
+     改名要连同 CSS 一起动，收益为零。data-page 改成 human，导航高亮才对得上。 -->
+<body class="page-artist" data-page="human">
 
   <div id="nav-mount"></div>
 
   <div class="filter-bar">
+
+   <div class="filter-side">
+
+    <!-- View 的按钮由 artist-page.js 从 artists.js 的 roles 字段自动生成，
+         这里只留一个空壳。加新身份不用改这里。 -->
+    <div class="filter-group" id="role-filter"></div>
+
     <div class="filter-group">
-      <span class="filter-label">Search</span>
       <input
         type="text"
         id="search-input"
         class="search-input"
         placeholder="Type a name…"
         autocomplete="off"
-        aria-label="Search artists"
+        aria-label="Search by name"
       >
     </div>
+
+   </div>
 
     <div class="filter-group">
       <span class="filter-label">Sort</span>
@@ -53,7 +63,7 @@
   </div>
 
   <p class="filter-note" id="available-note" hidden>
-    Artists open to enquiries. Contact details are in each file.
+    Open to enquiries. Contact details are in each file.
   </p>
 
   <main class="grid" id="artist-grid"></main>

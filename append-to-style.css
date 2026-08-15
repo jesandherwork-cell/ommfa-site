@@ -1,0 +1,339 @@
+/* ============================================
+   8. Journal 文章页（独立 HTML）
+   追加在 style.css 末尾（现有文件 2211 行之后）
+   ============================================ */
+
+/* 文章页复用 .project-layout / .project-review 的排版，
+   这里只补 journal 特有的部分 */
+
+.journal-kicker {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+/* 左栏里的文章元信息，比 project-meta 更紧 */
+.journal-aside-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---- 正文里的图注块 ---- */
+.journal-figure { margin: 40px 0; }
+.journal-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.journal-figure figcaption {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.journal-figure[hidden] { display: none; }
+
+/* ---- 文末完整 References 列表 ---- */
+.journal-refs {
+  max-width: 68ch;
+  margin-top: 56px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.journal-refs h2 {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.journal-refs ol {
+  list-style: none;
+  counter-reset: refnum;
+}
+
+.journal-refs li {
+  counter-increment: refnum;
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.journal-refs li::before {
+  content: counter(refnum);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.journal-refs li strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.journal-refs a {
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.journal-refs a:hover { border-color: var(--ink); }
+
+
+/* ============================================
+   9. 行内参考文献气泡（journal-refs.js）
+   ============================================ */
+
+/* 正文里的可点词 */
+.ref {
+  cursor: pointer;
+  border-bottom: 1px dotted var(--ink-soft);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.ref:hover { border-bottom-color: var(--ink); }
+.ref:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.ref.is-open {
+  border-bottom-style: solid;
+  border-bottom-color: var(--ink);
+  background: rgba(26, 26, 26, 0.05);
+}
+
+/* 上标编号 */
+.ref::after {
+  content: attr(data-ref);
+  font-size: 0.62em;
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 1px;
+  color: var(--ink-soft);
+}
+.ref.is-open::after { color: var(--ink); }
+
+/* ---- 气泡本体（桌面）---- */
+.ref-bubble {
+  position: absolute;
+  z-index: 900;
+  width: 280px;
+  padding: 16px 18px 14px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 8px 28px rgba(26, 26, 26, 0.14);
+
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.ref-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.ref-bubble-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink-soft);
+  transition: color 0.2s;
+}
+.ref-bubble-close:hover { color: var(--ink); }
+
+.ref-bubble-index {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.ref-bubble-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 6px;
+  padding-right: 16px;
+}
+
+.ref-bubble-meta {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.ref-bubble-meta[hidden] { display: none; }
+
+.ref-bubble-link {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s;
+}
+.ref-bubble-link:hover { border-color: var(--ink); }
+.ref-bubble-link[hidden] { display: none; }
+
+/* ---- 移动端：底部抽屉 ---- */
+.ref-bubble.is-sheet {
+  position: fixed;
+  left: 0 !important;
+  right: 0;
+  bottom: 0;
+  top: auto !important;
+  width: auto;
+  border-radius: 10px 10px 0 0;
+  border-bottom: none;
+  padding: 20px 20px 28px;
+  transform: translateY(100%);
+  box-shadow: 0 -8px 28px rgba(26, 26, 26, 0.18);
+}
+
+.ref-bubble.is-sheet.is-visible {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ref-bubble { transition: opacity 0.01s; transform: none; }
+  .ref-bubble.is-sheet { transform: none; }
+}
+
+
+/* ============================================
+   10. Journal 文章页：中英文切换 + 段间图
+   ============================================ */
+
+/* ---- 语言切换（左栏，Curated by 下面）---- */
+.lang-toggle {
+  display: inline-flex;
+  margin-top: 4px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.lang-toggle button {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-toggle button + button {
+  border-left: 1px solid var(--line);
+}
+
+.lang-toggle button:hover { color: var(--ink); }
+
+.lang-toggle button.is-active {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* 中文按钮不做大写变形，"中文"两个字不需要 letter-spacing */
+.lang-toggle button[data-set-lang="zh"] {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* 隐藏的语言块 */
+[data-lang][hidden] { display: none; }
+
+
+/* ---- 段间图：正文放开宽度，改由段落自己控制行长 ---- */
+/* 只作用于 .journal-article，projects 页的 .project-review 不受影响 */
+
+.project-review.journal-article { max-width: none; }
+
+.journal-article p,
+.journal-article h2,
+.journal-article .review-byline {
+  max-width: 68ch;
+}
+
+/* 默认图：跟正文同宽，读起来不跳 */
+.journal-article .journal-figure { max-width: 68ch; }
+
+/* 加 is-wide：图撑满右栏，用于跨页大图 */
+.journal-article .journal-figure.is-wide { max-width: none; }
+
+/* 并排两图：<div class="journal-figure-pair"> 里放两个 <figure> */
+.journal-figure-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 40px 0;
+}
+.journal-figure-pair .journal-figure { margin: 0; max-width: none; }
+
+@media (max-width: 700px) {
+  .journal-figure-pair { grid-template-columns: 1fr; gap: 24px; }
+}
+
+
+/* ============================================
+   11. Journal 出版物页（翻书器嵌在页面里，非遮罩）
+   ============================================ */
+
+.publication-stage {
+  margin: 0 0 40px;
+}
+
+/* 页面内的书：不需要遮罩那套浮出水面动画，阴影收敛一些 */
+.publication-stage .flipbook .stf__parent {
+  margin: 0 auto;
+  box-shadow: 0 20px 50px rgba(20, 20, 40, 0.22);
+}
+
+.publication-hint {
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 14px;
+  letter-spacing: 0.02em;
+}
+
+/* 翻书库没加载出来时的兜底 */
+.publication-fallback {
+  padding: 40px 20px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+}

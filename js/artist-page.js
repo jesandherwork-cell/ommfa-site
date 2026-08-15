@@ -1,19 +1,67 @@
 // ============================================
-// Artist 列表页：渲染 + 搜索 + 排序
+// Human 列表页：渲染 + 身份筛选 + 搜索 + 排序
 // 卡片点击不跳转，而是打开档案袋遮罩
+//
+// 身份筛选（View）的按钮不写在 HTML 里，是从 artists.js 的 roles 字段
+// 自动生成的。以后想加 Curator / Translator，只要在某个人身上写
+//   roles: ["Artist", "Curator"]
+// 按钮就会自己出现，这个文件和 human.html 都不用改。
 // ============================================
 
 const grid = document.getElementById("artist-grid");
 const searchInput = document.getElementById("search-input");
 const sortBtns = document.querySelectorAll(".sort-btn");
 const availableBtn = document.getElementById("available-btn");
+const roleMount = document.getElementById("role-filter");
 let onlyAvailable = false;
 
 let currentSearch = "";
 let currentSort = "random";        // "az" | "random"
+let currentRole = "all";           // "all" | roles 里出现过的任意一个值
 
 // Random 的顺序在切走再切回来时要保持不变，否则每敲一个搜索字符就重排一次
 let randomOrder = null;
+
+// 没写 roles 的人默认算 Artist，这样旧数据不加字段也不会掉出筛选
+function rolesOf(a) {
+  return Array.isArray(a.roles) && a.roles.length ? a.roles : ["Artist"];
+}
+
+// 扫一遍数据，收集出现过的所有身份。
+// 用 Map 保持首次出现的顺序，比 sort 更可控：
+// 你在 artists.js 里把谁排在前面，按钮就排在前面。
+function collectRoles() {
+  const seen = new Map();
+  ARTISTS.forEach(a => rolesOf(a).forEach(r => {
+    if (!seen.has(r)) seen.set(r, 0);
+    seen.set(r, seen.get(r) + 1);
+  }));
+  return [...seen.keys()];
+}
+
+function renderRoleButtons() {
+  if (!roleMount) return;
+  const roles = collectRoles();
+
+  // 只有一种身份时不显示这一栏，免得出现"All / Artist"这种没意义的选择
+  if (roles.length < 2) { roleMount.hidden = true; return; }
+
+  roleMount.innerHTML =
+    `<span class="filter-label">View</span>` +
+    `<button class="filter-btn active" data-role="all">All</button>` +
+    roles.map(r =>
+      `<button class="filter-btn" data-role="${r}">${r}</button>`
+    ).join("");
+
+  roleMount.querySelectorAll("[data-role]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentRole = btn.dataset.role;
+      roleMount.querySelectorAll("[data-role]")
+        .forEach(b => b.classList.toggle("active", b === btn));
+      render();
+    });
+  });
+}
 
 function shuffle(arr) {
   const a = arr.slice();
@@ -27,6 +75,7 @@ function shuffle(arr) {
 function render() {
   let items = ARTISTS;
 
+  if (currentRole !== "all") items = items.filter(a => rolesOf(a).includes(currentRole));
   if (onlyAvailable) items = items.filter(a => a.available);
 
   // ---- 先过滤 ----
@@ -68,7 +117,7 @@ function render() {
   }
 
   if (items.length === 0) {
-    const msg = onlyAvailable ? "No works currently available." : "No artists found.";
+    const msg = onlyAvailable ? "No works currently available." : "No one found.";
     grid.innerHTML = `<p class="empty-state">${msg}</p>`;
     return;
   }
@@ -124,4 +173,5 @@ if (availableBtn) {
 }
 
 
+renderRoleButtons();
 render();

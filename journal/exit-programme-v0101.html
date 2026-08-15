@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Exit Programme V01.01",
+  "inLanguage": "en",
+  "datePublished": "2021",
+  "numberOfPages": 13,
+  "publisher": {
+    "@type": "Organization",
+    "name": "OMMFA",
+    "url": "https://ommfa.org"
+  },
+  "url": "https://ommfa.org/journal/exit-programme-v0101"
+}
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exit Programme V01.01 | OMMFA</title>
+
+  <link rel="icon" type="image/png" href="https://ommfa.org/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://ommfa.org/assets/images/favicon.png">
+
+  <!-- ↓ 待你补：一句话说明这本册子是什么 -->
+  <meta name="description" content="Exit Programme V01.01, a publication by OMMFA, 2021.">
+  <link rel="canonical" href="https://ommfa.org/journal/exit-programme-v0101" />
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Exit Programme V01.01">
+  <meta property="og:description" content="A publication by OMMFA, 2021.">
+  <meta property="og:url" content="https://ommfa.org/journal/exit-programme-v0101">
+
+  <meta property="og:image" content="https://ommfa.org/assets/images/journal/exit-programme-v0101/cover.webp">
+  <meta property="og:image:alt" content="Exit Programme V01.01 cover">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ommfa.org/assets/images/journal/exit-programme-v0101/cover.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<!-- page-publication：第一屏只有书，说明文字在下面。
+     文字没有删，只是推到首屏之外，搜索引擎照样读得到。 -->
+<body class="page-project page-publication"
+      data-page="journal"
+      data-subfolder="true">
+
+  <div id="nav-mount"></div>
+
+  <!-- ============ 第一屏：整本书 ============ -->
+  <main class="publication-full">
+
+    <div class="publication-topbar">
+      <a href="../journal.html" class="back-link">&larr; Back to Journal</a>
+      <h1 class="publication-title">Exit Programme V01.01</h1>
+      <span class="publication-year">OMMFA, 2021</span>
+    </div>
+
+    <!-- 书台。宽度由 journal-publication.js 按可用高度算出来后写进 style -->
+    <div class="publication-stage">
+      <div id="flipbook" class="flipbook"></div>
+    </div>
+
+
+  </main>
+
+  <!-- ============ 往下滚：说明 ============ 
+  <section class="publication-about" id="about">
+
+    <dl class="project-meta">
+      <dt>Year</dt>
+      <dd>2021</dd>
+
+      <dt>Publisher</dt>
+      <dd><span class="brand">OMMFA</span></dd>
+
+      <dt>Extent</dt>
+      <dd>13 pages</dd>
+
+
+  </section>
+
+  <div id="footer-mount"></div>-->
+
+  <!-- ============ 本页数据 ============ -->
+  <script>
+    window.PUBLICATION = {
+      id: "exit-programme-v0101",   // 图片文件夹名，必须和磁盘上一致
+      pages: 13,                    // 内页张数
+      ratio: 1.414                  // 高 ÷ 宽
+      // 路径写法（子目录 / 扩展名 / 补零）由脚本自动探测，
+      // 想跳过探测就加 dir: "pages/" 和 ext: "webp"
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/journal-publication.js"></script>
+
+</body>
+</html>
