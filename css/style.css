@@ -2992,3 +2992,163 @@ html { scroll-behavior: smooth; }
     gap: 12px;
   }
 }
+
+
+
+
+
+
+
+
+/* ============================================
+   19. Journal 图片放大查看（journal-lightbox.js）
+   追加在 style.css 最末尾
+   ============================================ */
+
+/* 正文里的图：提示可点 */
+.journal-figure img {
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+.journal-figure img:hover { opacity: 0.88; }
+
+/* 打开时锁住背景滚动 */
+body.jl-open { overflow: hidden; }
+
+.jl-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(8, 8, 8, 0.94);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.jl-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 图片区。上下留出图注和关闭按钮的位置 */
+.jl-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 72px 88px 96px;
+}
+
+.jl-img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  transform: scale(0.97);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.jl-overlay.is-open .jl-img { transform: scale(1); }
+
+/* ---- 底部信息条：图注靠左，页码靠右 ---- */
+.jl-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 28px 24px;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.85) 0%, transparent 100%);
+}
+
+.jl-caption {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #f2f0eb;
+  letter-spacing: 0.01em;
+  max-width: 70ch;
+}
+
+.jl-counter {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(242, 240, 235, 0.55);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- 按钮 ---- */
+.jl-close,
+.jl-nav {
+  position: absolute;
+  z-index: 2;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f2f0eb;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.jl-close:hover,
+.jl-nav:hover { background: rgba(255, 255, 255, 0.2); }
+
+.jl-close {
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.jl-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  font-size: 30px;
+  line-height: 1;
+  padding-bottom: 5px;   /* ‹ › 这两个字符视觉偏上 */
+}
+.jl-prev { left: 20px; }
+.jl-next { right: 20px; }
+.jl-nav[hidden] { display: none; }
+
+/* ---- 窄屏 ---- */
+@media (max-width: 700px) {
+  .jl-stage { padding: 60px 12px 104px; }
+  .jl-nav {
+    top: auto;
+    bottom: 18px;
+    transform: none;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  .jl-prev { left: 12px; }
+  .jl-next { right: 12px; }
+  .jl-bar {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 68px 70px;
+  }
+  .jl-caption { font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jl-overlay { transition: opacity 0.01s; }
+  .jl-img { transition: none; transform: none; }
+}

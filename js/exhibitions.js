@@ -165,7 +165,7 @@ const EXHIBITIONS = {
           { src: "ldf2026-theway/ZhaoFeng_ig_1.webp", desc: " " },
           { src: "ldf2026-theway/ZhaoFeng_ig_2.webp", desc: " " },
         ],
-        note: "An illustrator's flattened, sticker-like studies of crushed drinks cans, turning overlooked street debris into a new visual language.",
+        note: "[Name] is a London-based artist working through what she calls 'poetic illustration', turning emotions that resist description into objects and single-image narratives. Her work traces the small moments that shape a person: fragments left by family, school and society that resurface mid-conversation or while walking through the city, arriving like scenes from a film she did not know she had stored. Her past self appears as a worn-out toy, watching a household change while holding memories of substitution and neglect. Her present self is a hot-air balloon, its head swelling with the city's noise until it drifts apart from the crowd. Moving to London marked a quiet turning point. In looking for identity and self-recognition, she has begun to find a way towards home, understood less as a place than as a direction.",
         items: []
       },
 
